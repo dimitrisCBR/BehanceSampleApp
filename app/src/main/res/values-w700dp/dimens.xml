@@ -1,4 +1,15 @@
 <resources>
-    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Standard Paddings -->
+    <dimen name="xsmall">8dp</dimen>
+    <dimen name="small">16dp</dimen>
+    <dimen name="medium">24dp</dimen>
+    <dimen name="large">32dp</dimen>
+    <dimen name="xlarge">48dp</dimen>
+
     <dimen name="card_standard_padding">16dp</dimen>
+    <dimen name="fab_standard_margin">32dp</dimen>
+    <dimen name="card_behace_user_item">240dp</dimen>
+    <dimen name="card_behace_user_default_image_width">300dp</dimen>
+
 </resources>

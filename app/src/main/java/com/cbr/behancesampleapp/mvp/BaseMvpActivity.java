@@ -14,6 +14,7 @@ public abstract class BaseMvpActivity<PRESENTER extends MvpPresenter> extends Ap
 
 	private void setPresenter(PRESENTER presenter) {
 		this.mPresenter = presenter;
+		this.mPresenter.setView(this);
 	}
 
 	@Override
@@ -23,10 +24,21 @@ public abstract class BaseMvpActivity<PRESENTER extends MvpPresenter> extends Ap
 	}
 
 	public PRESENTER getPresenter() {
-		if(mPresenter == null) {
+		if (mPresenter == null) {
 			mPresenter = createPresenter();
 		}
 		return mPresenter;
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getPresenter().subscribe();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		getPresenter().unsubscribe();
+	}
 }

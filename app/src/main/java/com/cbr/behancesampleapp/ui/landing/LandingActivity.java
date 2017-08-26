@@ -1,23 +1,33 @@
-package com.cbr.behancesampleapp.ui.main;
+package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.cbr.behancesampleapp.R;
+import com.cbr.behancesampleapp.model.BehanceUser;
+import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
 import com.cbr.behancesampleapp.network.BehanceRepository;
-import com.cbr.behancesampleapp.network.BehanceSubscriber;
-import com.cbr.behancesampleapp.network.query.UsersQuery;
-import com.example.dimitrios.disample.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
+import com.cbr.behancesampleapp.util.UiUtils;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
-import retrofit2.Response;
 
-public class LandingActivity extends AppCompatActivity {
+public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Presenter> implements LandingActivityContract.View {
+
+	private BehanceUserGridAdapter mGridAdapter;
+
+	@BindView(R.id.activity_landing_recycler)
+	RecyclerView mRecyclerView;
 
 	@Inject
 	BehanceRepository mBehanceRepository;
@@ -26,29 +36,54 @@ public class LandingActivity extends AppCompatActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		AndroidInjection.inject(this);
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_landing);
+		bindViews();
+	}
+
+	private void bindViews() {
+		ButterKnife.bind(this);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
+
+		mGridAdapter = new BehanceUserGridAdapter();
+
+		mRecyclerView.setLayoutManager(new GridLayoutManager(this, getColumnCount()));
+		mRecyclerView.addItemDecoration(new BehanceUserItemDecorator(this, getColumnCount()));
+		mRecyclerView.setAdapter(mGridAdapter);
 
 		FloatingActionButton fab = findViewById(R.id.fab);
 		fab.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
-				mBehanceRepository.getUserById(new UsersQuery().withCountry("gr").build())
-					.subscribe(new BehanceSubscriber<Response<BehanceUser>>() {
-
-						@Override
-						public void onNext(Response<BehanceUser> behanceUserResponse) {
-
-						}
-
-						@Override
-						public void onError(Throwable e) {
-
-						}
-					});
+				getPresenter().requestBehanceUsers();
 			}
 		});
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		getPresenter().requestBehanceUsers();
+	}
+
+	private int getColumnCount() {
+		int screenWidth = UiUtils.getScreenWidth(this);
+		int itemWidth = (int) (getResources().getDimension(R.dimen.card_behace_user_item) + getResources().getDimension(R.dimen.card_standard_padding));
+		return screenWidth / itemWidth;
+	}
+
+	@Override
+	public LandingActivityContract.Presenter createPresenter() {
+		return new LandingActivityPresenter(mBehanceRepository);
+	}
+
+	@Override
+	public void onUsersFetched(List<BehanceUser> behanceUser) {
+		mGridAdapter.updateUsers(behanceUser, true);
+	}
+
+	@Override
+	public void showError() {
+
+	}
 }

@@ -1,6 +1,7 @@
 package com.cbr.behancesampleapp.network;
 
 import io.reactivex.Observer;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -8,13 +9,20 @@ import io.reactivex.disposables.Disposable;
  */
 
 public abstract class BehanceSubscriber<T> implements Observer<T> {
-    @Override
-    public void onSubscribe(Disposable d) {
 
-    }
+	private CompositeDisposable mCompositeDisposable;
 
-    @Override
-    public void onComplete() {
+	public BehanceSubscriber(CompositeDisposable compositeDisposable) {
+		this.mCompositeDisposable = compositeDisposable;
+	}
 
-    }
+	@Override
+	public void onSubscribe(Disposable d) {
+		mCompositeDisposable.add(d);
+	}
+
+	@Override
+	public void onComplete() {
+
+	}
 }

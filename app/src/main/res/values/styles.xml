@@ -13,8 +13,25 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="BehanceSample_Text" parent="TextAppearance.AppCompat">
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="BehanceSample_Card_Body_1" parent="BehanceSample_Text">
+        <item name="android:textSize">@dimen/caption_body_1</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="BehanceSample_Card_Body_2" parent="BehanceSample_Text">
+        <item name="android:textSize">@dimen/caption_body_2</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/text_dark</item>
+    </style>
+
 
 </resources>

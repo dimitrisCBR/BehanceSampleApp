@@ -34,4 +34,16 @@ public abstract class BaseMvpFragment<PRESENTER extends MvpPresenter> extends Fr
 		return mPresenter;
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		getPresenter().subscribe();
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		getPresenter().unsubscribe();
+	}
+
 }

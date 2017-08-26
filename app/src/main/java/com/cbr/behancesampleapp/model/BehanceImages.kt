@@ -1,4 +1,4 @@
-package com.example.dimitrios.disample.model
+package com.cbr.behancesampleapp.model
 
 import com.google.gson.annotations.SerializedName
 

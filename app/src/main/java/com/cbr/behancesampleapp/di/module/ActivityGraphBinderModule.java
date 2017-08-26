@@ -4,8 +4,8 @@ package com.cbr.behancesampleapp.di.module;
 import com.cbr.behancesampleapp.di.scope.ActivityScope;
 import com.cbr.behancesampleapp.ui.details.DetailsActivity;
 import com.cbr.behancesampleapp.ui.details.di.DetailsActivityModule;
-import com.cbr.behancesampleapp.ui.main.LandingActivity;
-import com.cbr.behancesampleapp.ui.main.di.MainActivityModule;
+import com.cbr.behancesampleapp.ui.landing.LandingActivity;
+import com.cbr.behancesampleapp.ui.landing.di.LandingActivityModule;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -28,7 +28,7 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class ActivityGraphBinderModule {
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = MainActivityModule.class)
+    @ContributesAndroidInjector(modules = LandingActivityModule.class)
     abstract LandingActivity bindMainActivity();
 
     @ActivityScope

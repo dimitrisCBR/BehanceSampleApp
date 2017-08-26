@@ -6,6 +6,6 @@ package com.cbr.behancesampleapp.mvp;
 
 public interface MvpView<PRESENTER extends MvpPresenter> {
 
-    PRESENTER createPresenter();
+	PRESENTER createPresenter();
 
 }

@@ -6,8 +6,10 @@ package com.cbr.behancesampleapp.mvp;
 
 public interface MvpPresenter<VIEW extends MvpView> {
 
-    void subscribe();
+	void setView(VIEW view);
 
-    void unsubscribe();
+	void subscribe();
+
+	void unsubscribe();
 
 }

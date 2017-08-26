@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="green_yellow">#E5FCC2</color>
+    <color name="green_light">#9DE0AD</color>
+    <color name="green_teal">#45ADA8</color>
+    <color name="green_dark">#547980</color>
+    <color name="brown_light">#594F4F</color>
+
+
+    <!-- Text -->
+    <color name="text_hint">#90FFFFFF</color>
+    <color name="text_dark_grey">#555555</color>
+    <color name="text_black_1">#0d0d0d</color>
+    <color name="text_light">#80555555</color>
+    <color name="text_white_fade">#80FFFFFF</color>
+
 </resources>
