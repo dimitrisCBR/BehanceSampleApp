@@ -32,6 +32,7 @@ public class LandingActivityPresenter extends BaseMvpPresenter<LandingActivityCo
 
 	@Override
 	public void requestBehanceUsers() {
+		cancelPending();
 		mBehanceRepository.getUsers(new UsersQuery().build())
 			.subscribe(new BehanceSubscriber<BehanceUserResponse>(getCompositeDisposable()) {
 				@Override

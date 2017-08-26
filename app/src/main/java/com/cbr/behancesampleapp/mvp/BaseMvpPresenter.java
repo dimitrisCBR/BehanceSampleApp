@@ -32,9 +32,13 @@ public abstract class BaseMvpPresenter<VIEW extends MvpView> implements MvpPrese
 
 	@Override
 	public void unsubscribe() {
-		if(mCompositeDisposable != null && !mCompositeDisposable.isDisposed()){
+		cancelPending();
+		mCompositeDisposable.dispose();
+	}
+
+	public void cancelPending() {
+		if (mCompositeDisposable != null && !mCompositeDisposable.isDisposed()) {
 			mCompositeDisposable.clear();
-			mCompositeDisposable.dispose();
 		}
 	}
 }

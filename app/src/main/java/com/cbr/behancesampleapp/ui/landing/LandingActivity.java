@@ -2,6 +2,7 @@ package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,8 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	@BindView(R.id.activity_landing_recycler)
 	RecyclerView mRecyclerView;
+	@BindView(R.id.activity_landing_swiperefresh)
+	SwipeRefreshLayout mSwipeRefreshLayout;
 
 	@Inject
 	BehanceRepository mBehanceRepository;
@@ -50,6 +53,12 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		mRecyclerView.setLayoutManager(new GridLayoutManager(this, getColumnCount()));
 		mRecyclerView.addItemDecoration(new BehanceUserItemDecorator(this, getColumnCount()));
 		mRecyclerView.setAdapter(mGridAdapter);
+		mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				getPresenter().requestBehanceUsers();
+			}
+		});
 
 		FloatingActionButton fab = findViewById(R.id.fab);
 		fab.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +88,12 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	@Override
 	public void onUsersFetched(List<BehanceUser> behanceUser) {
+		mSwipeRefreshLayout.setRefreshing(false);
 		mGridAdapter.updateUsers(behanceUser, true);
 	}
 
 	@Override
 	public void showError() {
-
+		mSwipeRefreshLayout.setRefreshing(false);
 	}
 }

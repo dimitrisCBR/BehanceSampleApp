@@ -18,14 +18,20 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_landing_recycler"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/activity_landing_swiperefresh"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/green_light"/>
+        android:layout_height="match_parent">
 
-    <include layout="@layout/content_main"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_landing_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/green_light"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
