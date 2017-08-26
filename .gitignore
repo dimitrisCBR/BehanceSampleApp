@@ -5,7 +5,7 @@
 /build
 /captures
 .externalNativeBuild
-/.idea/
+.idea/
 /gradle/
 /app/libs/
 app/src/main/java/com/cbr/behancesampleapp/ui/main/mvp/
