@@ -23,3 +23,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Retrofit Rules. Otherwise warnings will get the best of you :'(
+-dontwarn okio.**
+-dontwarn javax.annotation.**
