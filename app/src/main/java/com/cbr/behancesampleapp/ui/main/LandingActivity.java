@@ -17,7 +17,7 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class LandingActivity extends AppCompatActivity {
 
 	@Inject
 	BehanceRepository mBehanceRepository;
