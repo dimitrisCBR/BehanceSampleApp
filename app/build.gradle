@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion rootProject.compileSDKVersion
-    buildToolsVersion rootProject.buildToolsVersion
+    compileSdkVersion 26
+    buildToolsVersion '26.0.0'
 
     defaultConfig {
         applicationId "com.cbr.behancesampleapp"
@@ -25,25 +25,19 @@ android {
 }
 
 dependencies {
-
     def appCompatVersion = "26.0.1"
     def butterKnifeVersion = "8.8.1"
     def picassoVersion = "2.5.2"
-
     def gsonVersion = "2.8.0"
     def okHttpVersion = '3.8.1'
     def retrofitVersion = "2.3.0"
-
     def daggerVersion = "2.11"
     def rxJavaVersion = "2.1.1"
     def rxAndroidVersion = "2.0.1"
-
     def junitVersion = "4.12"
     def espressoCoreVersion = "3.0.0"
     def espressoRunnerVersion = "1.0.0"
-
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     //AppCompat
@@ -77,7 +71,6 @@ dependencies {
     //RX
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-
     implementation "com.google.code.gson:gson:$gsonVersion"
 
     //testing

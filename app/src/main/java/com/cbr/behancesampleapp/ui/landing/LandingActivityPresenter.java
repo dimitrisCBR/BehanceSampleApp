@@ -14,9 +14,13 @@ import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
 public class LandingActivityPresenter extends BaseMvpPresenter<LandingActivityContract.View> implements LandingActivityContract.Presenter {
 
 	private BehanceRepository mBehanceRepository;
+	private UsersQuery mQuery;
+
+	private boolean mClearPrevious;
 
 	public LandingActivityPresenter(BehanceRepository behanceRepository) {
 		this.mBehanceRepository = behanceRepository;
+		this.mQuery = new UsersQuery();
 	}
 
 	@Override
@@ -32,13 +36,13 @@ public class LandingActivityPresenter extends BaseMvpPresenter<LandingActivityCo
 
 	@Override
 	public void requestBehanceUsers() {
-		cancelPending();
-		mBehanceRepository.getUsers(new UsersQuery().build())
+		mBehanceRepository.getUsers(mQuery.build())
 			.subscribe(new BehanceSubscriber<BehanceUserResponse>(getCompositeDisposable()) {
 				@Override
 				public void onNext(BehanceUserResponse listResponse) {
 					if (listResponse != null && !listResponse.getUsers().isEmpty()) {
-						getMvpView().onUsersFetched(listResponse.getUsers());
+						mQuery.nextPage();
+						getMvpView().onUsersFetched(listResponse.getUsers(), mClearPrevious);
 					} else {
 						getMvpView().showError();
 					}
@@ -49,5 +53,13 @@ public class LandingActivityPresenter extends BaseMvpPresenter<LandingActivityCo
 					getMvpView().showError();
 				}
 			});
+	}
+
+	@Override
+	public void refresh() {
+		mQuery.reset();
+		mClearPrevious = true;
+		cancelPending();
+		requestBehanceUsers();
 	}
 }

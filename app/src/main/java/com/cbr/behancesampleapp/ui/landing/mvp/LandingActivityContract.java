@@ -14,7 +14,7 @@ public interface LandingActivityContract {
 
 	interface View extends MvpView<Presenter> {
 
-		void onUsersFetched(List<BehanceUser> behanceUser);
+		void onUsersFetched(List<BehanceUser> behanceUser, boolean clearPrevious);
 
 		void showError();
 	}
@@ -22,5 +22,7 @@ public interface LandingActivityContract {
 	interface Presenter extends MvpPresenter<View> {
 
 		void requestBehanceUsers();
+
+		void refresh();
 	}
 }
