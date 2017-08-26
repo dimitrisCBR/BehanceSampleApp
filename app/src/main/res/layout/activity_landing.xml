@@ -32,7 +32,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/card_standard_padding"
+        android:layout_margin="@dimen/fab_standard_margin"
+        app:layout_anchor="@id/activity_landing_recycler"
+        app:layout_anchorGravity="bottom|end"
+        app:layout_behavior="com.cbr.behancesampleapp.ui.widget.ScrollAwareFABBehavior"
         app:srcCompat="@android:drawable/ic_dialog_email"/>
 
 </android.support.design.widget.CoordinatorLayout>
