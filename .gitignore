@@ -8,3 +8,6 @@
 /.idea/
 /gradle/
 /app/libs/
+/.gradle/
+app/libs/
+app/src/main/java/com/cbr/behancesampleapp/ui/main/mvp/
