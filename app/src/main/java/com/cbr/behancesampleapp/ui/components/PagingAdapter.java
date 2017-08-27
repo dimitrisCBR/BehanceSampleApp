@@ -1,5 +1,6 @@
 package com.cbr.behancesampleapp.ui.components;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -18,13 +19,17 @@ public abstract class PagingAdapter<T, V extends RecyclerView.ViewHolder> extend
 	private final static int PAGING_THREESHOLD = 7;
 
 	private Interactor mInteractor;
-	private PagingListItem<T> mLoadingSpinner = new PagingListItem<>(null, PagingListItem.Type.LOADING);
 
 	private boolean mIsLoading;
 	private boolean mIsFinished;
 
 	public void setInteractor(Interactor interactor) {
 		this.mInteractor = interactor;
+	}
+
+	@Nullable
+	public Interactor getInteractor(){
+		return mInteractor;
 	}
 
 	@Override
@@ -91,9 +96,11 @@ public abstract class PagingAdapter<T, V extends RecyclerView.ViewHolder> extend
 		mIsFinished = true;
 	}
 
-	public interface Interactor {
+	public interface Interactor<T> {
 
 		void requestMoreData();
+
+		void onListItemClicked(T item, int position);
 
 	}
 

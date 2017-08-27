@@ -35,7 +35,7 @@ public class BehanceUserGridViewHolder extends RecyclerView.ViewHolder {
 	@BindView(R.id.card_behance_user_extra_info)
 	TextView mExtraInfo;
 
-	public static BehanceUserGridViewHolder newInstance(ViewGroup parent, int viewType) {
+	public static BehanceUserGridViewHolder newInstance(ViewGroup parent) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_behance_user_item, parent, false);
 		return new BehanceUserGridViewHolder(view);
 	}

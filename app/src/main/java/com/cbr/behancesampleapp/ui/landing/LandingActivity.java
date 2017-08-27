@@ -25,7 +25,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
-public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Presenter> implements LandingActivityContract.View, PagingAdapter.Interactor {
+public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Presenter> implements LandingActivityContract.View,
+	PagingAdapter.Interactor<BehanceUser> {
 
 	private BehanceUserGridAdapter mGridAdapter;
 
@@ -111,9 +112,15 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		getPresenter().requestBehanceUsers();
 	}
 
+	@Override
+	public void onListItemClicked(BehanceUser item, int position) {
+		//TODO
+	}
+
 	private int getColumnCount() {
 		int screenWidth = UiUtils.getScreenWidth(this);
 		int itemWidth = (int) (getResources().getDimension(R.dimen.card_behace_user_item) + getResources().getDimension(R.dimen.card_standard_padding));
 		return screenWidth / itemWidth;
 	}
+
 }
