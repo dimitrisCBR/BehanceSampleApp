@@ -1,24 +1,34 @@
 package com.cbr.behancesampleapp.ui.landing;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.cbr.behancesampleapp.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.components.LoadingViewHolder;
 import com.cbr.behancesampleapp.ui.components.PagingAdapter;
+import com.cbr.behancesampleapp.ui.components.PagingListItem;
 
 /**
  * Created by Dimitrios on 8/26/2017.
  */
 
-public class BehanceUserGridAdapter extends PagingAdapter<BehanceUser, BehanceUserGridViewHolder> {
+public class BehanceUserGridAdapter extends PagingAdapter<BehanceUser, RecyclerView.ViewHolder> {
+
 
 	@Override
-	public BehanceUserGridViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+	public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		if (viewType == PagingListItem.Type.LOADING.ordinal()) {
+			return LoadingViewHolder.newInstance(parent);
+		}
 		return BehanceUserGridViewHolder.newInstance(parent, viewType);
 	}
 
 	@Override
-	public void onBindViewHolder(BehanceUserGridViewHolder holder, int position) {
-		holder.onBind(getData().get(position), position);
+	public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+		//ignore other types, unless you want to mess with the Loader.
+		if(holder instanceof BehanceUserGridViewHolder){
+			((BehanceUserGridViewHolder) holder).onBind(getData().get(position).getItem(), position);
+		}
 	}
 
 }

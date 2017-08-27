@@ -1,4 +1,4 @@
-package com.cbr.behancesampleapp.ui.widget;
+package com.cbr.behancesampleapp.ui.components.widget;
 
 import android.content.Context;
 import android.support.design.widget.CoordinatorLayout;

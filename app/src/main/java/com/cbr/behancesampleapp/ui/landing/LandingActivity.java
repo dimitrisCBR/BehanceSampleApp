@@ -2,6 +2,7 @@ package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -32,7 +33,7 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	RecyclerView mRecyclerView;
 	@BindView(R.id.activity_landing_swiperefresh)
 	SwipeRefreshLayout mSwipeRefreshLayout;
-	@BindView(R.id.fab)
+	@BindView(R.id.activity_landing_fab)
 	FloatingActionButton mFab;
 
 	@Inject
@@ -59,9 +60,21 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		mGridAdapter = new BehanceUserGridAdapter();
 		mGridAdapter.setInteractor(this);
 
-		mRecyclerView.setLayoutManager(new GridLayoutManager(this, getColumnCount()));
+		GridLayoutManager gridLayoutManager = new GridLayoutManager(this, getColumnCount());
+		gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+			@Override
+			public int getSpanSize(int position) {
+				return position == mGridAdapter.getItemCount() - 1 ? getColumnCount() : 1;
+			}
+		});
+		mRecyclerView.setLayoutManager(gridLayoutManager);
 		mRecyclerView.addItemDecoration(new BehanceUserItemDecorator(this, getColumnCount()));
 		mRecyclerView.setAdapter(mGridAdapter);
+
+		mSwipeRefreshLayout.setColorSchemeColors(
+			ContextCompat.getColor(this,R.color.colorPrimary),
+			ContextCompat.getColor(this,R.color.colorPrimaryDark),
+			ContextCompat.getColor(this,R.color.colorAccent));
 		mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {

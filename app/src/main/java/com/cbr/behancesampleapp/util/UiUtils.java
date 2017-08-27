@@ -3,6 +3,8 @@ package com.cbr.behancesampleapp.util;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
@@ -95,5 +97,4 @@ public class UiUtils {
 
 		return toolbarHeight;
 	}
-
 }
