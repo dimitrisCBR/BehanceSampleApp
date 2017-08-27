@@ -8,4 +8,5 @@ import dagger.Module;
 @Module
 public class LandingActivityModule {
 
+	//When we decide on something to inject :(
 }

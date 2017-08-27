@@ -1,6 +1,7 @@
 package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +15,7 @@ import com.cbr.behancesampleapp.model.BehanceUser;
 import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
 import com.cbr.behancesampleapp.network.BehanceRepository;
 import com.cbr.behancesampleapp.ui.components.PagingAdapter;
+import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity;
 import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
 import com.cbr.behancesampleapp.util.UiUtils;
 
@@ -36,6 +38,8 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	SwipeRefreshLayout mSwipeRefreshLayout;
 	@BindView(R.id.activity_landing_fab)
 	FloatingActionButton mFab;
+	@BindView(R.id.activity_landing_toolbar)
+	Toolbar mToolbar;
 
 	@Inject
 	BehanceRepository mBehanceRepository;
@@ -55,8 +59,7 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	private void bindViews() {
 		ButterKnife.bind(this);
-		Toolbar toolbar = findViewById(R.id.toolbar);
-		setSupportActionBar(toolbar);
+		setSupportActionBar(mToolbar);
 
 		mGridAdapter = new BehanceUserGridAdapter();
 		mGridAdapter.setInteractor(this);
@@ -73,9 +76,9 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		mRecyclerView.setAdapter(mGridAdapter);
 
 		mSwipeRefreshLayout.setColorSchemeColors(
-			ContextCompat.getColor(this,R.color.colorPrimary),
-			ContextCompat.getColor(this,R.color.colorPrimaryDark),
-			ContextCompat.getColor(this,R.color.colorAccent));
+			ContextCompat.getColor(this, R.color.colorPrimary),
+			ContextCompat.getColor(this, R.color.colorPrimaryDark),
+			ContextCompat.getColor(this, R.color.colorAccent));
 		mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -114,7 +117,7 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	@Override
 	public void onListItemClicked(BehanceUser item, int position) {
-		//TODO
+		startActivity(UserDetailsActivity.newIntent(this, item.getId()));
 	}
 
 	private int getColumnCount() {

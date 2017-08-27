@@ -1,14 +1,16 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <!-- Base App Theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+
+    <!-- Toolbar and Status Bar -->
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="android:windowTranslucentStatus">true</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -17,17 +19,23 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
-    <style name="BehanceSample_Text" parent="TextAppearance.AppCompat">
+    <style name="AppTheme.Collapsed.TextStyle" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
+
+    <!-- Text -->
+    <style name="BehanceSample.Text" parent="TextAppearance.AppCompat">
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="BehanceSample_Card_Body_1" parent="BehanceSample_Text">
+    <style name="BehanceSample.Card.Body_1" parent="BehanceSample.Text">
         <item name="android:textSize">@dimen/caption_body_1</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_black</item>
     </style>
 
-    <style name="BehanceSample_Card_Body_2" parent="BehanceSample_Text">
+    <style name="BehanceSample.Card.Body_2" parent="BehanceSample.Text">
         <item name="android:textSize">@dimen/caption_body_2</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/text_dark</item>

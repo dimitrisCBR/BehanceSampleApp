@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BHSample</string>
+    <string name="dictionary_browse">Browse</string>
 </resources>

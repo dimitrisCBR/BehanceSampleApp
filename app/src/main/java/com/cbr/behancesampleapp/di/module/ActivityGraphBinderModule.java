@@ -2,8 +2,8 @@ package com.cbr.behancesampleapp.di.module;
 
 
 import com.cbr.behancesampleapp.di.scope.ActivityScope;
-import com.cbr.behancesampleapp.ui.details.DetailsActivity;
-import com.cbr.behancesampleapp.ui.details.di.DetailsActivityModule;
+import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity;
+import com.cbr.behancesampleapp.ui.userdetails.di.UserDetailsActivityModule;
 import com.cbr.behancesampleapp.ui.landing.LandingActivity;
 import com.cbr.behancesampleapp.ui.landing.di.LandingActivityModule;
 
@@ -32,7 +32,7 @@ public abstract class ActivityGraphBinderModule {
     abstract LandingActivity bindMainActivity();
 
     @ActivityScope
-    @ContributesAndroidInjector(modules = DetailsActivityModule.class)
-    abstract DetailsActivity bindDetailsActivity();
+    @ContributesAndroidInjector(modules = UserDetailsActivityModule.class)
+    abstract UserDetailsActivity bindDetailsActivity();
 
 }

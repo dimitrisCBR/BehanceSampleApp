@@ -28,7 +28,7 @@
             android:orientation="vertical">
 
             <TextView
-                style="@style/BehanceSample_Card_Body_1"
+                style="@style/BehanceSample.Card.Body_1"
                 android:id="@+id/card_behance_user_title"
                 android:maxLines="1"
                 android:layout_width="match_parent"
@@ -36,7 +36,7 @@
                 tools:text="Ryan Lau"/>
 
             <TextView
-                style="@style/BehanceSample_Card_Body_2"
+                style="@style/BehanceSample.Card.Body_2"
                 android:id="@+id/card_behance_user_subtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 tools:text="Designer"/>
 
             <TextView
-                style="@style/BehanceSample_Card_Body_2"
+                style="@style/BehanceSample.Card.Body_2"
                 android:id="@+id/card_behance_user_extra_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
