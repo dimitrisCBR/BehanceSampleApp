@@ -29,6 +29,7 @@ android {
 dependencies {
     def appCompatVersion = "26.0.1"
     def butterKnifeVersion = "8.8.1"
+    def roundedImageViewVersion = "2.3.0"
     def picassoVersion = "2.5.2"
     def gsonVersion = "2.8.0"
     def okHttpVersion = '3.8.1'
@@ -46,6 +47,10 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$appCompatVersion"
     implementation "com.android.support:design:$appCompatVersion"
     implementation "com.android.support:cardview-v7:$appCompatVersion"
+    implementation "com.android.support:palette-v7:$appCompatVersion"
+
+    //Rounded ImageView
+    implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
 
     //ButterKnife
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"

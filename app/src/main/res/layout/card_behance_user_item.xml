@@ -8,7 +8,7 @@
     android:foreground="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="@dimen/cardview_default_elevation">
+    app:cardElevation="@dimen/xsmall">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,14 +21,20 @@
             android:layout_height="@dimen/card_behace_user_item"
             android:scaleType="centerCrop"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider_height_thin"
+            android:background="@color/brown_light"/>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/xsmall"
+            android:gravity="center_vertical"
             android:orientation="vertical">
 
             <TextView
-                style="@style/BehanceSample.Card.Body_1"
+                style="@style/BehanceSample.Text.Body.1"
                 android:id="@+id/card_behance_user_title"
                 android:maxLines="1"
                 android:layout_width="match_parent"
@@ -36,20 +42,29 @@
                 tools:text="Ryan Lau"/>
 
             <TextView
-                style="@style/BehanceSample.Card.Body_2"
+                style="@style/BehanceSample.Text.Subtitle.2"
                 android:id="@+id/card_behance_user_subtitle"
+                android:textColor="@color/text_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:maxLines="1"
                 tools:text="Designer"/>
 
+            <View
+                android:id="@+id/card_behance_user_extra_divider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height_thin"
+                android:layout_marginTop="@dimen/xsmall"
+                android:background="@color/text_grey_80"/>
+
             <TextView
-                style="@style/BehanceSample.Card.Body_2"
+                style="@style/BehanceSample.Text.Body.2"
                 android:id="@+id/card_behance_user_extra_info"
+                android:textColor="@color/text_dark"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/small"
+                android:layout_marginTop="@dimen/xsmall"
                 android:maxLines="1"
                 tools:text="San Fransisco, California, USA"/>
 

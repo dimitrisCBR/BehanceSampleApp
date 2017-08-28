@@ -1,14 +1,15 @@
 package com.cbr.behancesampleapp.network;
 
+import com.cbr.behancesampleapp.model.BehanceSinlgeUserReponse;
 import com.cbr.behancesampleapp.model.BehanceUser;
 import com.cbr.behancesampleapp.model.BehanceUserResponse;
 
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
-import retrofit2.Response;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
 /**
@@ -17,13 +18,10 @@ import retrofit2.http.QueryMap;
 
 public interface BehanceApiService {
 
-    @GET(Urls.Behance.Users.GET_USERS)
-    Observable<BehanceUserResponse> getUsers(@QueryMap Map<String, Object> queryParams);
+	@GET(Urls.Behance.Users.GET_USERS)
+	Observable<BehanceUserResponse> getUsers(@QueryMap Map<String, Object> queryParams);
 
-    @GET(Urls.Behance.Users.GET_USER_BY_ID)
-    Observable<Response<BehanceUser>> getUserById(@QueryMap Map<String, Object> queryParams);
-
-    @GET(Urls.Behance.Users.GET_USER_BY_ID)
-    Observable<Response<BehanceUser>> getUserByUsername(@QueryMap Map<String, Object> queryParams);
+	@GET(Urls.Behance.Users.GET_USER_BY_ID)
+	Observable<BehanceSinlgeUserReponse> getUserById(@Path(Urls.Params.PARAM_ID) String id, @Query(Urls.Params.PARAM_API_KEY) String apiKey);
 
 }

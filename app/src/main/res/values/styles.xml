@@ -27,18 +27,28 @@
     <!-- Text -->
     <style name="BehanceSample.Text" parent="TextAppearance.AppCompat">
         <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/text_white</item>
     </style>
 
-    <style name="BehanceSample.Card.Body_1" parent="BehanceSample.Text">
+    <style name="BehanceSample.Text.Subtitle.1" parent="BehanceSample.Text">
+        <item name="android:textSize">@dimen/caption_subtitle_1</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="BehanceSample.Text.Subtitle.2" parent="BehanceSample.Text">
+        <item name="android:textSize">@dimen/caption_subtitle_2</item>
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="BehanceSample.Text.Body.2" parent="BehanceSample.Text">
+        <item name="android:textSize">@dimen/caption_body_2</item>
+        <item name="android:textColor">@color/text_light</item>
+    </style>
+
+    <style name="BehanceSample.Text.Body.1" parent="BehanceSample.Text">
         <item name="android:textSize">@dimen/caption_body_1</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/text_black</item>
-    </style>
-
-    <style name="BehanceSample.Card.Body_2" parent="BehanceSample.Text">
-        <item name="android:textSize">@dimen/caption_body_2</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/text_dark</item>
     </style>
 
 

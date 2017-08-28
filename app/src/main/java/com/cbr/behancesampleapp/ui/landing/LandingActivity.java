@@ -59,6 +59,7 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	private void bindViews() {
 		ButterKnife.bind(this);
+		mToolbar.setTitle(R.string.dictionary_browse);
 		setSupportActionBar(mToolbar);
 
 		mGridAdapter = new BehanceUserGridAdapter();

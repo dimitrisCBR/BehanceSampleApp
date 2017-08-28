@@ -10,6 +10,7 @@ import com.cbr.behancesampleapp.util.NetworkUtil;
 import com.google.gson.Gson;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
 
@@ -78,6 +79,7 @@ public class NetModule {
 			.addInterceptor(logging)
 			.addNetworkInterceptor(interceptor)
 			.cache(cache)
+			.connectTimeout(10, TimeUnit.SECONDS)
 			.build();
 	}
 

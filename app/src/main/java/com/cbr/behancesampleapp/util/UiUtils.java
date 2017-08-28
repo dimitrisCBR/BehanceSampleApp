@@ -5,11 +5,17 @@ import android.content.res.Resources;
 import android.graphics.Point;
 import android.support.annotation.ColorInt;
 import android.support.annotation.ColorRes;
+import android.support.v7.graphics.Palette;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
+
+import com.cbr.behancesampleapp.R;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import static android.view.View.MeasureSpec.EXACTLY;
 import static android.view.View.MeasureSpec.makeMeasureSpec;
@@ -96,5 +102,44 @@ public class UiUtils {
 		}
 
 		return toolbarHeight;
+	}
+
+	@ColorInt
+	public static int getPaletteColor(Palette palette) {
+		int defaultColor = 0x000000;
+		int color = palette.getMutedColor(defaultColor);
+		if(color == defaultColor){
+			color = palette.getLightMutedColor(defaultColor);
+		}
+		if(color == defaultColor){
+			color = palette.getDarkMutedColor(defaultColor);
+		}
+		if(color == defaultColor){
+			color = palette.getLightVibrantColor(defaultColor);
+		}
+		if(color == defaultColor){
+			color = palette.getDarkVibrantColor(defaultColor);
+		}
+		if(color == defaultColor){
+			color = palette.getVibrantColor(defaultColor);
+		}
+
+		return color;
+	}
+
+	public static void loadImageInto(ImageView imageView, String url){
+		Picasso.with(imageView.getContext())
+			.load(url)
+			.placeholder(R.drawable.ic_behace_logo)
+			.error(R.drawable.ic_error)
+			.into(imageView);
+	}
+
+	public static void loadImageInto(Context context, Target target, String url){
+		Picasso.with(context)
+			.load(url)
+			.placeholder(R.drawable.ic_behace_logo)
+			.error(R.drawable.ic_error)
+			.into(target);
 	}
 }

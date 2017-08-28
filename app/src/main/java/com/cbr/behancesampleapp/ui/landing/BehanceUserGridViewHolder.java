@@ -1,7 +1,7 @@
 package com.cbr.behancesampleapp.ui.landing;
 
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cbr.behancesampleapp.R;
 import com.cbr.behancesampleapp.model.BehanceUser;
+import com.cbr.behancesampleapp.util.UiUtils;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindDimen;
@@ -34,6 +35,8 @@ public class BehanceUserGridViewHolder extends RecyclerView.ViewHolder {
 	TextView mSubtitle;
 	@BindView(R.id.card_behance_user_extra_info)
 	TextView mExtraInfo;
+	@BindView(R.id.card_behance_user_extra_divider)
+	View mExtraDivider;
 
 	public static BehanceUserGridViewHolder newInstance(ViewGroup parent) {
 		View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_behance_user_item, parent, false);
@@ -46,12 +49,12 @@ public class BehanceUserGridViewHolder extends RecyclerView.ViewHolder {
 	}
 
 	public void onBind(BehanceUser user, int position) {
-		Picasso.with(itemView.getContext())
-			.load(user.getImages().getLargeUrl())
-			.into(mImage);
+		UiUtils.loadImageInto(mImage, user.getImages().getLargeUrl());
 
-		mTitle.setText(user.getUsername());
-		mSubtitle.setText(user.getOccupation());
-		mExtraInfo.setText(user.getCountry());
+		mTitle.setText(user.getDisplayName());
+		mSubtitle.setText(user.getCountry());
+		mExtraDivider.setVisibility(TextUtils.isEmpty(user.getOccupation()) ? View.GONE : View.VISIBLE);
+		mExtraInfo.setVisibility(TextUtils.isEmpty(user.getOccupation()) ? View.GONE : View.VISIBLE);
+		mExtraInfo.setText(user.getOccupation());
 	}
 }

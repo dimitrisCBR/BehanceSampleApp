@@ -9,9 +9,11 @@
 
     <!-- Text -->
     <color name="text_hint">#90FFFFFF</color>
+    <color name="text_white_1">#FFFFFF</color>
+    <color name="text_white_2">#99FFFFFF</color>
     <color name="text_dark_grey">#555555</color>
     <color name="text_black_1">#0d0d0d</color>
-    <color name="text_light">#80555555</color>
-    <color name="text_white_fade">#80FFFFFF</color>
+    <color name="text_grey_80">#80555555</color>
+    <color name="text_white_80">#80FFFFFF</color>
 
 </resources>
