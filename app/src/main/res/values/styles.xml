@@ -14,10 +14,32 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="AppTheme.Behance" parent="AppTheme.NoActionBar">
+        <item name="drawerArrowStyle">@style/AppTheme.DrawerArrowStyle.Behance</item>
+    </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.DrawerArrowStyle.Light" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@android:color/white</item>
+    </style>
+    <style name="AppTheme.DrawerArrowStyle.Behance" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="color">@color/colorAccent</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.AppBarOverlay.Light" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.AppBarOverlay.Behance" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/behance_blue</item>
+        <item name="android:textColorPrimaryInverse">@color/behance_blue_dark</item>
+        <item name="android:textColorSecondary">@color/behance_blue_light</item>
+        <item name="android:actionMenuTextColor">@color/behance_blue_dark</item>
+        <item name="actionMenuTextColor">@color/behance_blue_dark</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay.Light" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.PopupOverlay.Behance" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:actionMenuTextColor">@color/behance_blue_dark</item>
+        <item name="actionMenuTextColor">@color/behance_blue_dark</item>
+    </style>
 
     <style name="AppTheme.Collapsed.TextStyle" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
         <item name="android:textColor">@android:color/transparent</item>

@@ -6,6 +6,11 @@
     <color name="green_dark">#547980</color>
     <color name="brown_light">#594F4F</color>
 
+    <color name="behance_blue_light">#4084FF</color>
+    <color name="behance_blue">#1769ff</color>
+    <color name="behance_blue_vibrant">#045DFF</color>
+    <color name="behance_blue_dark">#0142BB</color>
+
 
     <!-- Text -->
     <color name="text_hint">#90FFFFFF</color>

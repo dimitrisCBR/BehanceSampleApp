@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.graphics.Palette;
+import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,8 +48,6 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	ImageView mBackgroundImageView;
 	@BindView(R.id.header_userdetails_image)
 	RoundedImageView mProfileImageView;
-	@BindView(R.id.header_userdetails_title)
-	TextView mNameTextView;
 	@BindView(R.id.header_userdetails_subtitle)
 	TextView mSubTitleTextView;
 	@BindView(R.id.header_userdetails_extra)
@@ -55,37 +55,19 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 
 	@BindView(R.id.activity_user_details_collapsing)
 	CollapsingToolbarLayout mCollapsingToolbarLayout;
+	@BindView(R.id.activity_user_details_toolbar)
+	Toolbar mToolbar;
 
 	@Inject
 	BehanceRepository mBehanceRepository;
 
-	private Target mPicassoLoadingCallback = new Target() {
+	private Target mProfilePictureLoadingCallback = new Target() {
 		@Override
 		public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
-
 			Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
 				@Override
 				public void onGenerated(Palette palette) {
-					//animate as fade in to avoid the flash
-					int animationTime = getResources().getInteger(android.R.integer.config_longAnimTime);
-
-					int paletteColor = UiUtils.getPaletteColor(palette);
-
-					mCollapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(paletteColor));
-					mCollapsingToolbarLayout.setStatusBarScrimColor(palette.getDarkMutedColor(paletteColor));
-					mCollapsingToolbarLayout.setBackgroundColor(palette.getMutedColor(paletteColor));
-
-					mOverlayColorView.setAlpha(0f);
-					ObjectAnimator.ofFloat(mOverlayColorView, "alpha", 0f, 0.66f)
-						.setDuration(animationTime * 2)
-						.start();
-					mOverlayColorView.setBackgroundColor(UiUtils.getPaletteColor(palette));
-
-					mBackgroundImageView.setAlpha(0f);
-					ObjectAnimator.ofFloat(mBackgroundImageView, "alpha", 0f, 1f)
-						.setDuration(animationTime)
-						.start();
-					mBackgroundImageView.setImageBitmap(bitmap);
+					loadHeaderViews(bitmap, palette);
 				}
 			});
 		}
@@ -100,7 +82,6 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 			//no-op
 		}
 	};
-
 
 	public static Intent newIntent(Context context, long userId) {
 		Intent intent = new Intent(context, UserDetailsActivity.class);
@@ -122,6 +103,14 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
 	protected void onResume() {
 		super.onResume();
 		getPresenter().refresh();
@@ -133,9 +122,13 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 
 	@Override
 	public void onUserFetched(BehanceUser user) {
+		if (getSupportActionBar() == null) {
+			mToolbar.setTitle(user.getDisplayName());
+			setSupportActionBar(mToolbar);
+			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		}
 		UiUtils.loadImageInto(mProfileImageView, user.getImages().getLargeUrl());
-		UiUtils.loadImageInto(this, mPicassoLoadingCallback, user.getImages().getLargeUrl());
-		mNameTextView.setText(user.getDisplayName());
+		UiUtils.loadImageInto(this, mProfilePictureLoadingCallback, user.getImages().getLargeUrl());
 		mSubTitleTextView.setText(user.getOccupation());
 		mExtraInfoTextView.setText(DateUtils.formatDateTime(this, user.getCreatedOn(), DateUtils.FORMAT_ABBREV_RELATIVE));
 	}
@@ -143,5 +136,29 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	@Override
 	public void showError() {
 		//TODO
+	}
+
+	private void loadHeaderViews(Bitmap bitmap, Palette palette) {
+		//Palette specific Swatches may not find a suitable color. Thus we get a default first.
+		int defaultPaletteColor = UiUtils.getPaletteColor(palette);
+		//animate as fade in to avoid the flash
+		final int animationTime = getResources().getInteger(android.R.integer.config_longAnimTime);
+
+		mBackgroundImageView.setAlpha(0f);
+		//create new bimap to avoid blurring the original one.
+		mBackgroundImageView.setImageBitmap(UiUtils.blurBitmap(getBaseContext(), bitmap));
+		ObjectAnimator.ofFloat(mBackgroundImageView, "alpha", 0f, 1f)
+			.setDuration(animationTime)
+			.start();
+
+		mCollapsingToolbarLayout.setContentScrimColor(palette.getMutedColor(defaultPaletteColor));
+		mCollapsingToolbarLayout.setStatusBarScrimColor(palette.getLightMutedColor(defaultPaletteColor));
+		mCollapsingToolbarLayout.setBackgroundColor(palette.getMutedColor(defaultPaletteColor));
+
+		mOverlayColorView.setAlpha(0f);
+		mOverlayColorView.setBackgroundColor(UiUtils.getPaletteColor(palette));
+		ObjectAnimator.ofFloat(mOverlayColorView, "alpha", 0f, 0.33f)
+			.setDuration(animationTime * 2)
+			.start();
 	}
 }

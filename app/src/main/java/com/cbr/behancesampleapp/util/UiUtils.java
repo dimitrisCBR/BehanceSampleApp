@@ -2,9 +2,13 @@ package com.cbr.behancesampleapp.util;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.v7.graphics.Palette;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -108,26 +112,26 @@ public class UiUtils {
 	public static int getPaletteColor(Palette palette) {
 		int defaultColor = 0x000000;
 		int color = palette.getMutedColor(defaultColor);
-		if(color == defaultColor){
+		if (color == defaultColor) {
 			color = palette.getLightMutedColor(defaultColor);
 		}
-		if(color == defaultColor){
+		if (color == defaultColor) {
 			color = palette.getDarkMutedColor(defaultColor);
 		}
-		if(color == defaultColor){
+		if (color == defaultColor) {
 			color = palette.getLightVibrantColor(defaultColor);
 		}
-		if(color == defaultColor){
+		if (color == defaultColor) {
 			color = palette.getDarkVibrantColor(defaultColor);
 		}
-		if(color == defaultColor){
+		if (color == defaultColor) {
 			color = palette.getVibrantColor(defaultColor);
 		}
 
 		return color;
 	}
 
-	public static void loadImageInto(ImageView imageView, String url){
+	public static void loadImageInto(ImageView imageView, String url) {
 		Picasso.with(imageView.getContext())
 			.load(url)
 			.placeholder(R.drawable.ic_behace_logo)
@@ -135,11 +139,26 @@ public class UiUtils {
 			.into(imageView);
 	}
 
-	public static void loadImageInto(Context context, Target target, String url){
+	public static void loadImageInto(Context context, Target target, String url) {
 		Picasso.with(context)
 			.load(url)
 			.placeholder(R.drawable.ic_behace_logo)
 			.error(R.drawable.ic_error)
 			.into(target);
+	}
+
+	public static Bitmap blurBitmap(Context context, Bitmap originalBitmap) {
+
+		Bitmap blurredBitmap = originalBitmap.copy(originalBitmap.getConfig(), true);
+		//User the support version if you want to support api<17
+		final RenderScript rs = RenderScript.create(context);
+		final Allocation input = Allocation.createFromBitmap(rs, blurredBitmap, Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+		final Allocation output = Allocation.createTyped(rs, input.getType());
+		final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));
+		script.setRadius(25f /* e.g. 3.f */);
+		script.setInput(input);
+		script.forEach(output);
+		output.copyTo(blurredBitmap);
+		return blurredBitmap;
 	}
 }

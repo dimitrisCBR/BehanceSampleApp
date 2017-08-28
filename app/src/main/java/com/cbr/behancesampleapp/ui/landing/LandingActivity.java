@@ -1,13 +1,15 @@
 package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.cbr.behancesampleapp.R;
@@ -15,8 +17,8 @@ import com.cbr.behancesampleapp.model.BehanceUser;
 import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
 import com.cbr.behancesampleapp.network.BehanceRepository;
 import com.cbr.behancesampleapp.ui.components.PagingAdapter;
-import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity;
 import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
+import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity;
 import com.cbr.behancesampleapp.util.UiUtils;
 
 import java.util.List;
@@ -53,6 +55,24 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	}
 
 	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_landing, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.menu_landing_filter:
+				showFilterScreen();
+				break;
+			default:
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
 	public LandingActivityContract.Presenter createPresenter() {
 		return new LandingActivityPresenter(mBehanceRepository);
 	}
@@ -60,6 +80,7 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	private void bindViews() {
 		ButterKnife.bind(this);
 		mToolbar.setTitle(R.string.dictionary_browse);
+
 		setSupportActionBar(mToolbar);
 
 		mGridAdapter = new BehanceUserGridAdapter();
@@ -77,9 +98,8 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		mRecyclerView.setAdapter(mGridAdapter);
 
 		mSwipeRefreshLayout.setColorSchemeColors(
-			ContextCompat.getColor(this, R.color.colorPrimary),
-			ContextCompat.getColor(this, R.color.colorPrimaryDark),
-			ContextCompat.getColor(this, R.color.colorAccent));
+			ContextCompat.getColor(this, R.color.colorAccent),
+			ContextCompat.getColor(this, R.color.colorPrimaryDark));
 		mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
 			@Override
 			public void onRefresh() {
@@ -119,6 +139,10 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	@Override
 	public void onListItemClicked(BehanceUser item, int position) {
 		startActivity(UserDetailsActivity.newIntent(this, item.getId()));
+	}
+
+	private void showFilterScreen() {
+		//TODO
 	}
 
 	private int getColumnCount() {

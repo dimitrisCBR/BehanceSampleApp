@@ -29,13 +29,7 @@
         android:paddingTop="?attr/actionBarSize"
         android:gravity="center">
 
-        <TextView
-            android:id="@+id/header_userdetails_title"
-            style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
-            android:textColor="@android:color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="First and Last Name"/>
+
 
         <com.makeramen.roundedimageview.RoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,7 +37,7 @@
             android:scaleType="fitCenter"
             android:layout_height="@dimen/image_medium"
             android:layout_width="@dimen/image_medium"
-            android:layout_marginTop="@dimen/small"
+            android:layout_marginTop="?attr/actionBarSize"
             app:riv_corner_radius="30dip"
             app:riv_border_width="0dp"
             app:riv_mutate_background="true"/>
@@ -52,6 +46,7 @@
             android:id="@+id/header_userdetails_subtitle"
             style="@style/BehanceSample.Text.Subtitle.2"
             android:textColor="@android:color/white"
+            android:gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small"
@@ -60,6 +55,7 @@
         <TextView
             android:id="@+id/header_userdetails_extra"
             style="@style/BehanceSample.Text.Body.2"
+            android:gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="First and Last Name"/>
