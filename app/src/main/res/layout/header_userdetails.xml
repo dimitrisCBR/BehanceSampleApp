@@ -30,7 +30,6 @@
         android:gravity="center">
 
 
-
         <com.makeramen.roundedimageview.RoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/header_userdetails_image"
@@ -43,9 +42,10 @@
             app:riv_mutate_background="true"/>
 
         <TextView
-            android:id="@+id/header_userdetails_subtitle"
-            style="@style/BehanceSample.Text.Subtitle.2"
+            android:id="@+id/header_userdetails_occuation"
+            style="@style/BehanceSample.Text.Subtitle.1"
             android:textColor="@android:color/white"
+            android:padding="@dimen/xsmall"
             android:gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,48 +53,60 @@
             tools:text="First and Last Name"/>
 
         <TextView
-            android:id="@+id/header_userdetails_extra"
+            android:id="@+id/header_userdetails_fields"
+            style="@style/BehanceSample.Text.Subtitle.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/xsmall"
+            tools:text="Ux, Design, Branding"/>
+
+        <TextView
+            android:id="@+id/header_userdetails_date"
             style="@style/BehanceSample.Text.Body.2"
             android:gravity="center_horizontal"
+            android:padding="@dimen/xsmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="First and Last Name"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/xsmall"
-            android:layout_marginBottom="@dimen/xsmall"
-            android:padding="@dimen/xsmall"
-            android:gravity="center"
+            android:layout_marginTop="@dimen/small"
             android:orientation="horizontal">
 
-            <!--<TextView-->
-                <!--style="@style/BehanceSample.Text.Subtitle.1"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_button_rounded"-->
-                <!--android:padding="@dimen/xsmall"-->
-                <!--tools:text="Unfollow"/>-->
+            <TextView
+                android:id="@+id/header_userdetails_followers"
+                style="@style/BehanceSample.Text.Body.2"
+                android:gravity="center"
+                android:padding="@dimen/xsmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/xsmall"
+                tools:text="10.000"/>
 
-            <!--<ImageView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_marginStart="@dimen/xsmall"-->
-                <!--android:layout_marginEnd="@dimen/xsmall"-->
-                <!--android:background="@drawable/bg_button_rounded"-->
-                <!--android:padding="@dimen/xsmall"-->
-                <!--tools:text="Unfollow"/>-->
+            <TextView
+                android:id="@+id/header_userdetails_appreciations"
+                style="@style/BehanceSample.Text.Body.2"
+                android:gravity="center"
+                android:padding="@dimen/xsmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/xsmall"
+                tools:text="300"/>
 
-            <!--<TextView-->
-                <!--style="@style/BehanceSample.Text.Subtitle.1"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@drawable/bg_button_rounded"-->
-                <!--android:padding="@dimen/xsmall"-->
-                <!--tools:text="Unfollow"/>-->
+            <TextView
+                android:id="@+id/header_userdetails_views"
+                style="@style/BehanceSample.Text.Body.2"
+                android:gravity="center"
+                android:padding="@dimen/xsmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/xsmall"
+                tools:text="103.000"/>
 
         </LinearLayout>
+
 
     </LinearLayout>
 </FrameLayout>

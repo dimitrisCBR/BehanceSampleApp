@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.format.DateUtils;
@@ -21,10 +22,14 @@ import com.cbr.behancesampleapp.model.BehanceUser;
 import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
 import com.cbr.behancesampleapp.network.BehanceRepository;
 import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract;
+import com.cbr.behancesampleapp.util.BeTextUtils;
 import com.cbr.behancesampleapp.util.UiUtils;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+
+import java.text.NumberFormat;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -48,10 +53,18 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	ImageView mBackgroundImageView;
 	@BindView(R.id.header_userdetails_image)
 	RoundedImageView mProfileImageView;
-	@BindView(R.id.header_userdetails_subtitle)
-	TextView mSubTitleTextView;
-	@BindView(R.id.header_userdetails_extra)
-	TextView mExtraInfoTextView;
+	@BindView(R.id.header_userdetails_occuation)
+	TextView mOccupationTextView;
+	@BindView(R.id.header_userdetails_date)
+	TextView mDateJoinedTextView;
+	@BindView(R.id.header_userdetails_fields)
+	TextView mFieldsTextView;
+	@BindView(R.id.header_userdetails_appreciations)
+	TextView mAppreciationsTextView;
+	@BindView(R.id.header_userdetails_followers)
+	TextView mFollowersTextView;
+	@BindView(R.id.header_userdetails_views)
+	TextView mViewsTextView;
 
 	@BindView(R.id.activity_user_details_collapsing)
 	CollapsingToolbarLayout mCollapsingToolbarLayout;
@@ -129,8 +142,25 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 		}
 		UiUtils.loadImageInto(mProfileImageView, user.getImages().getLargeUrl());
 		UiUtils.loadImageInto(this, mProfilePictureLoadingCallback, user.getImages().getLargeUrl());
-		mSubTitleTextView.setText(user.getOccupation());
-		mExtraInfoTextView.setText(DateUtils.formatDateTime(this, user.getCreatedOn(), DateUtils.FORMAT_ABBREV_RELATIVE));
+		mOccupationTextView.setText(user.getOccupation());
+		//very ugly hack to manage unix timestmap. I feel even worse creating a Util method for a single point of usage.
+		mDateJoinedTextView.setText(DateUtils.formatDateTime(this, user.getCreatedOn() * 1000, DateUtils.FORMAT_ABBREV_RELATIVE));
+		mFieldsTextView.setText(BeTextUtils.formatUserFields(user.getFields()));
+
+		//Using drawables instead of setting them on XML because of Vector drawables
+		NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
+
+		mAppreciationsTextView.setText(format.format(user.getStats().getAppreciations()));
+		Drawable medalDrawable = ContextCompat.getDrawable(this, R.drawable.ic_medal);
+		mAppreciationsTextView.setCompoundDrawablesWithIntrinsicBounds(medalDrawable, null, null, null);
+
+		mFollowersTextView.setText(format.format(user.getStats().getFollowers()));
+		Drawable followerDrawable = ContextCompat.getDrawable(this, R.drawable.ic_follower);
+		mFollowersTextView.setCompoundDrawablesWithIntrinsicBounds(followerDrawable, null, null, null);
+
+		mViewsTextView.setText(format.format(user.getStats().getViews()));
+		Drawable viewsDrawable = ContextCompat.getDrawable(this, R.drawable.ic_eye);
+		mViewsTextView.setCompoundDrawablesWithIntrinsicBounds(viewsDrawable, null, null, null);
 	}
 
 	@Override

@@ -10,6 +10,7 @@
     <color name="behance_blue">#1769ff</color>
     <color name="behance_blue_vibrant">#045DFF</color>
     <color name="behance_blue_dark">#0142BB</color>
+    <color name="ic_launcher_background">@color/behance_blue</color>
 
 
     <!-- Text -->

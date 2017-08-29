@@ -1,9 +1,13 @@
 package com.cbr.behancesampleapp.ui.landing;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +34,7 @@ import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
 public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Presenter> implements LandingActivityContract.View,
-	PagingAdapter.Interactor<BehanceUser> {
+	PagingAdapter.Interactor<BehanceUser>, NavigationView.OnNavigationItemSelectedListener {
 
 	private BehanceUserGridAdapter mGridAdapter;
 
@@ -42,6 +46,10 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 	FloatingActionButton mFab;
 	@BindView(R.id.activity_landing_toolbar)
 	Toolbar mToolbar;
+	@BindView(R.id.activity_landing_drawerlayout)
+	DrawerLayout mDrawerLayout;
+	@BindView(R.id.activity_landing_navview)
+	NavigationView mNavigationView;
 
 	@Inject
 	BehanceRepository mBehanceRepository;
@@ -79,9 +87,15 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 
 	private void bindViews() {
 		ButterKnife.bind(this);
-		mToolbar.setTitle(R.string.dictionary_browse);
 
+		mToolbar.setTitle(R.string.dictionary_browse);
 		setSupportActionBar(mToolbar);
+
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+		mDrawerLayout.addDrawerListener(toggle);
+		toggle.syncState();
+		mNavigationView.setNavigationItemSelectedListener(this);
+
 
 		mGridAdapter = new BehanceUserGridAdapter();
 		mGridAdapter.setInteractor(this);
@@ -151,4 +165,8 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 		return screenWidth / itemWidth;
 	}
 
+	@Override
+	public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+		return false;
+	}
 }
