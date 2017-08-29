@@ -19,4 +19,4 @@
  	* Image Blur
  	* App Themes and Styles
  	
-![alt text](http://imgur.com/QzEbMwP "Gif")
+![alt text](https://media.giphy.com/media/AcQhyxUYZjt9C/giphy.gif "Gif")
