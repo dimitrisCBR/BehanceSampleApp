@@ -18,6 +18,5 @@
  	* Navigation Drawer
  	* Image Blur
  	* App Themes and Styles
- 
-![picture alt](http://imgur.com/a/gTsPr "Video")
- 
+ 	
+![alt text](http://imgur.com/a/gTsPr "Video")
