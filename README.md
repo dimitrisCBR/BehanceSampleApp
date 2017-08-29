@@ -19,4 +19,4 @@
  	* Image Blur
  	* App Themes and Styles
  	
-![alt text](http://imgur.com/a/gTsPr "Video")
+![alt text](http://imgur.com/QzEbMwP "Gif")
