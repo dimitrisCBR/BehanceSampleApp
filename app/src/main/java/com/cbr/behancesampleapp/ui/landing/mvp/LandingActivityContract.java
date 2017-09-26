@@ -1,8 +1,8 @@
 package com.cbr.behancesampleapp.ui.landing.mvp;
 
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.mvp.MvpPresenter;
-import com.cbr.behancesampleapp.mvp.MvpView;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.common.mvp.MvpPresenter;
+import com.cbr.behancesampleapp.ui.common.mvp.MvpView;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import java.util.List;
 
 public interface LandingActivityContract {
 
-	interface View extends MvpView<Presenter> {
+	interface View extends MvpView {
 
 		void onUsersFetched(List<BehanceUser> behanceUser, boolean clearPrevious);
 
 		void showError();
 	}
 
-	interface Presenter extends MvpPresenter<View> {
+	interface Presenter extends MvpPresenter {
 
 		void requestBehanceUsers();
 

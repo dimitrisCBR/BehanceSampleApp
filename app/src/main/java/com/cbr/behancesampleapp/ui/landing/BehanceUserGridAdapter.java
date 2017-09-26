@@ -4,10 +4,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.ui.components.LoadingViewHolder;
-import com.cbr.behancesampleapp.ui.components.PagingAdapter;
-import com.cbr.behancesampleapp.ui.components.PagingListItem;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.common.components.LoadingViewHolder;
+import com.cbr.behancesampleapp.ui.common.components.PagingAdapter;
+import com.cbr.behancesampleapp.ui.common.components.PagingListItem;
 
 /**
  * Created by Dimitrios on 8/26/2017.

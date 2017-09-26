@@ -18,9 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cbr.behancesampleapp.R;
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
-import com.cbr.behancesampleapp.network.BehanceRepository;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity;
 import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract;
 import com.cbr.behancesampleapp.util.BeTextUtils;
 import com.cbr.behancesampleapp.util.UiUtils;
@@ -30,8 +29,6 @@ import com.squareup.picasso.Target;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -71,9 +68,6 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	@BindView(R.id.activity_user_details_toolbar)
 	Toolbar mToolbar;
 
-	@Inject
-	BehanceRepository mBehanceRepository;
-
 	private Target mProfilePictureLoadingCallback = new Target() {
 		@Override
 		public void onBitmapLoaded(final Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -111,11 +105,6 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	}
 
 	@Override
-	public UserDetailsContract.Presenter createPresenter() {
-		return new UserDetailsPresenter(mBehanceRepository, getUserIdFromIntent());
-	}
-
-	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == android.R.id.home) {
 			onBackPressed();
@@ -126,7 +115,7 @@ public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Pre
 	@Override
 	protected void onResume() {
 		super.onResume();
-		getPresenter().refresh();
+		getPresenter().fetchUserById(getUserIdFromIntent());
 	}
 
 	public long getUserIdFromIntent() {

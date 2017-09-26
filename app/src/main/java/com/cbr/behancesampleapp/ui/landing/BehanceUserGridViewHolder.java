@@ -9,9 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cbr.behancesampleapp.R;
-import com.cbr.behancesampleapp.model.BehanceUser;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
 import com.cbr.behancesampleapp.util.UiUtils;
-import com.squareup.picasso.Picasso;
 
 import butterknife.BindDimen;
 import butterknife.BindView;

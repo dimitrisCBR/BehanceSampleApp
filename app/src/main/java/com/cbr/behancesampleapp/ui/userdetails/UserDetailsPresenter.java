@@ -1,11 +1,13 @@
 package com.cbr.behancesampleapp.ui.userdetails;
 
-import com.cbr.behancesampleapp.model.BehanceSinlgeUserReponse;
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.mvp.BaseMvpPresenter;
-import com.cbr.behancesampleapp.network.BehanceRepository;
-import com.cbr.behancesampleapp.network.BehanceSubscriber;
+import com.cbr.behancesampleapp.domain.model.BehanceSinlgeUserReponse;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.domain.network.BehanceRepository;
+import com.cbr.behancesampleapp.domain.network.BehanceSubscriber;
+import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpPresenter;
 import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract;
+
+import javax.inject.Inject;
 
 /**
  * Created by Dimitrios on 8/27/2017.
@@ -14,12 +16,12 @@ import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract;
 public class UserDetailsPresenter extends BaseMvpPresenter<UserDetailsContract.View> implements UserDetailsContract.Presenter {
 
 	private BehanceRepository mBehanceRepository;
-	private long mUserId;
 	private BehanceUser mBehanceUser;
 
-	public UserDetailsPresenter(BehanceRepository behanceRepository, long userIdFromIntent) {
+	@Inject
+	public UserDetailsPresenter(UserDetailsContract.View view, BehanceRepository behanceRepository) {
+		super(view);
 		this.mBehanceRepository = behanceRepository;
-		this.mUserId = userIdFromIntent;
 	}
 
 	@Override
@@ -33,8 +35,8 @@ public class UserDetailsPresenter extends BaseMvpPresenter<UserDetailsContract.V
 	}
 
 	@Override
-	public void refresh() {
-		mBehanceRepository.getUserById(String.valueOf(mUserId))
+	public void fetchUserById(long userId) {
+		mBehanceRepository.getUserById(String.valueOf(userId))
 			.subscribe(new BehanceSubscriber<BehanceSinlgeUserReponse>(getCompositeDisposable()) {
 				@Override
 				public void onNext(BehanceSinlgeUserReponse response) {

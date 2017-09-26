@@ -1,11 +1,13 @@
 package com.cbr.behancesampleapp.ui.landing;
 
-import com.cbr.behancesampleapp.model.BehanceUserResponse;
-import com.cbr.behancesampleapp.mvp.BaseMvpPresenter;
-import com.cbr.behancesampleapp.network.BehanceRepository;
-import com.cbr.behancesampleapp.network.BehanceSubscriber;
-import com.cbr.behancesampleapp.network.query.UsersQuery;
+import com.cbr.behancesampleapp.domain.model.BehanceUserResponse;
+import com.cbr.behancesampleapp.domain.network.BehanceRepository;
+import com.cbr.behancesampleapp.domain.network.BehanceSubscriber;
+import com.cbr.behancesampleapp.domain.network.query.UsersQuery;
+import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpPresenter;
 import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
+
+import javax.inject.Inject;
 
 /**
  * Created by Dimitrios on 8/26/2017.
@@ -18,7 +20,9 @@ public class LandingActivityPresenter extends BaseMvpPresenter<LandingActivityCo
 
 	private boolean mClearPrevious;
 
-	public LandingActivityPresenter(BehanceRepository behanceRepository) {
+	@Inject
+	public LandingActivityPresenter(LandingActivityContract.View view, BehanceRepository behanceRepository) {
+		super(view);
 		this.mBehanceRepository = behanceRepository;
 		this.mQuery = new UsersQuery();
 	}

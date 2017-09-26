@@ -84,7 +84,7 @@
             android:layout_margin="@dimen/fab_standard_margin"
             app:layout_anchor="@id/activity_landing_recycler"
             app:layout_anchorGravity="bottom|end"
-            app:layout_behavior="com.cbr.behancesampleapp.ui.components.widget.ScrollAwareFABBehavior"
+            app:layout_behavior="com.cbr.behancesampleapp.ui.common.components.widget.ScrollAwareFABBehavior"
             app:srcCompat="@drawable/ic_arrow_up"/>
 
     </android.support.design.widget.CoordinatorLayout>

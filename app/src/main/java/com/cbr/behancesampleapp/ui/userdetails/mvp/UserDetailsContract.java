@@ -1,8 +1,8 @@
 package com.cbr.behancesampleapp.ui.userdetails.mvp;
 
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.mvp.MvpPresenter;
-import com.cbr.behancesampleapp.mvp.MvpView;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.common.mvp.MvpPresenter;
+import com.cbr.behancesampleapp.ui.common.mvp.MvpView;
 
 /**
  * Created by Dimitrios on 8/27/2017.
@@ -10,15 +10,15 @@ import com.cbr.behancesampleapp.mvp.MvpView;
 
 public interface UserDetailsContract {
 
-	interface View extends MvpView<Presenter> {
+	interface View extends MvpView {
 
 		void onUserFetched(BehanceUser user);
 
 		void showError();
 	}
 
-	interface Presenter extends MvpPresenter<View> {
+	interface Presenter extends MvpPresenter {
 
-		void refresh();
+		void fetchUserById(long userId);
 	}
 }

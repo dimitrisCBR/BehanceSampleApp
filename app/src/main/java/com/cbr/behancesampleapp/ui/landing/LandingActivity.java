@@ -17,10 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cbr.behancesampleapp.R;
-import com.cbr.behancesampleapp.model.BehanceUser;
-import com.cbr.behancesampleapp.mvp.BaseMvpActivity;
-import com.cbr.behancesampleapp.network.BehanceRepository;
-import com.cbr.behancesampleapp.ui.components.PagingAdapter;
+import com.cbr.behancesampleapp.domain.model.BehanceUser;
+import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity;
+import com.cbr.behancesampleapp.domain.network.BehanceRepository;
+import com.cbr.behancesampleapp.ui.common.components.PagingAdapter;
 import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract;
 import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity;
 import com.cbr.behancesampleapp.util.UiUtils;
@@ -78,11 +78,6 @@ public class LandingActivity extends BaseMvpActivity<LandingActivityContract.Pre
 			default:
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public LandingActivityContract.Presenter createPresenter() {
-		return new LandingActivityPresenter(mBehanceRepository);
 	}
 
 	private void bindViews() {
