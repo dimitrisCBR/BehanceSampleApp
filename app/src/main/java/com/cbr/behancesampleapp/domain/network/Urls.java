@@ -1,9 +1,6 @@
 package com.cbr.behancesampleapp.domain.network;
 
-/**
- * Created by dimitrios on 24/08/2017.
- */
-
+/** Created by dimitrios on 24/08/2017.*/
 public class Urls {
 
 	public class Behance {

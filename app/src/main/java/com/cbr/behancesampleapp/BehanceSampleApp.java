@@ -11,10 +11,7 @@ import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public class BehanceSampleApp extends Application implements HasActivityInjector {
 
 	@Inject

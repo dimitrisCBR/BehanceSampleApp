@@ -24,10 +24,7 @@ import com.squareup.picasso.Target;
 import static android.view.View.MeasureSpec.EXACTLY;
 import static android.view.View.MeasureSpec.makeMeasureSpec;
 
-/**
- * Created by Dimitrios on 1/31/2017.
- */
-
+/** Created by Dimitrios on 1/31/2017.*/
 public class UiUtils {
 
 	private static Integer sStatusBarHeight;

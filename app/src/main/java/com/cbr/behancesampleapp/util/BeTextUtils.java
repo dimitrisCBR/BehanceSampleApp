@@ -2,10 +2,7 @@ package com.cbr.behancesampleapp.util;
 
 import java.util.List;
 
-/**
- * Created by Dimitrios on 8/29/2017.
- */
-
+/** Created by Dimitrios on 8/29/2017.*/
 public class BeTextUtils {
 
 	public static String formatUserFields(List<String> fields) {

@@ -16,10 +16,7 @@ import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public class BehanceUserGridViewHolder extends RecyclerView.ViewHolder {
 
 	@BindDimen(R.dimen.card_behace_user_item)

@@ -9,10 +9,7 @@ import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract;
 
 import javax.inject.Inject;
 
-/**
- * Created by Dimitrios on 8/27/2017.
- */
-
+/** Created by Dimitrios on 8/27/2017.*/
 public class UserDetailsPresenter extends BaseMvpPresenter<UserDetailsContract.View> implements UserDetailsContract.Presenter {
 
 	private BehanceRepository mBehanceRepository;

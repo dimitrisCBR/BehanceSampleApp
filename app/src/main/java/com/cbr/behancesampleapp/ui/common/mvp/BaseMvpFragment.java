@@ -4,10 +4,7 @@ import android.app.Fragment;
 
 import javax.inject.Inject;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public abstract class BaseMvpFragment<PRESENTER extends MvpPresenter> extends Fragment implements MvpView {
 
 	@Inject

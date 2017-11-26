@@ -7,21 +7,18 @@ import android.view.ViewGroup;
 
 import com.cbr.behancesampleapp.R;
 
-/**
- * Created by Dimitrios on 8/27/2017.
- */
-
+/** Created by Dimitrios on 8/27/2017. */
 public class LoadingViewHolder extends RecyclerView.ViewHolder {
-
-	private final static int LAYOUT = R.layout.viewholder_loading;
-
-	public static LoadingViewHolder newInstance(ViewGroup parent) {
-		return new LoadingViewHolder(
-			LayoutInflater.from(parent.getContext()).inflate(LAYOUT, parent, false)
-		);
-	}
-
-	public LoadingViewHolder(View itemView) {
-		super(itemView);
-	}
+    
+    private final static int LAYOUT = R.layout.viewholder_loading;
+    
+    public LoadingViewHolder(View itemView) {
+        super(itemView);
+    }
+    
+    public static LoadingViewHolder newInstance(ViewGroup parent) {
+        return new LoadingViewHolder(
+            LayoutInflater.from(parent.getContext()).inflate(LAYOUT, parent, false)
+        );
+    }
 }

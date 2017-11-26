@@ -34,10 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.AndroidInjection;
 
-/**
- * Created by dimitrios on 24/08/2017.
- */
-
+/** Created by dimitrios on 24/08/2017.*/
 public class UserDetailsActivity extends BaseMvpActivity<UserDetailsContract.Presenter> implements UserDetailsContract.View {
 
 	private static final String EXTRA_USER_ID = UserDetailsActivity.class.getCanonicalName() + "EXTRA_USER_ID";

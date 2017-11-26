@@ -2,9 +2,7 @@ package com.cbr.behancesampleapp.domain.model
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Created by dimitrios on 25/08/2017.
- */
+/** Created by dimitrios on 25/08/2017.*/
 data class BehanceUser(@SerializedName("id") val id: Long,
                        @SerializedName("first_name") val firstName: String,
                        @SerializedName("last_name") val lastName: String,

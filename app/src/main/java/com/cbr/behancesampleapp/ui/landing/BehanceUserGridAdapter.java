@@ -9,10 +9,7 @@ import com.cbr.behancesampleapp.ui.common.components.LoadingViewHolder;
 import com.cbr.behancesampleapp.ui.common.components.PagingAdapter;
 import com.cbr.behancesampleapp.ui.common.components.PagingListItem;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public class BehanceUserGridAdapter extends PagingAdapter<BehanceUser, RecyclerView.ViewHolder> {
 
 	@Override

@@ -3,10 +3,7 @@ package com.cbr.behancesampleapp.ui.common.components;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-/**
- * Created by Dimitrios on 8/27/2017.
- */
-
+/** Created by Dimitrios on 8/27/2017.*/
 public class PagingListItem<T> {
 
 	private Type type;

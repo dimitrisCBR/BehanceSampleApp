@@ -8,9 +8,7 @@ import java.util.Map;
 
 import io.reactivex.Observable;
 
-/**
- * Created by dimitrios on 25/08/2017.
- */
+/** Created by dimitrios on 25/08/2017.*/
 public class BehanceRepository extends DataRepository {
 
 	private BehanceApiService mBehanceApiService;

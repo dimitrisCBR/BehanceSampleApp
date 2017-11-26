@@ -6,10 +6,7 @@ import com.cbr.behancesampleapp.ui.common.mvp.MvpView;
 
 import java.util.List;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public interface LandingActivityContract {
 
 	interface View extends MvpView {

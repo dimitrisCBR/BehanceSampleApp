@@ -11,10 +11,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
-/**
- * Created by dimitrios on 24/08/2017.
- */
-
+/** Created by dimitrios on 24/08/2017.*/
 public interface BehanceApiService {
 
 	@GET(Urls.Behance.Users.GET_USERS)

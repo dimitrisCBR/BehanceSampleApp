@@ -7,10 +7,7 @@ import android.view.View;
 
 import com.cbr.behancesampleapp.R;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 class BehanceUserItemDecorator extends RecyclerView.ItemDecoration {
 
 	private Context mContext;

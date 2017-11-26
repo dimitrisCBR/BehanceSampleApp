@@ -7,11 +7,8 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by dimitrios on 25/08/2017.
- */
-
-public class DataRepository {
+/** Created by dimitrios on 25/08/2017.*/
+class DataRepository {
 
     <T> ObservableTransformer<T, T> applySchedulers() {
         return new ObservableTransformer<T, T>() {

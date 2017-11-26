@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public abstract class PagingAdapter<T, V extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<V> {
 
 	private ArrayList<PagingListItem<T>> mData = new ArrayList<>();

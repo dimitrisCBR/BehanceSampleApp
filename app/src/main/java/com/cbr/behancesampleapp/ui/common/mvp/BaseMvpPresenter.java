@@ -2,10 +2,7 @@ package com.cbr.behancesampleapp.ui.common.mvp;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
-
+/** Created by Dimitrios on 8/26/2017.*/
 public abstract class BaseMvpPresenter<VIEW extends MvpView> implements MvpPresenter {
 
 	private CompositeDisposable mCompositeDisposable;

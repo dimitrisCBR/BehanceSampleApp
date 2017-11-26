@@ -9,9 +9,7 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by Dimitrios on 8/26/2017.
- */
+/** Created by Dimitrios on 8/26/2017.*/
 @Module
 public abstract class UserDetailsActivityModule {
 
