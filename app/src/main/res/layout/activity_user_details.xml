@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/activity_user_details_collapsing"
+            android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -27,7 +27,7 @@
                 android:fitsSystemWindows="true"/>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/activity_user_details_toolbar"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:popupTheme="@style/AppTheme.PopupOverlay.Light"

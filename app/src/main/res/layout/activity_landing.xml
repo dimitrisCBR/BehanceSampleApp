@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_landing_drawerlayout"
+    android:id="@+id/landingDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
@@ -51,7 +51,7 @@
                 </FrameLayout>
 
                 <android.support.v7.widget.Toolbar
-                    android:id="@+id/activity_landing_toolbar"
+                    android:id="@+id/landingToolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     app:popupTheme="@style/AppTheme.PopupOverlay.Behance"
@@ -62,13 +62,13 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/activity_landing_swiperefresh"
+            android:id="@+id/landingSwipeRefresh"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/activity_landing_recycler"
+                android:id="@+id/landingRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/text_white_2"/>
@@ -77,20 +77,20 @@
 
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/activity_landing_fab"
+            android:id="@+id/landingFab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_standard_margin"
-            app:layout_anchor="@id/activity_landing_recycler"
+            app:layout_anchor="@id/landingRecyclerView"
             app:layout_anchorGravity="bottom|end"
-            app:layout_behavior="com.cbr.behancesampleapp.ui.common.components.widget.ScrollAwareFABBehavior"
+            app:layout_behavior="com.cbr.behancesampleapp.ui.common.widget.ScrollAwareFABBehavior"
             app:srcCompat="@drawable/ic_arrow_up"/>
 
     </android.support.design.widget.CoordinatorLayout>
 
     <android.support.design.widget.NavigationView
-        android:id="@+id/activity_landing_navview"
+        android:id="@+id/landingNavigationView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
