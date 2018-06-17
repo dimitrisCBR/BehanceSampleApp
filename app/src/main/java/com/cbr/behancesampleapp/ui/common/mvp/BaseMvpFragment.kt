@@ -4,8 +4,6 @@ import android.app.Fragment
 import android.os.Bundle
 import com.cbr.behancesampleapp.BehanceSampleApp
 
-import javax.inject.Inject
-
 /** Created by Dimitrios on 8/26/2017. */
 abstract class BaseMvpFragment : Fragment(), MvpView {
     

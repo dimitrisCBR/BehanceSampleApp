@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
-import butterknife.ButterKnife
 import com.cbr.behancesampleapp.R
 import com.cbr.behancesampleapp.domain.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity
@@ -49,8 +48,6 @@ class LandingActivity : BaseMvpActivity(), LandingActivityContract.View,
     }
     
     private fun bindViews() {
-        ButterKnife.bind(this)
-        
         landingToolbar.setTitle(R.string.dictionary_browse)
         setSupportActionBar(landingToolbar)
         

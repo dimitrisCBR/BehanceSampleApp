@@ -2,25 +2,22 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply from: '../android_commons.gradle'
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
-
+    
     defaultConfig {
         applicationId "com.cbr.behancesampleapp"
-        minSdkVersion rootProject.minSDKVersion
-        targetSdkVersion rootProject.compileSDKVersion
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables.useSupportLibrary = true
-
     }
+    
     buildTypes {
         debug {
-            buildConfigField("String", "API_KEY", BEHANCE_API_KEY)
+            buildConfigField("String", "API_KEY", behanceApiKey)
         }
         release {
             minifyEnabled false
@@ -38,62 +35,51 @@ kapt {
 }
 
 dependencies {
-    def appCompatVersion = "26.0.1"
-    def butterKnifeVersion = "8.8.1"
-    def roundedImageViewVersion = "2.3.0"
-    def picassoVersion = "2.5.2"
-    def gsonVersion = "2.8.0"
-    def okHttpVersion = '3.8.1'
-    def retrofitVersion = "2.3.0"
-    def daggerVersion = "2.11"
-    def rxJavaVersion = "2.1.1"
-    def rxAndroidVersion = "2.0.1"
-    def junitVersion = "4.12"
-    def espressoCoreVersion = "3.0.0"
-    def espressoRunnerVersion = "1.0.0"
-
+    
+    def ui = rootProject.ext.uiDependencies
+    def domain = rootProject.ext.domainDependencies
+    
+    
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-
-    //AppCompat
-    implementation "com.android.support:appcompat-v7:$appCompatVersion"
-    implementation "com.android.support:design:$appCompatVersion"
-    implementation "com.android.support:cardview-v7:$appCompatVersion"
-    implementation "com.android.support:palette-v7:$appCompatVersion"
-
-    //Rounded ImageView
-    implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
-
-    //ButterKnife
-    implementation "com.jakewharton:butterknife:$butterKnifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
-
-    //Picasso
-    implementation "com.squareup.picasso:picasso:$picassoVersion"
-
-    //Dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android:$daggerVersion"
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-
-    //OkHttpClient
-    implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
-
-    //Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-
-    //RX
-    compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
-    implementation "com.google.code.gson:gson:$gsonVersion"
-
-    //testing
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "com.android.support.test:runner:$espressoRunnerVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
+    
+    /* AppCompat */
+    implementation ui.appCompat
+    implementation ui.designCompat
+    implementation ui.recyclerView
+    implementation ui.cardView
+    implementation ui.palette
+    
+    /*UI */
+    implementation ui.circleImageView
+    implementation ui.roundKornerLayout
+    implementation ui.glide
+    implementation ui.ankoExpandableTextView
+    implementation ui.flexBox
+    implementation ui.blurry
+    
+    /*DOMAIN*/
+    implementation domain.kotlinLib
+    implementation domain.ktxCore
+    
+    implementation domain.playServicesLocation
+    implementation domain.playServicesMaps
+    
+    implementation domain.gson
+    implementation domain.retrofit
+    implementation domain.retrofitRxAdapter
+    implementation domain.retrofitGsonConverter
+    
+    implementation domain.okHttp
+    implementation domain.okHttpLogger
+    
+    implementation domain.dagger
+    implementation domain.daggerAndroid
+    kapt domain.daggerCompiler
+    kapt domain.daggerAndroidProcessor
+    
+    implementation domain.rxJava
+    implementation domain.rxAndroid
+    
+    implementation domain.timber
+    
 }

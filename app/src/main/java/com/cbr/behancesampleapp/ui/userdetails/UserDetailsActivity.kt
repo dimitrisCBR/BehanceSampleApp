@@ -10,7 +10,10 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.graphics.Palette
 import android.text.format.DateUtils
 import android.view.MenuItem
-import butterknife.ButterKnife
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.cbr.behancesampleapp.R
 import com.cbr.behancesampleapp.domain.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity
@@ -19,8 +22,8 @@ import com.cbr.behancesampleapp.ui.userdetails.dagger.UserDetailsActivityModule
 import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract
 import com.cbr.behancesampleapp.util.BeTextUtils
 import com.cbr.behancesampleapp.util.UiUtils
-import com.squareup.picasso.Picasso
-import com.squareup.picasso.Target
+import com.cbr.behancesampleapp.util.loadImage
+import com.cbr.behancesampleapp.util.toBitmap
 import kotlinx.android.synthetic.main.activity_user_details.*
 import kotlinx.android.synthetic.main.header_userdetails.*
 import java.text.NumberFormat
@@ -40,27 +43,12 @@ class UserDetailsActivity : BaseMvpActivity(), UserDetailsContract.View {
                 .build().inject(this)
     }
     
-    private val mProfilePictureLoadingCallback = object : Target {
-        override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom) {
-            Palette.from(bitmap).generate { palette -> loadHeaderViews(bitmap, palette) }
-        }
-        
-        override fun onBitmapFailed(errorDrawable: Drawable) {
-            //TODO
-        }
-        
-        override fun onPrepareLoad(placeHolderDrawable: Drawable) {
-            //no-op
-        }
-    }
-    
     val userIdFromIntent: Long
         get() = intent.getLongExtra(EXTRA_USER_ID, 0)
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_details)
-        ButterKnife.bind(this)
     }
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -81,8 +69,17 @@ class UserDetailsActivity : BaseMvpActivity(), UserDetailsContract.View {
             setSupportActionBar(toolbar)
             supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         }
-        UiUtils.loadImageInto(userImageView, user.images.largeUrl)
-        UiUtils.loadImageInto(this, mProfilePictureLoadingCallback, user.images.largeUrl)
+        userImageView.loadImage(user.images.largeUrl)
+        userImageView.loadImage(user.images.largeUrl, object : RequestListener<Drawable> {
+            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean = false
+            
+            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                resource?.toBitmap()?.let {
+                    Palette.from(resource.toBitmap()).generate { palette -> loadHeaderViews(it, palette) }
+                }
+                return false
+            }
+        })
         usernameTextView.text = user.occupation
         //very ugly hack to manage unix timestmap. I feel even worse creating a Util method for a single point of usage.
         joinDateTextView.text = DateUtils.formatDateTime(this, user.createdOn * 1000, DateUtils.FORMAT_ABBREV_RELATIVE)

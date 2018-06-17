@@ -20,7 +20,7 @@ data class BehanceUser(@SerializedName("id") val id: Long,
                        @SerializedName("stats") val stats: BehanceStats
 )
 
-data class BehanceImages(@SerializedName("50") val smallUrl: String, @SerializedName("100") val mediumUrl: String, @SerializedName("276") val largeUrl: String)
+data class BehanceImages(@SerializedName("50") val smallUrl: String?, @SerializedName("100") val mediumUrl: String?, @SerializedName("276") val largeUrl: String?)
 
 data class BehanceStats(@SerializedName("followers") val followers: Long,
                         @SerializedName("following") val following: Long,
