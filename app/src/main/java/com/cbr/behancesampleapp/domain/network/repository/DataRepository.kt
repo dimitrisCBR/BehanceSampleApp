@@ -1,4 +1,4 @@
-package com.cbr.behancesampleapp.domain.network
+package com.cbr.behancesampleapp.domain.network.repository
 
 
 import io.reactivex.ObservableTransformer

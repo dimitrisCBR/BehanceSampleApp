@@ -15,11 +15,10 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.cbr.behancesampleapp.R
-import com.cbr.behancesampleapp.domain.model.BehanceUser
+import com.cbr.behancesampleapp.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity
-import com.cbr.behancesampleapp.ui.userdetails.dagger.DaggerUserDetailsComponent
-import com.cbr.behancesampleapp.ui.userdetails.dagger.UserDetailsActivityModule
-import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract
+import com.cbr.behancesampleapp.ui.common.mvp.MvpPresenter
+import com.cbr.behancesampleapp.ui.common.mvp.MvpView
 import com.cbr.behancesampleapp.util.BeTextUtils
 import com.cbr.behancesampleapp.util.UiUtils
 import com.cbr.behancesampleapp.util.loadImage
@@ -31,6 +30,22 @@ import java.util.*
 import javax.inject.Inject
 
 /** Created by dimitrios on 24/08/2017. */
+
+interface UserDetailsContract {
+    
+    interface View : MvpView {
+        
+        fun onUserFetched(user: BehanceUser)
+        
+        fun showError()
+    }
+    
+    interface Presenter : MvpPresenter<View> {
+        
+        fun fetchUserById(userId: Long)
+    }
+}
+
 class UserDetailsActivity : BaseMvpActivity(), UserDetailsContract.View {
     
     @Inject

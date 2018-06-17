@@ -10,3 +10,5 @@ gradle.properties
 /app/libs/
 *.bat
 /app/build/
+/.idea/
+/gradle.properties

@@ -1,8 +1,9 @@
-package com.cbr.behancesampleapp.domain.network
+package com.cbr.behancesampleapp.domain.network.repository
 
 import com.cbr.behancesampleapp.BuildConfig
-import com.cbr.behancesampleapp.domain.model.BehanceSingleUserReponse
-import com.cbr.behancesampleapp.domain.model.BehanceUserResponse
+import com.cbr.behancesampleapp.model.BehanceSingleUserReponse
+import com.cbr.behancesampleapp.model.BehanceUserResponse
+import com.cbr.behancesampleapp.domain.network.BehanceApiService
 
 import io.reactivex.Observable
 

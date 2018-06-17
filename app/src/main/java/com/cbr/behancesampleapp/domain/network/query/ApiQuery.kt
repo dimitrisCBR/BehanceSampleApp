@@ -11,7 +11,7 @@ open class ApiQuery {
     var mQueryParams: MutableMap<String, Any> = HashMap()
     
     init {
-        mQueryParams.put(Urls.Params.PARAM_API_KEY, BuildConfig.API_KEY)
+        mQueryParams.put(Urls.PARAM_API_KEY, BuildConfig.API_KEY)
     }
     
     fun build(): MutableMap<String, Any> {

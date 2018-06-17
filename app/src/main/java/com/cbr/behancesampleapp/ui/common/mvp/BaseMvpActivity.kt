@@ -3,7 +3,7 @@ package com.cbr.behancesampleapp.ui.common.mvp
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.cbr.behancesampleapp.BehanceSampleApp
-import com.cbr.behancesampleapp.dagger.AppComponent
+import com.cbr.behancesampleapp.domain.dagger.AppComponent
 
 /** Created by Dimitrios on 8/26/2017. */
 abstract class BaseMvpActivity : AppCompatActivity(), MvpView {

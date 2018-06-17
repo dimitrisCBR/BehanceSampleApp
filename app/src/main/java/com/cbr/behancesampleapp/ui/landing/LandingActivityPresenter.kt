@@ -1,9 +1,8 @@
 package com.cbr.behancesampleapp.ui.landing
 
-import com.cbr.behancesampleapp.domain.network.BehanceRepository
+import com.cbr.behancesampleapp.domain.network.repository.BehanceRepository
 import com.cbr.behancesampleapp.domain.network.query.UsersQuery
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpPresenter
-import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract
 import javax.inject.Inject
 
 /** Created by Dimitrios on 8/26/2017.  */

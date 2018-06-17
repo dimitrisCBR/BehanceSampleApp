@@ -1,8 +1,8 @@
-package com.cbr.behancesampleapp.ui.landing
+package com.cbr.behancesampleapp.ui.landing.recycler
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.cbr.behancesampleapp.domain.model.BehanceUser
+import com.cbr.behancesampleapp.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.recycler.LoadingViewHolder
 import com.cbr.behancesampleapp.ui.common.recycler.PagingAdapter
 import com.cbr.behancesampleapp.ui.common.recycler.PagingListItem

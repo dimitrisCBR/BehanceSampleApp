@@ -1,4 +1,4 @@
-package com.cbr.behancesampleapp.ui.landing
+package com.cbr.behancesampleapp.ui.landing.recycler
 
 import android.content.Context
 import android.graphics.Rect

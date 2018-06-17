@@ -1,9 +1,8 @@
 package com.cbr.behancesampleapp.ui.userdetails
 
-import com.cbr.behancesampleapp.domain.model.BehanceSingleUserReponse
-import com.cbr.behancesampleapp.domain.network.BehanceRepository
+import com.cbr.behancesampleapp.model.BehanceSingleUserReponse
+import com.cbr.behancesampleapp.domain.network.repository.BehanceRepository
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpPresenter
-import com.cbr.behancesampleapp.ui.userdetails.mvp.UserDetailsContract
 import javax.inject.Inject
 
 /** Created by Dimitrios on 8/27/2017. */

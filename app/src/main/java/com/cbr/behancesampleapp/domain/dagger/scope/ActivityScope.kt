@@ -1,4 +1,4 @@
-package com.cbr.behancesampleapp.dagger.scope
+package com.cbr.behancesampleapp.domain.dagger.scope
 
 import javax.inject.Scope
 

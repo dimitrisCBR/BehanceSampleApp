@@ -8,16 +8,34 @@ import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import com.cbr.behancesampleapp.R
-import com.cbr.behancesampleapp.domain.model.BehanceUser
+import com.cbr.behancesampleapp.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity
+import com.cbr.behancesampleapp.ui.common.mvp.MvpPresenter
+import com.cbr.behancesampleapp.ui.common.mvp.MvpView
 import com.cbr.behancesampleapp.ui.common.recycler.PagingAdapter
-import com.cbr.behancesampleapp.ui.landing.dagger.DaggerLandingComponent
-import com.cbr.behancesampleapp.ui.landing.dagger.LandingActivityModule
-import com.cbr.behancesampleapp.ui.landing.mvp.LandingActivityContract
+import com.cbr.behancesampleapp.ui.landing.recycler.BehanceUserGridAdapter
+import com.cbr.behancesampleapp.ui.landing.recycler.BehanceUserItemDecorator
 import com.cbr.behancesampleapp.ui.userdetails.UserDetailsActivity
 import com.cbr.behancesampleapp.util.UiUtils
 import kotlinx.android.synthetic.main.activity_landing.*
 import javax.inject.Inject
+
+interface LandingActivityContract {
+    
+    interface View : MvpView {
+        
+        fun onUsersFetched(behanceUser: List<BehanceUser>, clearPrevious: Boolean)
+        
+        fun showError()
+    }
+    
+    interface Presenter : MvpPresenter<View> {
+        
+        fun requestBehanceUsers()
+        
+        fun refresh()
+    }
+}
 
 class LandingActivity : BaseMvpActivity(), LandingActivityContract.View,
         PagingAdapter.Interactor<BehanceUser>, NavigationView.OnNavigationItemSelectedListener {

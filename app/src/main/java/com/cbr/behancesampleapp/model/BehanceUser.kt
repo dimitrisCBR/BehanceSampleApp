@@ -1,4 +1,4 @@
-package com.cbr.behancesampleapp.domain.model
+package com.cbr.behancesampleapp.model
 
 import com.google.gson.annotations.SerializedName
 
