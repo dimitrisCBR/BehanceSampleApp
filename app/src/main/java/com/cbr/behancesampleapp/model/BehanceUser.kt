@@ -17,7 +17,7 @@ data class BehanceUser(@SerializedName("id") val id: Long,
                        @SerializedName("images") val images: BehanceImages,
                        @SerializedName("display_name") val displayName: String,
                        @SerializedName("fields") val fields: List<String>,
-                       @SerializedName("stats") val stats: BehanceStats
+                       @SerializedName("stats") val stats: BehanceStats?
 )
 
 data class BehanceImages(@SerializedName("50") val smallUrl: String?, @SerializedName("100") val mediumUrl: String?, @SerializedName("276") val largeUrl: String?)

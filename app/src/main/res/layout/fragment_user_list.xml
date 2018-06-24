@@ -16,6 +16,8 @@
 
         <include layout="@layout/include_layout_progress"/>
 
+        <include layout="@layout/include_layout_empty"/>
+
     </FrameLayout>
 
 

@@ -1,6 +1,6 @@
 package com.cbr.behancesampleapp.ui.user.details
 
-import com.cbr.behancesampleapp.model.BehanceSingleUserReponse
+import com.cbr.behancesampleapp.model.BehanceUserResponse
 import com.cbr.behancesampleapp.ui.common.mvp.BasePresenter
 import com.cbr.behancesampleapp.ui.user.UserInteractor
 import io.reactivex.disposables.CompositeDisposable
@@ -17,7 +17,7 @@ constructor(
     fun fetchUserById(userId: Long) {
         userInteractor.getUserById(userId.toString())
             .subscribe(
-                { response: BehanceSingleUserReponse -> view?.onUserFetched(response.user) },
+                { response: BehanceUserResponse -> view?.onUserFetched(response.user) },
                 { error ->
                     error.printStackTrace()
                     view?.showError()

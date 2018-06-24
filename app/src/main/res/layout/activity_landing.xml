@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fitsSystemWindows="true" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/text_white"
         app:itemIconTint="@drawable/navigation_state_selector"
         app:itemTextColor="@drawable/navigation_state_selector"
         app:layout_anchor="@id/fragmentContainer"
         app:layout_anchorGravity="bottom"
         app:menu="@menu/menu_navigation" />
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

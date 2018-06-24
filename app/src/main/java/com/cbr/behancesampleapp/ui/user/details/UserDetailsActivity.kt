@@ -100,15 +100,15 @@ class UserDetailsActivity : BaseMvpActivity(), UserDetailsView {
         //Using drawables instead of setting them on XML because of Vector drawables
         val format = NumberFormat.getInstance(Locale.getDefault())
 
-        appreciationsTextView.text = format.format(user.stats.appreciations)
+        appreciationsTextView.text = format.format(user.stats?.appreciations)
         val medalDrawable = ContextCompat.getDrawable(this, R.drawable.ic_medal)
         appreciationsTextView.setCompoundDrawablesWithIntrinsicBounds(medalDrawable, null, null, null)
 
-        userFollowersTextView.text = format.format(user.stats.followers)
+        userFollowersTextView.text = format.format(user.stats?.followers)
         val followerDrawable = ContextCompat.getDrawable(this, R.drawable.ic_follower)
         userFollowersTextView.setCompoundDrawablesWithIntrinsicBounds(followerDrawable, null, null, null)
 
-        userViewsTextView.text = format.format(user.stats.views)
+        userViewsTextView.text = format.format(user.stats?.views)
         val viewsDrawable = ContextCompat.getDrawable(this, R.drawable.ic_eye)
         userViewsTextView.setCompoundDrawablesWithIntrinsicBounds(viewsDrawable, null, null, null)
     }

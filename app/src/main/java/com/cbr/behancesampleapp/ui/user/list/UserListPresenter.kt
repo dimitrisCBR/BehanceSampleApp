@@ -14,20 +14,20 @@ constructor(
 
     private val usersQuery: UsersQuery = UsersQuery()
 
-
     fun requestBehanceUsers() {
+        cancelPending()
+        view?.showLoading()
         userInteractor.getUsers(usersQuery)
             .subscribe(
                 { response ->
                     usersQuery.nextPage()
-                    view?.onUsersFetched(response.users)
+                    view?.onUsersFetched(response.items)
                 },
-                { view?.showError() })
+                { t -> view?.showError(t.message) })
     }
 
     fun refresh() {
         usersQuery.reset()
-        cancelPending()
         requestBehanceUsers()
     }
 }
