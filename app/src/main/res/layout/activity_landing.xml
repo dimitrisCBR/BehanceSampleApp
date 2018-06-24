@@ -1,101 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/landingDrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+    android:orientation="vertical">
 
-    <android.support.design.widget.CoordinatorLayout
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fitsSystemWindows="true" />
 
-        <android.support.design.widget.AppBarLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/collapsing_toolbar_height"
-            android:theme="@style/AppTheme.AppBarOverlay.Behance"
-            android:fitsSystemWindows="true">
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/text_white"
+        app:itemIconTint="@drawable/navigation_state_selector"
+        app:itemTextColor="@drawable/navigation_state_selector"
+        app:layout_anchor="@id/fragmentContainer"
+        app:layout_anchorGravity="bottom"
+        app:menu="@menu/menu_navigation" />
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleGravity="top|start"
-                app:expandedTitleTextAppearance="@style/AppTheme.Collapsed.TextStyle"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    app:layout_scrollFlags="exitUntilCollapsed"
-                    app:layout_collapseMode="parallax">
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/behance_blue_dark"/>
-
-                    <ImageView
-                        android:scaleType="fitCenter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/bg_powered_by"
-                        android:layout_gravity="center"/>
-
-                </FrameLayout>
-
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/landingToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:popupTheme="@style/AppTheme.PopupOverlay.Behance"
-                    app:layout_collapseMode="pin"/>
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/landingSwipeRefresh"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/landingRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/text_white_2"/>
-
-        </android.support.v4.widget.SwipeRefreshLayout>
-
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/landingFab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_standard_margin"
-            app:layout_anchor="@id/landingRecyclerView"
-            app:layout_anchorGravity="bottom|end"
-            app:layout_behavior="com.cbr.behancesampleapp.ui.common.widget.ScrollAwareFABBehavior"
-            app:srcCompat="@drawable/ic_arrow_up"/>
-
-    </android.support.design.widget.CoordinatorLayout>
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/landingNavigationView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/header_drawer"
-        app:menu="@menu/activity_navigation_drawer"/>
-
-</android.support.v4.widget.DrawerLayout>
+</LinearLayout>

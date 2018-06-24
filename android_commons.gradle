@@ -1,0 +1,34 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        
+    }
+    
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradle_plugin_version"
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.targetSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    
+    androidExtensions {
+        experimental = true
+    }
+    
+}

@@ -2,27 +2,21 @@ package com.cbr.behancesampleapp.domain.network.query
 
 /** Created by Dimitrios on 8/27/2017.*/
 open class PaginatedApiQuery : ApiQuery() {
-    
-    private var mPageNumber = DEFAULT_PAGE
-    
+
+    private var pageNumber = DEFAULT_PAGE
+
     init {
-        mQueryParams.put(PARAM_PAGE, mPageNumber)
+        parameters[PARAM_PAGE] = pageNumber
     }
-    
+
     fun nextPage() {
-        mPageNumber++
-        mQueryParams.put(PARAM_PAGE, mPageNumber)
+        pageNumber++
+        parameters[PARAM_PAGE] = pageNumber
     }
-    
-    fun reset() {
-        mQueryParams.clear()
-        mPageNumber = DEFAULT_PAGE
+
+    override fun reset() {
+        super.reset()
+        pageNumber = DEFAULT_PAGE
     }
-    
-    companion object {
-        
-        private val PARAM_PAGE = "page"
-        
-        private val DEFAULT_PAGE = 1
-    }
+
 }
