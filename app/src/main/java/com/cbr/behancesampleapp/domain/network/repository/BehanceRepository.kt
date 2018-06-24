@@ -4,6 +4,7 @@ import com.cbr.behancesampleapp.BuildConfig
 import com.cbr.behancesampleapp.model.BehanceSingleUserReponse
 import com.cbr.behancesampleapp.model.BehanceUserResponse
 import com.cbr.behancesampleapp.domain.network.BehanceApiService
+import com.cbr.behancesampleapp.domain.network.scheduler.SchedulerProvider
 
 import io.reactivex.Observable
 

@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 /** Created by Dimitrios on 8/26/2017. */
 abstract class PagingAdapter<T, V : RecyclerView.ViewHolder>(val interactor: Interactor<T>) : RecyclerView.Adapter<V>() {
     
-    val PAGING_THREESHOLD = 7
+    private val PAGING_THREESHOLD = 7
     
     val data = mutableListOf<PagingListItem<T>>()
     
@@ -26,11 +26,8 @@ abstract class PagingAdapter<T, V : RecyclerView.ViewHolder>(val interactor: Int
         }
     }
     
-    fun onDataLoaded(data: Collection<T>, clearPrevious: Boolean) {
+    fun onDataLoaded(data: Collection<T>) {
         stopLoading()
-        if (clearPrevious) {
-            clearData()
-        }
         addData(data)
     }
     

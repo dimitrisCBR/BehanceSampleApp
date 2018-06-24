@@ -1,20 +1,21 @@
 <resources>
 
-    <!-- Standard Paddings -->
+    <!-- Standard Sizes -->
+    <dimen name="xxsmall">4dp</dimen>
     <dimen name="xsmall">8dp</dimen>
     <dimen name="small">16dp</dimen>
     <dimen name="medium">24dp</dimen>
     <dimen name="large">32dp</dimen>
     <dimen name="xlarge">48dp</dimen>
+    <dimen name="xxlarge">64dp</dimen>
 
     <!-- Divider -->
-    <dimen name="divider_height_large">2dp</dimen>
-    <dimen name="divider_height_normal">1dp</dimen>
     <dimen name="divider_height_thin">1px</dimen>
+    <dimen name="divider_height_normal">1dp</dimen>
+    <dimen name="divider_height_large">2dp</dimen>
 
-    <dimen name="card_standard_padding">8dp</dimen>
-    <dimen name="grid_user_item_padding">4dp</dimen>
-    <dimen name="fab_standard_margin">16dp</dimen>
+    <dimen name="card_standard_padding">@dimen/small</dimen>
+    <dimen name="grid_user_item_padding">@dimen/xxsmall</dimen>
     <dimen name="card_behace_user_item">160dp</dimen>
     <dimen name="card_behace_user_default_image_width">200dp</dimen>
 
@@ -29,9 +30,4 @@
     <dimen name="image_large">80dp</dimen>
     <dimen name="collapsing_toolbar_height">320dp</dimen>
 
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
 </resources>

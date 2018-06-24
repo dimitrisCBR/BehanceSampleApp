@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.userdetails.UserDetailsActivity"
+            android:name="com.cbr.behancesampleapp.ui.user.details.UserDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 

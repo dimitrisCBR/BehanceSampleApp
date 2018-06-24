@@ -6,12 +6,12 @@ open class PaginatedApiQuery : ApiQuery() {
     private var mPageNumber = DEFAULT_PAGE
     
     init {
-        mQueryParams.put(PARAM_PAGE, mPageNumber)
+        mQueryParams[PARAM_PAGE] = mPageNumber
     }
     
     fun nextPage() {
         mPageNumber++
-        mQueryParams.put(PARAM_PAGE, mPageNumber)
+        mQueryParams[PARAM_PAGE] = mPageNumber
     }
     
     fun reset() {
@@ -21,8 +21,8 @@ open class PaginatedApiQuery : ApiQuery() {
     
     companion object {
         
-        private val PARAM_PAGE = "page"
+        private const val PARAM_PAGE = "page"
         
-        private val DEFAULT_PAGE = 1
+        private const val DEFAULT_PAGE = 1
     }
 }

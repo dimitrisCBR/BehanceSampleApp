@@ -1,45 +1,34 @@
 package com.cbr.behancesampleapp.ui.common.mvp
 
+import com.cbr.behancesampleapp.ui.common.MvpPresenter
+import com.cbr.behancesampleapp.ui.common.MvpView
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 
-/** Created by Dimitrios on 8/26/2017. */
-open class BaseMvpPresenter<VIEW : MvpView>(val mvpView: VIEW) : MvpPresenter<VIEW> {
-    private var weakReference: WeakReference<VIEW>? = null
-    
-    private val view: VIEW?
-        get() = weakReference?.get()
-    
-    private val isViewAttached: Boolean
-        get() = weakReference?.get() != null
-    
+open class BasePresenter<VIEW : MvpView> constructor(val compositeDisposable: CompositeDisposable) : MvpPresenter<VIEW> {
+
+    lateinit var weakReference: WeakReference<VIEW>
+
+    val view: VIEW?
+        get() = weakReference.get()
+
     override fun attachView(view: VIEW) {
-        if (!isViewAttached) {
-            weakReference = WeakReference(view)
-            view.setPresenter(this)
-        }
+        weakReference = WeakReference(view)
     }
-    
-    override fun detachView() {
-        weakReference?.clear()
-        weakReference = null
+
+    override fun onSubscribe() {
+
     }
-    
-    var compositeDisposable: CompositeDisposable? = null
-        private set
-    
-    override fun subscribe() {
-        compositeDisposable = CompositeDisposable()
-    }
-    
-    override fun unsubscribe() {
+
+
+    override fun onUnsubscribe() {
         cancelPending()
-        compositeDisposable!!.dispose()
     }
-    
+
     fun cancelPending() {
-        if (compositeDisposable != null && !compositeDisposable!!.isDisposed) {
-            compositeDisposable!!.clear()
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.clear()
         }
     }
+
 }
