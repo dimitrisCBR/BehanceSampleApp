@@ -1,29 +1,33 @@
-<h1>Be Browser - Powered By Behance</h1>
 
- This is a sample project based on my skeleton and package-structure, using Behance's API.
+# Android Behance Sample Browser
+`Powered By Behance`
+
+
+Example Android project, using Behance's API. I try to maintain this repo as a project of best practices in app architectures and UI.
  
- More info on: https://www.behance.net/dev/api/endpoints/
+ More info about Behance API on: https://www.behance.net/dev/api/endpoints/
  
- I am trying to base the design on ideas from: https://www.uplabs.com/posts/behance-android-app
+ The UI is based on Behance's official app as well as this: https://www.uplabs.com/posts/behance-android-app
+
+### Android Practices
+
+  The code is WIP, so you might find unfinished stuff.
  
- <h4> Update 21/01/18 : </h4> Trying to switch the project to Kotlin. For now I converted the code to Kotlin through AS and trying to re-write it properly little by little.
- <h5> DONE </h5>
-  * Fixed Dagger for Kotlin
-  
- <h5> TODO </h5> 
- * Re-write activities Kotlin-style
- * Provide more rx flows
-  
- <h2> Code Features </h2>
- 
- * MVP Clean Architecture with Dagger and RX (TODO add more Rx examples)
- * Retrofit with RxJava2 for API calls
- * Examples:
- 	* Infinite Loading RecyclerView
- 	* RecyclerView Grid with configurable column count based on screen size
- 	* Collapsing Toolbar with parallax
- 	* Navigation Drawer
- 	* Image Blur
- 	* App Themes and Styles
+##### Architecture
+
+    MVP clean, minimal architecture with:
+
+    - Kotlin
+    - Dagger 2
+    - Retrofit
+    - Rx
+
+##### UI
+ 	- Infinite Loading RecyclerView
+ 	- Dynamic Grid RecyclerView
+ 	- Collapsing Toolbar
+ 	- Bottom Navigation
+ 	- Image Blur
+ 	- App Themes & Styles
  	
 ![alt text](https://media.giphy.com/media/AcQhyxUYZjt9C/giphy.gif "Gif")
