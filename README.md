@@ -5,28 +5,36 @@
 ![alt text](/files/capture2.gif "Gif")
 
 Example Android project, using Behance's API. I try to maintain this repo as a project of best practices in app architectures and UI.
- 
- More info about Behance API on: https://www.behance.net/dev/api/endpoints/
- 
- The UI is based on Behance's official app as well as this: https://www.uplabs.com/posts/behance-android-app
+
+### Running the project
+
+To run the project locally, you need an API Key from https://www.behance.net/dev/apps. When you have that, replace the placeholder with your key in the `app/build.gradle` file.
+
+```
+buildTypes {
+   debug {
+      buildConfigField("String", "API_KEY", <YOUR_KEY_GOES_HERE>)
+   }
+   ...
+}
+```
 
 ### Android Practices
 
-  The code is WIP, so you might find unfinished stuff.
+The code is WIP, so you might find unfinished stuff.
  
 ##### Architecture
 
-    MVP clean, minimal architecture with:
-
-    - Kotlin
-    - Dagger 2
-    - Retrofit
-    - Rx
+MVP clean, minimal architecture with:
+- Kotlin
+- Dagger 2
+- Retrofit
+- Rx
 
 ##### UI
- 	- Infinite Loading RecyclerView
- 	- Dynamic Grid RecyclerView
- 	- Collapsing Toolbar
- 	- Bottom Navigation
- 	- Image Blur
- 	- App Themes & Styles
+- Infinite Loading RecyclerView
+- Dynamic Grid RecyclerView
+- Collapsing Toolbar
+- Bottom Navigation
+- Image Blur
+- App Themes & Styles
