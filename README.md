@@ -2,6 +2,7 @@
 # Android Behance Sample Browser
 `Powered By Behance`
 
+![alt text](/files/capture2.gif "Gif")
 
 Example Android project, using Behance's API. I try to maintain this repo as a project of best practices in app architectures and UI.
  
@@ -29,5 +30,3 @@ Example Android project, using Behance's API. I try to maintain this repo as a p
  	- Bottom Navigation
  	- Image Blur
  	- App Themes & Styles
- 	
-![alt text](/files/capture2.gif "Gif")
