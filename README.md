@@ -30,4 +30,4 @@ Example Android project, using Behance's API. I try to maintain this repo as a p
  	- Image Blur
  	- App Themes & Styles
  	
-![alt text](https://media.giphy.com/media/3d4PeK3ra2W8rpnOoG/giphy.gif "Gif")
+![alt text](/files/capture2.gif "Gif")
