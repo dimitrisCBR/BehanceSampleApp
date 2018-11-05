@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/text_white</color>
+    <color name="colorPrimaryDark">@color/text_light</color>
+    <color name="colorAccent">@color/behance_blue</color>
+
+    <!-- Text -->
+    <color name="text_black">@color/text_black_1</color>
+    <color name="text_dark">@color/text_dark_grey</color>
+    <color name="text_white">@color/text_white_1</color>
+    <color name="text_light">@color/text_white_2</color>
+
+    <!-- Shades -->
+    <color name="dark_overlay">#60000000</color>
+    <color name="dark_overlay_medium_20">#20000000</color>
+    <color name="dark_overlay_medium">#40000000</color>
+    <color name="dark_overlay_dark">#80000000</color>
+</resources>

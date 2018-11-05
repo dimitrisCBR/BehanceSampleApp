@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+apply from: '../versions.gradle'
+
+android{
+
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "API_KEY", behanceApiKey)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            buildConfigField("String", "API_KEY", behanceApiKey)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+dependencies {
+
+    compileOnly deps.kotlin.stdlib
+    compileOnly project(':model')
+
+    compileOnly deps.rxjava2
+    compileOnly deps.rx_android
+
+    compileOnly deps.retrofit.gson
+    compileOnly deps.retrofit.runtime
+    compileOnly deps.retrofit.rxAdapter
+
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    compileOnly deps.lifecycle.runtime
+    compileOnly deps.lifecycle.extensions
+
+    kapt deps.room.compiler
+    kapt deps.lifecycle.compiler
+}

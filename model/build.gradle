@@ -1,0 +1,10 @@
+apply plugin: 'kotlin'
+apply from: '../versions.gradle'
+
+dependencies {
+    implementation deps.kotlin.stdlib
+    implementation deps.retrofit.gson
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

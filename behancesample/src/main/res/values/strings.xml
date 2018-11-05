@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Behance Sample</string>
+    <string name="err_empty_data">We couldn\'t find any data :(</string>
+</resources>

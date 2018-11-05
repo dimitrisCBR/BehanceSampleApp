@@ -1,0 +1,33 @@
+<resources>
+
+    <!-- Standard Sizes -->
+    <dimen name="xxsmall">4dp</dimen>
+    <dimen name="xsmall">8dp</dimen>
+    <dimen name="small">16dp</dimen>
+    <dimen name="medium">24dp</dimen>
+    <dimen name="large">32dp</dimen>
+    <dimen name="xlarge">48dp</dimen>
+    <dimen name="xxlarge">64dp</dimen>
+
+    <!-- Divider -->
+    <dimen name="divider_height_thin">1px</dimen>
+    <dimen name="divider_height_normal">1dp</dimen>
+    <dimen name="divider_height_large">2dp</dimen>
+
+    <dimen name="card_standard_padding">@dimen/small</dimen>
+    <dimen name="grid_user_item_padding">@dimen/xxsmall</dimen>
+    <dimen name="card_behace_user_item">160dp</dimen>
+    <dimen name="card_behace_user_default_image_width">200dp</dimen>
+
+    <!-- Text -->
+    <dimen name="caption_subtitle_1">16sp</dimen>
+    <dimen name="caption_subtitle_2">12sp</dimen>
+    <dimen name="caption_body_1">14sp</dimen>
+    <dimen name="caption_body_2">10sp</dimen>
+
+    <dimen name="image_small">32dp</dimen>
+    <dimen name="image_medium">64dp</dimen>
+    <dimen name="image_large">80dp</dimen>
+    <dimen name="collapsing_toolbar_height">320dp</dimen>
+
+</resources>

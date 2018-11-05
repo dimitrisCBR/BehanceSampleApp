@@ -1,26 +1,22 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 allprojects {
-    repositories {
-        google()
-        jcenter()
-        maven { url "https://jitpack.io" }
-    }
+    addRepos(repositories)
 }
 
 buildscript {
-    repositories {
-        google()
-        jcenter()
-        
-    }
-    
+
+    addRepos(repositories)
     dependencies {
-        classpath "com.android.tools.build:gradle:$gradle_plugin_version"
+        classpath deps.android_gradle_plugin
     }
 }
 
 android {
-    compileSdkVersion rootProject.ext.targetSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
     
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

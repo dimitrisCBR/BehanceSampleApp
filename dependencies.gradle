@@ -1,5 +1,6 @@
 rootProject.ext {
-    
+
+    kotlin_version = "1.2.51"
     appCompatVersion = "27.1.1"
     playServicesVersion = "11.8.0"
     glideVersion = "4.6.1"

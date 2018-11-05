@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green_yellow">#E5FCC2</color>
+    <color name="green_light">#9DE0AD</color>
+    <color name="green_teal">#45ADA8</color>
+    <color name="green_dark">#547980</color>
+    <color name="brown_light">#594F4F</color>
+
+    <color name="behance_blue_light">#4084FF</color>
+    <color name="behance_blue">#1769ff</color>
+    <color name="behance_blue_vibrant">#045DFF</color>
+    <color name="behance_blue_dark">#0142BB</color>
+    <color name="ic_launcher_background">@color/behance_blue</color>
+
+
+    <!-- Text -->
+    <color name="text_hint">#90FFFFFF</color>
+    <color name="text_white_1">#FFFFFF</color>
+    <color name="text_white_2">#99FFFFFF</color>
+    <color name="text_dark_grey">#555555</color>
+    <color name="text_black_1">#0d0d0d</color>
+    <color name="text_grey_80">#80555555</color>
+    <color name="text_white_80">#80FFFFFF</color>
+
+</resources>

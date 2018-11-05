@@ -9,8 +9,8 @@ android {
     
     defaultConfig {
         applicationId "com.cbr.behancesampleapp"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion 21
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -18,8 +18,11 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
         }
         release {
+            buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
