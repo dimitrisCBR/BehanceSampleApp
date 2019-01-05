@@ -2,7 +2,6 @@ package com.cbr.behancesampleapp.ui.common
 
 import com.cbr.behancesampleapp.R
 import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpFragment
-import com.cbr.behancesampleapp.util.UiUtils
 
 abstract class GridFragment : BaseMvpFragment() {
 

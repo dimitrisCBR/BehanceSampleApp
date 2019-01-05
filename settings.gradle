@@ -1,1 +1,1 @@
-include ':app', ':behancesample', ':model', ':domain'
+include ':behancesample', ':model', ':domain'

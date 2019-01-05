@@ -21,11 +21,7 @@ import com.cbr.behancesampleapp.ui.common.mvp.BaseMvpActivity
 import com.cbr.behancesampleapp.ui.user.DaggerUserComponent
 import com.cbr.behancesampleapp.ui.user.UserModule
 import com.cbr.behancesampleapp.util.BeTextUtils
-import com.cbr.behancesampleapp.util.UiUtils
-import com.cbr.behancesampleapp.util.loadImage
 import com.cbr.behancesampleapp.util.toBitmap
-import kotlinx.android.synthetic.main.activity_user_details.*
-import kotlinx.android.synthetic.main.header_userdetails.*
 import java.text.NumberFormat
 import java.util.*
 import javax.inject.Inject

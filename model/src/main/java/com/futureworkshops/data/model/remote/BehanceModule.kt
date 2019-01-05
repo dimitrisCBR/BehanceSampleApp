@@ -2,10 +2,6 @@ package com.futureworkshops.data.model.remote
 
 import com.google.gson.annotations.SerializedName
 
-/**
- * Created by dimitrios on 03/11/2018.
- */
-
 data class BehanceModule(
         @SerializedName("type") val type: String,
         @SerializedName("src") val image: String?,

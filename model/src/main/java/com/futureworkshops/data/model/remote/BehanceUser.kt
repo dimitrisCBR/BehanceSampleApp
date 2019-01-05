@@ -3,7 +3,6 @@ package com.futureworkshops.data.model.remote
 import com.futureworkshops.data.model.domain.User
 import com.google.gson.annotations.SerializedName
 
-/** Created by dimitrios on 25/08/2017.*/
 data class BehanceUser(
         @SerializedName("id") var id: Long,
         @SerializedName("first_name") var firstName: String,

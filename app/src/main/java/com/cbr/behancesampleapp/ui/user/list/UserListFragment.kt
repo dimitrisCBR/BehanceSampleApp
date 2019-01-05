@@ -1,25 +1,15 @@
 package com.cbr.behancesampleapp.ui.user.list
 
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.cbr.behancesampleapp.R
-import com.cbr.behancesampleapp.model.BehanceUser
 import com.cbr.behancesampleapp.ui.common.GridFragment
 import com.cbr.behancesampleapp.ui.common.MvpView
-import com.cbr.behancesampleapp.ui.common.recycler.PagingAdapter
 import com.cbr.behancesampleapp.ui.common.recycler.GridDecorator
-import com.cbr.behancesampleapp.ui.user.DaggerUserComponent
-import com.cbr.behancesampleapp.ui.user.UserModule
+import com.cbr.behancesampleapp.ui.common.recycler.PagingAdapter
 import com.cbr.behancesampleapp.ui.user.details.UserDetailsActivity
-import kotlinx.android.synthetic.main.include_appbarlayout.*
-import kotlinx.android.synthetic.main.include_layout_empty.*
-import kotlinx.android.synthetic.main.include_layout_progress.*
-import kotlinx.android.synthetic.main.include_layout_recyclerview.*
 import javax.inject.Inject
 
 interface UserListView : MvpView {
@@ -42,9 +32,9 @@ class UserListFragment : GridFragment(), UserListView, PagingAdapter.Interactor<
 
     override fun onFragmentInject() {
         DaggerUserComponent.builder()
-            .appComponent(appComponent())
-            .userModule(UserModule())
-            .build().inject(this)
+                .appComponent(appComponent())
+                .userModule(UserModule())
+                .build().inject(this)
         presenter.attachView(this)
     }
 
@@ -85,8 +75,8 @@ class UserListFragment : GridFragment(), UserListView, PagingAdapter.Interactor<
         }
         swipeRefreshLayout.apply {
             setColorSchemeColors(
-                ContextCompat.getColor(context, R.color.colorAccent),
-                ContextCompat.getColor(context, R.color.colorPrimaryDark))
+                    ContextCompat.getColor(context, R.color.colorAccent),
+                    ContextCompat.getColor(context, R.color.colorPrimaryDark))
             setOnRefreshListener { presenter.refresh() }
         }
         retryButton.setOnClickListener { requestMoreData() }

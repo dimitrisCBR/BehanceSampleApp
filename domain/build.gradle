@@ -1,6 +1,5 @@
 apply plugin: 'com.android.library'
 apply from: '../android_commons.gradle'
-apply from: '../versions.gradle'
 
 android{
 
@@ -9,32 +8,42 @@ android{
         debug {
             minifyEnabled false
             buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         release {
             minifyEnabled true
             buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 dependencies {
 
-    compileOnly deps.kotlin.stdlib
-    compileOnly project(':model')
+    implementation deps.kotlin.stdlib
+    implementation project(':model')
 
-    compileOnly deps.rxjava2
-    compileOnly deps.rx_android
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.rxAdapter
+    implementation deps.okhttp_logger
+    implementation deps.glide.runtime
 
-    compileOnly deps.retrofit.gson
-    compileOnly deps.retrofit.runtime
-    compileOnly deps.retrofit.rxAdapter
+    api deps.domain.rxjava2
+    api deps.domain.rx_android
+    api deps.domain.timber
 
-    implementation deps.room.runtime
-    implementation deps.room.rxjava2
+    api deps.dagger.runtime
+    kapt deps.dagger.compiler
+
+    api deps.room.runtime
+    api deps.room.rxjava2
+    //provided by "app" module, containing UI code
     compileOnly deps.lifecycle.runtime
     compileOnly deps.lifecycle.extensions
 
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
+
 }

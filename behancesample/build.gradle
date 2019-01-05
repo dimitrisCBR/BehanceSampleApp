@@ -4,78 +4,33 @@ apply from: '../android_commons.gradle'
 
 android {
 
-    compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
-
     defaultConfig {
         applicationId "com.cbr.behancesample"
-        minSdkVersion build_versions.min_sdk
-        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
-    }
-
-    buildTypes {
-        debug {
-            buildConfigField("String", "BASE_URL", baseUrl)
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        release {
-            buildConfigField("String", "BASE_URL", baseUrl)
-            minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    androidExtensions {
-        experimental = true
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
 }
 
 dependencies {
 
-    implementation project(':model')
-    implementation project(':domain')
-
     implementation deps.kotlin.stdlib
+    implementation project(':domain')
+    implementation project(':model')
 
     implementation deps.support.app_compat
     implementation deps.support.recyclerview
     implementation deps.support.cardview
-    implementation deps.support.design
-    implementation deps.support.palette
-
-    implementation deps.glide.runtime
-
-    implementation deps.retrofit.gson
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.rxAdapter
-
-    implementation deps.room.runtime
-    implementation deps.room.rxjava2
-    implementation deps.lifecycle.runtime
-    implementation deps.lifecycle.extensions
-    implementation deps.lifecycle.java8
-
-    implementation deps.dagger.runtime
-
-    implementation deps.rxjava2
-    implementation deps.rx_android
-
-    implementation deps.okhttp_logger
-    implementation deps.timber
-
+    implementation deps.material.design
     implementation deps.constraint_layout
 
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+
+    implementation deps.navigation.ui
+    implementation deps.navigation.fragment_ktx
+
     kapt deps.dagger.compiler
-    kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
 }
