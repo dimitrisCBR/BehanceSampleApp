@@ -15,15 +15,18 @@ constructor(private val usersRepository: UserRepository,
             private val schedulersProvider: SchedulersProvider) {
 
     private val apiQuery = UsersQuery()
+    private val allUsers = mutableListOf<User>()
 
     fun loadUsers(): Observable<Outcome<List<User>>> =
             usersRepository.loadUsers(apiQuery.build())
-                    .map { users -> Outcome.success(users) }
-                    .onErrorResumeNext {
-                        Single.just(Outcome.error(it.message ?: ""))
-                    }
                     .doOnSuccess {
                         apiQuery.nextPage()
+                        allUsers.addAll(it)
+                    }
+                    .flatMap { Single.just(allUsers.toList()) }
+                    .map { allUsers -> Outcome.success(allUsers) }
+                    .onErrorResumeNext { t ->
+                        Single.just(Outcome.error(t.message ?: ""))
                     }
                     .toObservable()
                     .startWith(Outcome.loading())
@@ -31,6 +34,7 @@ constructor(private val usersRepository: UserRepository,
                     .observeOn(schedulersProvider.ui())
 
     fun refresh() {
+        allUsers.clear()
         apiQuery.reset()
     }
 

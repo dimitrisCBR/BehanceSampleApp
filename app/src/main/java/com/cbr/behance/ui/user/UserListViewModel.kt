@@ -15,6 +15,10 @@ class UserListViewModel @Inject constructor(
 
     private val usersLiveData = MutableLiveData<Outcome<List<User>>>()
 
+    init {
+        loadUsers()
+    }
+
     fun loadUsers() {
         compositeDisposable.add(
                 userListInteractor.loadUsers()

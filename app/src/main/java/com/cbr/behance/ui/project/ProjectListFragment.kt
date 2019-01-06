@@ -13,6 +13,7 @@ import com.cbr.behance.BehanceSampleApplication
 import com.cbr.behance.R
 import com.cbr.behance.common.Outcome
 import com.cbr.behance.common.recycler.GridDecorator
+import com.cbr.behance.common.recycler.PagingAdapter
 import com.cbr.behance.ui.project.di.DaggerProjectComponent
 import com.cbr.behance.ui.project.recycler.ProjectsGridAdapter
 import com.futureworkshops.data.model.domain.Project
@@ -26,8 +27,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class ProjectListFragment : Fragment() {
-
+class ProjectListFragment : Fragment(), PagingAdapter.Callback {
     @Inject
     lateinit var viewModelFactory: ProjectListVMFactory
 
@@ -59,7 +59,7 @@ class ProjectListFragment : Fragment() {
             }
             layoutManager = gridLayoutManager
             addItemDecoration(GridDecorator(context, columnCount))
-            gridAdapter = ProjectsGridAdapter()
+            gridAdapter = ProjectsGridAdapter(this@ProjectListFragment)
             adapter = gridAdapter
         }
 
@@ -73,6 +73,9 @@ class ProjectListFragment : Fragment() {
                 is Outcome.Success -> showProjects(outcome.data)
             }
         })
+    }
+
+    override fun needMoreData() {
         projectListViewModel.loadProjects()
     }
 
@@ -97,7 +100,6 @@ class ProjectListFragment : Fragment() {
 
     private fun showLoading() {
         loading.visible()
-        recyclerview.gone()
         errorLayout.gone()
     }
 }

@@ -13,6 +13,7 @@ import com.cbr.behance.BehanceSampleApplication
 import com.cbr.behance.R
 import com.cbr.behance.common.Outcome
 import com.cbr.behance.common.recycler.GridDecorator
+import com.cbr.behance.common.recycler.PagingAdapter
 import com.cbr.behance.ui.user.di.DaggerUserComponent
 import com.cbr.behance.ui.user.recycler.UserGridAdapter
 import com.futureworkshops.data.model.domain.User
@@ -27,8 +28,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class UserListFragment : Fragment() {
-
+class UserListFragment : Fragment(), PagingAdapter.Callback {
     @Inject
     lateinit var viewModelFactory: UserListViewModelFactory
 
@@ -60,7 +60,7 @@ class UserListFragment : Fragment() {
             }
             layoutManager = gridLayoutManager
             addItemDecoration(GridDecorator(context, columnCount))
-            gridAdapter = UserGridAdapter()
+            gridAdapter = UserGridAdapter(this@UserListFragment)
             adapter = gridAdapter
         }
 
@@ -73,6 +73,9 @@ class UserListFragment : Fragment() {
                 is Outcome.Success -> showUsers(outcome.data)
             }
         })
+    }
+
+    override fun needMoreData() {
         usersViewModel.loadUsers()
     }
 
@@ -97,7 +100,6 @@ class UserListFragment : Fragment() {
 
     private fun showLoading() {
         loading.visible()
-        recyclerview.gone()
         errorLayout.gone()
     }
 }

@@ -5,18 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
 import com.cbr.behance.R
 import com.cbr.behance.common.recycler.BaseVH
+import com.cbr.behance.common.recycler.PagingAdapter
 import com.futureworkshops.data.model.domain.User
 import com.futureworkshops.domain.extension.loadImage
 import kotlinx.android.synthetic.main.viewholder_grid.*
 
-class UserGridAdapter : RecyclerView.Adapter<UserGridViewHolder>() {
+class UserGridAdapter(callback: PagingAdapter.Callback) : PagingAdapter<UserGridViewHolder>(callback) {
 
     var items: ArrayList<User> = arrayListOf()
 
     override fun onBindViewHolder(holder: UserGridViewHolder, position: Int) {
+        super.onBindViewHolder(holder, position)
         holder.onBind(items[position], position)
     }
 
@@ -31,6 +32,7 @@ class UserGridAdapter : RecyclerView.Adapter<UserGridViewHolder>() {
         diffResult.dispatchUpdatesTo(this)
         items.clear()
         items.addAll(newUsers)
+        onLoadingFinished()
     }
 
     fun getSpanForPosition(position: Int): Int = 1

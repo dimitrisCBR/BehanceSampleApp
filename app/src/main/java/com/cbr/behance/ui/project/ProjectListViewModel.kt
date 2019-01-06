@@ -16,6 +16,10 @@ class ProjectListViewModel(
 
     private val projectsLiveData = MutableLiveData<Outcome<List<Project>>>()
 
+    init {
+        loadProjects()
+    }
+
     fun loadProjects() {
         compositeDisposable.add(
                 projectsInteractor.loadProjects()
