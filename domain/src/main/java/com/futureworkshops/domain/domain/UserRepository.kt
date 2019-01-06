@@ -4,14 +4,13 @@ import com.futureworkshops.data.model.domain.User
 import com.futureworkshops.domain.data.database.dao.UserDAO
 import com.futureworkshops.domain.data.database.entity.UserEntity
 import com.futureworkshops.domain.data.network.BehanceApiService
-import com.futureworkshops.domain.data.scheduler.SchedulersProvider
+import io.reactivex.Observable
 import io.reactivex.Single
 import java.net.UnknownHostException
 import javax.inject.Inject
 
 
-class UserRepository @Inject
-constructor(
+class UserRepository @Inject constructor(
         private val behanceApiService: BehanceApiService,
         private val userDAO: UserDAO
 ) {
@@ -26,8 +25,9 @@ constructor(
                 }
                 .onErrorResumeNext {
                     if (it is UnknownHostException) {
-                        userDAO.getAll()
-                                .flatMapIterable { item -> item.map { it.toModel() } }
+                        userDAO.getAll().toObservable()
+                                .flatMapIterable { items -> items }
+                                .map { item -> item.toModel() }
                                 .toList()
                     } else {
                         Single.error(it)

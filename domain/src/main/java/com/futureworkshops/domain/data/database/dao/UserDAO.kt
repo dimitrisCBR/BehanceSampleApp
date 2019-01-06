@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.futureworkshops.domain.data.database.entity.UserEntity
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 
 @Dao
@@ -18,8 +18,8 @@ interface UserDAO {
     fun insertAll(users: List<UserEntity>)
 
     @Query("SELECT * FROM UserEntity")
-    fun getAll(): Flowable<List<UserEntity>>
+    fun getAll(): Single<List<UserEntity>>
 
     @Query("SELECT * FROM UserEntity WHERE id = :userId ")
-    fun findUserById(userId: Long): Flowable<UserEntity>
+    fun findUserById(userId: Long): Single<UserEntity>
 }

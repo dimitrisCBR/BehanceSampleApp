@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -28,6 +29,7 @@ import javax.inject.Inject
 
 
 class ProjectListFragment : Fragment(), PagingAdapter.Callback {
+
     @Inject
     lateinit var viewModelFactory: ProjectListVMFactory
 
@@ -62,6 +64,9 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback {
             gridAdapter = ProjectsGridAdapter(this@ProjectListFragment)
             adapter = gridAdapter
         }
+        swipeRefresh.setOnRefreshListener {
+            projectListViewModel.refresh()
+        }
 
         projectListViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(ProjectListViewModel::class.java)
@@ -80,6 +85,7 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback {
     }
 
     private fun showProjects(data: List<Project>?) {
+        swipeRefresh.isRefreshing = false
         if (data?.isNotEmpty() == true) {
             loading.gone()
             recyclerview.visible()
@@ -91,11 +97,13 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback {
     }
 
     private fun showError(message: String?) {
-        Timber.e(message)
+        swipeRefresh.isRefreshing = false
         loading.gone()
         recyclerview.gone()
         errorLayout.visible()
         errorTextView.text = message
+        Timber.e(message)
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     private fun showLoading() {

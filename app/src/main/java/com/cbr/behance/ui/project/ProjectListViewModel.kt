@@ -23,10 +23,17 @@ class ProjectListViewModel(
     fun loadProjects() {
         compositeDisposable.add(
                 projectsInteractor.loadProjects()
-                        .subscribe {
+                        .subscribe({
                             projectsLiveData.postValue(it)
-                        }
+                        }, { t ->
+                            projectsLiveData.postValue(Outcome.error(t.message ?: ""))
+                        })
         )
+    }
+
+    fun refresh() {
+        projectsInteractor.refresh()
+        loadProjects()
     }
 
     fun projects(): LiveData<Outcome<List<Project>>> = projectsLiveData

@@ -22,13 +22,14 @@ class ProjectRepository @Inject constructor(
                 .doOnSuccess { items ->
                     projectDAO.insertAll(items.map { ProjectEntity.fromModel(it) })
                 }
-                .onErrorResumeNext {
-                    if (it is UnknownHostException) {
-                        projectDAO.getAll()
-                                .flatMapIterable { item -> item.map { it.toModel() } }
+                .onErrorResumeNext { t: Throwable ->
+                    if (t is UnknownHostException) {
+                        projectDAO.getAll().toObservable()
+                                .flatMapIterable { items -> items }
+                                .map { item -> item.toModel() }
                                 .toList()
                     } else {
-                        Single.error(it)
+                        Single.error(t)
                     }
                 }
     }

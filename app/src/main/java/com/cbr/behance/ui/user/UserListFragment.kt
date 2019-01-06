@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -63,6 +64,9 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
             gridAdapter = UserGridAdapter(this@UserListFragment)
             adapter = gridAdapter
         }
+        swipeRefresh.setOnRefreshListener {
+            usersViewModel.refreshUsers()
+        }
 
         usersViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
 
@@ -80,6 +84,7 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
     }
 
     private fun showUsers(data: List<User>?) {
+        swipeRefresh.isRefreshing = false
         if (data?.isNotEmpty() == true) {
             loading.gone()
             recyclerview.visible()
@@ -91,11 +96,13 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
     }
 
     private fun showError(message: String?) {
-        Timber.e(message)
+        swipeRefresh.isRefreshing = false
         loading.gone()
         recyclerview.gone()
         errorLayout.visible()
         errorTextView.text = message
+        Timber.e(message)
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     private fun showLoading() {

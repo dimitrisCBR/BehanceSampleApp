@@ -7,6 +7,7 @@ import com.futureworkshops.domain.data.scheduler.SchedulersProvider
 import com.futureworkshops.domain.domain.ProjectRepository
 import io.reactivex.Observable
 import io.reactivex.Single
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -18,23 +19,22 @@ class ProjectListInteractor @Inject constructor(
     private val query = ProjectsQuery()
     private val allProjects = mutableListOf<Project>()
 
-    fun loadProjects(): Observable<Outcome<List<Project>>> {
-        return projectRepository.loadProjects(query.build())
-                .doOnSuccess {
-                    query.nextPage()
-                    allProjects.addAll(it)
-                }
-                .flatMap { Single.just(allProjects.toList()) }
-                .map { projects -> Outcome.success(projects) }
-                .onErrorResumeNext {
-                    Single.just(Outcome.error(it.message ?: ""))
-                }
-                .toObservable()
-                .startWith(Outcome.loading())
+    fun loadProjects(): Observable<Outcome<List<Project>>> =
+            projectRepository.loadProjects(query.build())
+                    .doOnSuccess {
+                        query.nextPage()
+                        allProjects.addAll(it)
+                    }
+                    .flatMap { Single.just(allProjects.toList()) }
+                    .map { projects -> Outcome.success(projects) }
+                    .onErrorResumeNext { t: Throwable ->
+                        Single.just(Outcome.error(t.message ?: ""))
+                    }
+                    .toObservable()
+                    .startWith(Outcome.loading())
+                    .subscribeOn(schedulersProvider.io())
+                    .observeOn(schedulersProvider.ui())
 
-                .subscribeOn(schedulersProvider.io())
-                .observeOn(schedulersProvider.ui())
-    }
 
     fun refresh() {
         query.reset()

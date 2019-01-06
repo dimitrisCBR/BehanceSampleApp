@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.futureworkshops.domain.data.database.entity.ProjectEntity
-import io.reactivex.Flowable
+import io.reactivex.Single
 
 
 @Dao
@@ -18,8 +18,8 @@ interface ProjectDAO {
     fun insertAll(projects: List<ProjectEntity>)
 
     @Query("SELECT * FROM ProjectEntity")
-    fun getAll(): Flowable<List<ProjectEntity>>
+    fun getAll(): Single<List<ProjectEntity>>
 
     @Query("SELECT * FROM ProjectEntity WHERE id = :projectId ")
-    fun findProjectById(projectId: Long): Flowable<ProjectEntity>
+    fun findProjectById(projectId: Long): Single<ProjectEntity>
 }
