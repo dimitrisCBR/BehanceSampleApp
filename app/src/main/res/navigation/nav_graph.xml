@@ -2,16 +2,35 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_graph"
-    app:startDestination="@+id/fragment_users">
+    app:startDestination="@+id/usersFragment">
 
     <fragment
-        android:id="@+id/fragment_users"
-        android:name="com.cbr.behance.ui.user.UserListFragment"
-        android:label="@string/label_users" />
+        android:id="@+id/usersFragment"
+        android:name="com.cbr.behance.ui.user.list.UserListFragment"
+        android:label="@string/label_users">
+
+        <action
+            android:id="@+id/action_fragment_users_to_userDetailsFragment"
+            app:destination="@id/userDetailsFragment" />
+
+    </fragment>
+
 
     <fragment
-        android:id="@+id/fragment_projects"
+        android:id="@+id/projectsFragment"
         android:name="com.cbr.behance.ui.project.ProjectListFragment"
         android:label="@string/label_projects" />
+
+    <fragment
+        android:id="@+id/userDetailsFragment"
+        android:name="com.cbr.behance.ui.user.details.UserDetailsFragment"
+        android:label="UserDetailsFragment">
+
+        <argument
+            android:name="user_id"
+            android:defaultValue="0L"
+            app:argType="long" />
+
+    </fragment>
 
 </navigation>

@@ -1,4 +1,4 @@
-package com.cbr.behance.ui.user
+package com.cbr.behance.ui.user.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

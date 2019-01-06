@@ -1,4 +1,4 @@
-package com.cbr.behance.ui.user
+package com.cbr.behance.ui.user.list
 
 import com.cbr.behance.common.Outcome
 import com.futureworkshops.data.model.domain.User

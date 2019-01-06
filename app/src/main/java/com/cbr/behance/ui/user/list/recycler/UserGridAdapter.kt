@@ -1,4 +1,4 @@
-package com.cbr.behance.ui.user.recycler
+package com.cbr.behance.ui.user.list.recycler
 
 import android.text.TextUtils
 import android.view.LayoutInflater

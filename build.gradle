@@ -1,11 +1,13 @@
 buildscript {
 
     apply from: 'versions.gradle'
+    apply from: 'dependencies.gradle'
 
     addRepos(repositories)
     dependencies {
         classpath deps.android_gradle_plugin
         classpath deps.kotlin.plugin
+        classpath deps.navigation.safeargs_plugin
     }
 }
 

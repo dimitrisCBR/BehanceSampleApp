@@ -1,4 +1,4 @@
-package com.cbr.behance.ui.user
+package com.cbr.behance.ui.user.list
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,7 @@ import com.cbr.behance.common.Outcome
 import com.cbr.behance.common.recycler.GridDecorator
 import com.cbr.behance.common.recycler.PagingAdapter
 import com.cbr.behance.ui.user.di.DaggerUserComponent
-import com.cbr.behance.ui.user.recycler.UserGridAdapter
+import com.cbr.behance.ui.user.list.recycler.UserGridAdapter
 import com.futureworkshops.data.model.domain.User
 import com.futureworkshops.domain.extension.gone
 import com.futureworkshops.domain.extension.screenWidth

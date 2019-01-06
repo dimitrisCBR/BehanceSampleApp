@@ -1,4 +1,4 @@
-package com.cbr.behance.ui.user.recycler
+package com.cbr.behance.ui.user.list.recycler
 
 import androidx.recyclerview.widget.DiffUtil
 import com.futureworkshops.data.model.domain.User
