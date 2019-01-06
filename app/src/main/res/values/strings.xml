@@ -1,16 +1,9 @@
 <resources>
-    <string name="app_name">Be Browser - Powered By Behance</string>
-
-    <string name="title_users">Users</string>
-    <string name="title_projects">Projects</string>
-    <string name="title_collections">Collections</string>
-
-    <string name="message_empty_content">We couldn\'t find any content.</string>
-
-    <string name="menu_filter">Filter</string>
-
-    <string name="action_settings">Settings</string>
-
-    <string name="label_browse">Browse</string>
+    <string name="app_name">Behance Sample</string>
+    <string name="err_empty_data">We couldn\'t find any data :(</string>
+    <string name="error_generic">Whoops. There was an error.</string>
     <string name="label_retry">Retry</string>
+    <string name="label_users">Users</string>
+    <string name="label_projects">Projects</string>
+    <string name="label_stub">Stub</string>
 </resources>

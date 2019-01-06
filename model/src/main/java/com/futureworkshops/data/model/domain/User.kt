@@ -1,5 +1,7 @@
 package com.futureworkshops.data.model.domain
 
+import com.futureworkshops.data.model.commons.Stats
+
 data class User(
         val id: Long,
         val firstName: String,

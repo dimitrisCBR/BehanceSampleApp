@@ -20,6 +20,6 @@ interface BehanceApiService {
     fun getUserById(@Path(PARAM_ID) id: String, @Query(PARAM_API_KEY) apiKey: String): Single<BehanceUser>
 
     @GET(Urls.GET_PROJECTS)
-    fun getProjects(@QueryMap queryParams: Map<String, Any>): Single<ListResponse<BehanceProject>>
+    fun getProjects(@QueryMap queryParams: @JvmSuppressWildcards Map<String, Any>): Single<ListResponse<BehanceProject>>
 
 }

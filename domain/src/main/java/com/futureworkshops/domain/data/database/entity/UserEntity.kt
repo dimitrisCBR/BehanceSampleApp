@@ -3,9 +3,8 @@ package com.futureworkshops.domain.data.database.entity
 
 import androidx.room.Embedded
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
-import com.futureworkshops.data.model.domain.Stats
+import com.futureworkshops.data.model.commons.Stats
 import com.futureworkshops.data.model.domain.User
 
 @Entity
@@ -28,11 +27,6 @@ data class UserEntity constructor(
         @Embedded
         var stats: Stats
 ) {
-
-    @Ignore
-    constructor() : this(0, "", "", "", "", "", "",
-            "", "", 0, "", mapOf<String, String>(), "",
-            listOf<String>(), Stats(0, 0, 0, 0, 0))
 
     fun toModel(): User = User(id, firstname, lastname, username, city, state, country,
             company, occupation, createdon, url, images, displayname, fields, stats)

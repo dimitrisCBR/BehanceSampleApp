@@ -1,5 +1,8 @@
 package com.futureworkshops.data.model.domain
 
+import com.futureworkshops.data.model.commons.ProjectFeature
+import com.futureworkshops.data.model.commons.Stats
+
 data class Project(
         val id: Long,
         val name: String,
@@ -13,7 +16,6 @@ data class Project(
         val owners: List<User>,
         val stats: Stats,
         val description: String,
-        val modules: List<ProjectModule>,
         val copyright: String,
-        val featuredOn: FeaturedOn
+        val projectFeature: List<ProjectFeature>
 )

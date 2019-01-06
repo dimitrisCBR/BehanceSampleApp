@@ -1,84 +1,36 @@
 apply plugin: 'com.android.application'
 apply from: '../android_commons.gradle'
 
+
 android {
-    
+
     defaultConfig {
-        applicationId "com.cbr.behancesampleapp"
-        minSdkVersion 21
-        targetSdkVersion 28
+        applicationId "com.cbr.behance"
         versionCode 1
         versionName "1.0"
     }
-    
-    buildTypes {
-        debug {
-            buildConfigField("String", "API_KEY", behanceApiKey)
-            buildConfigField("String", "BASE_URL", baseUrl)
-        }
-        release {
-            buildConfigField("String", "API_KEY", behanceApiKey)
-            buildConfigField("String", "BASE_URL", baseUrl)
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-}
 
-androidExtensions {
-    experimental = true
-}
-
-kapt {
-    generateStubs = true
 }
 
 dependencies {
-    
-    def ui = rootProject.ext.uiDependencies
-    def domain = rootProject.ext.domainDependencies
-    
-    
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    
-    /* AppCompat */
-    implementation ui.appCompat
-    implementation ui.designCompat
-    implementation ui.recyclerView
-    implementation ui.cardView
-    implementation ui.palette
-    
-    /*UI */
-    implementation ui.circleImageView
-    implementation ui.roundKornerLayout
-    implementation ui.glide
-    implementation ui.ankoExpandableTextView
-    implementation ui.flexBox
-    implementation ui.blurry
-    
-    /*DOMAIN*/
-    implementation domain.kotlinLib
-    implementation domain.ktxCore
-    
-    implementation domain.playServicesLocation
-    implementation domain.playServicesMaps
-    
-    implementation domain.gson
-    implementation domain.retrofit
-    implementation domain.retrofitRxAdapter
-    implementation domain.retrofitGsonConverter
-    
-    implementation domain.okHttp
-    implementation domain.okHttpLogger
-    
-    implementation domain.dagger
-    implementation domain.daggerAndroid
-    kapt domain.daggerCompiler
-    kapt domain.daggerAndroidProcessor
-    
-    implementation domain.rxJava
-    implementation domain.rxAndroid
-    
-    implementation domain.timber
-    
+
+    implementation deps.kotlin.stdlib
+    implementation project(':domain')
+    implementation project(':model')
+
+    implementation deps.support.app_compat
+    implementation deps.support.recyclerview
+    implementation deps.support.cardview
+    implementation deps.material.design
+    implementation deps.constraint_layout
+
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+
+    implementation deps.navigation.ui
+    implementation deps.navigation.fragment_ktx
+
+    kapt deps.dagger.compiler
+    kapt deps.lifecycle.compiler
+
 }

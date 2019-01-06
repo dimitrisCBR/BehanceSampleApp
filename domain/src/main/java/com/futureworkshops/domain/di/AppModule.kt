@@ -37,6 +37,5 @@ class AppModule(val application: Application) {
     @Provides
     fun projectDAO(roomDB: RoomDB): ProjectDAO = roomDB.projectDao()
 
-
 }
 
