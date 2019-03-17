@@ -10,7 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
     }
-
 }
 
 dependencies {
@@ -19,6 +18,7 @@ dependencies {
     implementation project(':domain')
     implementation project(':model')
 
+    //UI
     implementation deps.support.app_compat
     implementation deps.support.recyclerview
     implementation deps.support.cardview
@@ -31,7 +31,14 @@ dependencies {
     implementation deps.navigation.ui
     implementation deps.navigation.fragment_ktx
 
+    //DOMAIN
+    implementation deps.domain.rxjava2
+    implementation deps.domain.rx_android
+
+    implementation deps.dagger.runtime
+
     kapt deps.dagger.compiler
+    kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
 }

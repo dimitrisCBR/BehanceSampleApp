@@ -43,4 +43,10 @@ android {
     androidExtensions {
         experimental = true
     }
+
+
+    lintOptions {
+        checkDependencies true
+        abortOnError false
+    }
 }

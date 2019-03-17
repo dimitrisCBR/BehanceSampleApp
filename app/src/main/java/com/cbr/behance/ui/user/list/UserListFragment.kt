@@ -30,12 +30,15 @@ import javax.inject.Inject
 
 
 class UserListFragment : Fragment(), PagingAdapter.Callback {
+
     @Inject
     lateinit var viewModelFactory: UserListViewModelFactory
 
-    private lateinit var usersViewModel: UserListViewModel
+    private val usersViewModel: UserListViewModel by lazy {
+        ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
+    }
 
-    lateinit var gridAdapter: UserGridAdapter
+    val gridAdapter = UserGridAdapter(this@UserListFragment)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -50,8 +53,8 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         recyclerview.apply {
             val itemWidth = (resources.getDimension(R.dimen.card_behace_user_item) + resources.getDimension(R.dimen.card_standard_padding)).toInt()
             val columnCount = context.screenWidth() / itemWidth
@@ -61,15 +64,15 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
             }
             layoutManager = gridLayoutManager
             addItemDecoration(GridDecorator(context, columnCount))
-            gridAdapter = UserGridAdapter(this@UserListFragment)
             adapter = gridAdapter
         }
         swipeRefresh.setOnRefreshListener {
             usersViewModel.refreshUsers()
         }
+    }
 
-        usersViewModel = ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
-
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         usersViewModel.userListLiveData().observe(this, Observer { outcome ->
             when (outcome) {
                 is Outcome.Progress -> showLoading()

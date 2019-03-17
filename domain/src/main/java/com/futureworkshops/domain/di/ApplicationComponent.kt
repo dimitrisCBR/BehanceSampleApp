@@ -4,7 +4,7 @@ import android.content.Context
 import com.futureworkshops.domain.data.database.dao.ProjectDAO
 import com.futureworkshops.domain.data.database.dao.UserDAO
 import com.futureworkshops.domain.data.network.BehanceApiService
-import com.futureworkshops.domain.data.scheduler.SchedulersProvider
+import com.futureworkshops.domain.scheduler.SchedulersProvider
 import dagger.Component
 import javax.inject.Singleton
 

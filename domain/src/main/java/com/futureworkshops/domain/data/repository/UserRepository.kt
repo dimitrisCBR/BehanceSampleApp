@@ -1,10 +1,9 @@
-package com.futureworkshops.domain.domain
+package com.futureworkshops.domain.data.repository
 
 import com.futureworkshops.data.model.domain.User
 import com.futureworkshops.domain.data.database.dao.UserDAO
 import com.futureworkshops.domain.data.database.entity.UserEntity
 import com.futureworkshops.domain.data.network.BehanceApiService
-import io.reactivex.Observable
 import io.reactivex.Single
 import java.net.UnknownHostException
 import javax.inject.Inject

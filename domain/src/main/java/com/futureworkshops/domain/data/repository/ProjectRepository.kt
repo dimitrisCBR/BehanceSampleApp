@@ -1,4 +1,4 @@
-package com.futureworkshops.domain.domain
+package com.futureworkshops.domain.data.repository
 
 import com.futureworkshops.data.model.domain.Project
 import com.futureworkshops.domain.data.database.dao.ProjectDAO

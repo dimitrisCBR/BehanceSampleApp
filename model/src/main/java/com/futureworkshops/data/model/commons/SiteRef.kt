@@ -4,18 +4,13 @@ import com.google.gson.annotations.SerializedName
 
 
 data class SiteRef(
-        val id: Long,
+        @SerializedName("id") val id: Long,
         @SerializedName("parent_id") val parentId: Long,
-        val name: String,
-        val key: String,
-        val icon: String,
+        @SerializedName("name") val name: String,
+        @SerializedName("key") val key: String,
+        @SerializedName("icon") val icon: String,
         @SerializedName("app_icon") val appIcon: String,
-        val domain: String,
-        val url: String,
-        val ribbon: SiteRibbon
-)
-
-data class SiteRibbon(
-        val image: String,
-        @SerializedName("image_2x") val imageLarge: String
+        @SerializedName("domain") val domain: String,
+        @SerializedName("url") val url: String,
+        @SerializedName("ribbon") val ribbon: SiteRibbon
 )

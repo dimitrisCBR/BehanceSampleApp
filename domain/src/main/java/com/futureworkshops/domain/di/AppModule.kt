@@ -6,8 +6,8 @@ import androidx.room.Room
 import com.futureworkshops.domain.data.database.RoomDB
 import com.futureworkshops.domain.data.database.dao.ProjectDAO
 import com.futureworkshops.domain.data.database.dao.UserDAO
-import com.futureworkshops.domain.data.scheduler.SchedulersProvider
-import com.futureworkshops.domain.data.scheduler.WorkerSchedulerProvider
+import com.futureworkshops.domain.scheduler.SchedulersProvider
+import com.futureworkshops.domain.scheduler.WorkerSchedulerProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

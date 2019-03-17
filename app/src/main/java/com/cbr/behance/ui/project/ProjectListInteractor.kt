@@ -3,11 +3,10 @@ package com.cbr.behance.ui.project
 import com.cbr.behance.common.Outcome
 import com.futureworkshops.data.model.domain.Project
 import com.futureworkshops.domain.data.network.query.ProjectsQuery
-import com.futureworkshops.domain.data.scheduler.SchedulersProvider
-import com.futureworkshops.domain.domain.ProjectRepository
+import com.futureworkshops.domain.scheduler.SchedulersProvider
+import com.futureworkshops.domain.data.repository.ProjectRepository
 import io.reactivex.Observable
 import io.reactivex.Single
-import timber.log.Timber
 import javax.inject.Inject
 
 

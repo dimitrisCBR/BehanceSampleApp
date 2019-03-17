@@ -1,4 +1,4 @@
-package com.futureworkshops.data.model.remote
+package com.futureworkshops.data.model.api
 
 import com.futureworkshops.data.model.commons.ProjectFeature
 import com.futureworkshops.data.model.commons.Stats
@@ -7,20 +7,20 @@ import com.google.gson.annotations.SerializedName
 
 
 data class BehanceProject(
-        val id: Long,
-        val name: String,
+        @SerializedName("id") val id: Long,
+        @SerializedName("name") val name: String,
         @SerializedName("published_on") val publishDate: Long,
         @SerializedName("created_on") val creationDate: Long,
         @SerializedName("modified_on") val lastModifiedDate: Long,
-        val url: String,
-        val fields: List<String>,
-        val covers: HashMap<String, String>,
+        @SerializedName("url") val url: String,
+        @SerializedName("fields") val fields: List<String>,
+        @SerializedName("covers") val covers: HashMap<String, String>,
         @SerializedName("mature_content") val nsfw: Int,
-        val owners: List<BehanceUser>,
-        val stats: Stats,
-        val description: String?,
-        val copyright: String?,
-        val features: List<ProjectFeature>
+        @SerializedName("owners") val owners: List<BehanceUser>,
+        @SerializedName("stats") val stats: Stats,
+        @SerializedName("description") val description: String?,
+        @SerializedName("copyright") val copyright: String?,
+        @SerializedName("features") val features: List<ProjectFeature>
 ) {
 
     fun toModel() = Project(

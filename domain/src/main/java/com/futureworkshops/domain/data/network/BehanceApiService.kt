@@ -1,8 +1,8 @@
 package com.futureworkshops.domain.data.network
 
 
-import com.futureworkshops.data.model.remote.BehanceProject
-import com.futureworkshops.data.model.remote.BehanceUser
+import com.futureworkshops.data.model.api.BehanceProject
+import com.futureworkshops.data.model.api.BehanceUser
 import com.futureworkshops.domain.data.network.Urls.PARAM_API_KEY
 import com.futureworkshops.domain.data.network.Urls.PARAM_ID
 import io.reactivex.Single

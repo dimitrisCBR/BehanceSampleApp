@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply from: '../android_commons.gradle'
 
-android{
+android {
 
     buildTypes {
         debug {
@@ -21,8 +21,8 @@ android{
 
 dependencies {
 
-    implementation deps.kotlin.stdlib
-    implementation project(':model')
+    compileOnly deps.kotlin.stdlib
+    compileOnly project(':model')
 
     implementation deps.retrofit.gson
     implementation deps.retrofit.runtime
@@ -30,20 +30,21 @@ dependencies {
     implementation deps.okhttp_logger
     implementation deps.glide.runtime
 
-    api deps.domain.rxjava2
-    api deps.domain.rx_android
-    api deps.domain.timber
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
 
-    api deps.dagger.runtime
-    kapt deps.dagger.compiler
-
-    api deps.room.runtime
-    api deps.room.rxjava2
     //provided by "app" module, containing UI code
     compileOnly deps.lifecycle.runtime
     compileOnly deps.lifecycle.extensions
 
+    compileOnly deps.domain.rxjava2
+    compileOnly deps.domain.rx_android
+
+    compileOnly deps.dagger.runtime
+
+    kapt deps.dagger.compiler
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
+    api deps.domain.timber
 }

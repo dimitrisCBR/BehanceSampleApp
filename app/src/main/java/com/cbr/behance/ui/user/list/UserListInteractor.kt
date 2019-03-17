@@ -3,8 +3,8 @@ package com.cbr.behance.ui.user.list
 import com.cbr.behance.common.Outcome
 import com.futureworkshops.data.model.domain.User
 import com.futureworkshops.domain.data.network.query.UsersQuery
-import com.futureworkshops.domain.data.scheduler.SchedulersProvider
-import com.futureworkshops.domain.domain.UserRepository
+import com.futureworkshops.domain.scheduler.SchedulersProvider
+import com.futureworkshops.domain.data.repository.UserRepository
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject

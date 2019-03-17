@@ -2,7 +2,7 @@ apply plugin: 'kotlin'
 apply from: '../versions.gradle'
 
 dependencies {
-    implementation deps.kotlin.stdlib
+    compileOnly deps.kotlin.stdlib
     implementation deps.retrofit.gson
 }
 
