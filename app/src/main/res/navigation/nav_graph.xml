@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/usersFragment"
-        android:name="com.cbr.behance.ui.user.list.UserListFragment"
+        android:name="com.cbr.behance.user.list.UserListFragment"
         android:label="@string/label_users">
 
         <action
@@ -18,12 +18,12 @@
 
     <fragment
         android:id="@+id/projectsFragment"
-        android:name="com.cbr.behance.ui.project.ProjectListFragment"
+        android:name="com.cbr.behance.project.ProjectListFragment"
         android:label="@string/label_projects" />
 
     <fragment
         android:id="@+id/userDetailsFragment"
-        android:name="com.cbr.behance.ui.user.details.UserDetailsFragment"
+        android:name="com.cbr.behance.user.details.UserDetailsFragment"
         android:label="UserDetailsFragment">
 
         <argument

@@ -2,9 +2,9 @@ package com.cbr.behance
 
 import android.app.Application
 
-import com.futureworkshops.domain.di.AppModule
-import com.futureworkshops.domain.di.ApplicationComponent
-import com.futureworkshops.domain.di.DaggerApplicationComponent
+import com.futureworkshops.core.di.AppModule
+import com.futureworkshops.core.di.ApplicationComponent
+import com.futureworkshops.core.di.DaggerApplicationComponent
 import timber.log.Timber
 
 class BehanceSampleApplication : Application() {

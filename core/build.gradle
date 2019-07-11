@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+apply from: '../android_commons.gradle'
+
+android {
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            buildConfigField("String", "API_KEY", behanceApiKey)
+            buildConfigField("String", "BASE_URL", baseUrl)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    compileOnly deps.kotlin.stdlib
+
+    compileOnly deps.support.app_compat
+    compileOnly deps.support.recyclerview
+    compileOnly deps.navigation.ui
+    compileOnly deps.navigation.fragment_ktx
+
+    compileOnly deps.lifecycle.runtime
+    compileOnly deps.lifecycle.extensions
+
+    compileOnly deps.domain.rxjava2
+    compileOnly deps.domain.rx_android
+
+    compileOnly deps.dagger.runtime
+
+    //Provided dependencies
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.rxAdapter
+    implementation deps.okhttp_logger
+    implementation deps.glide.runtime
+
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+
+    api deps.domain.timber
+
+    kapt deps.dagger.compiler
+    kapt deps.room.compiler
+    kapt deps.lifecycle.compiler
+}
