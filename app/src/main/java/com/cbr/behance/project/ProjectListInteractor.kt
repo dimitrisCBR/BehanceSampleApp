@@ -1,10 +1,10 @@
 package com.cbr.behance.project
 
 
+import com.cbr.base.data.network.query.ProjectsQuery
+import com.cbr.base.data.repository.ProjectRepository
+import com.cbr.base.data.scheduler.SchedulersProvider
 import com.cbr.behance.project.recycler.ProjectGridItem
-import com.futureworkshops.core.data.network.query.ProjectsQuery
-import com.futureworkshops.core.data.repository.ProjectRepository
-import com.futureworkshops.core.data.scheduler.SchedulersProvider
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject

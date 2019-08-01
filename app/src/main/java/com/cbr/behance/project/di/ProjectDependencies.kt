@@ -1,7 +1,7 @@
 package com.cbr.behance.project.di
 
+import com.cbr.base.di.ApplicationComponent
 import com.cbr.behance.project.ProjectListFragment
-import com.futureworkshops.core.di.ApplicationComponent
 import dagger.Component
 
 

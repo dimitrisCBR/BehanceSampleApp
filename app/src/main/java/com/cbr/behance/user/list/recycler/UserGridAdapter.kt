@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.cbr.base.extension.loadImage
+import com.cbr.base.model.domain.User
 import com.cbr.behance.R
 import com.cbr.behance.commons.recycler.BaseVH
 import com.cbr.behance.commons.recycler.ListItem
 import com.cbr.behance.commons.recycler.LoadingViewHolder
 import com.cbr.behance.commons.recycler.LoadingViewHolder.Companion.TYPE_LOADING
 import com.cbr.behance.commons.recycler.PagingAdapter
-import com.futureworkshops.core.extension.loadImage
-import com.futureworkshops.core.model.domain.User
 import kotlinx.android.synthetic.main.viewholder_grid.*
 
 class UserGridAdapter(val columnCount: Int, callback: Callback) : PagingAdapter<UserGridItem>(callback) {

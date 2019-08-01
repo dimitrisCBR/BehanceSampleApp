@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cbr.base.ui.BaseViewModel
 import com.cbr.behance.commons.recycler.LoadingViewHolder
 import com.cbr.behance.project.recycler.ProjectGridItem
-import com.futureworkshops.core.ui.BaseViewModel
 import javax.inject.Inject
 
 

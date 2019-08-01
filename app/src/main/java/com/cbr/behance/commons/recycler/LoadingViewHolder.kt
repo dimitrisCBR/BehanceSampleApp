@@ -2,7 +2,8 @@ package com.cbr.behance.commons.recycler
 
 import android.view.View
 import android.view.ViewGroup
-import com.futureworkshops.core.extension.inflater
+import com.cbr.base.extension.inflater
+import com.cbr.behance.R
 
 class LoadingViewHolder<T : ListItem>(view: View) : BaseVH<T>(view) {
 
@@ -14,7 +15,7 @@ class LoadingViewHolder<T : ListItem>(view: View) : BaseVH<T>(view) {
     companion object {
 
         fun <T : ListItem> newInstance(parent: ViewGroup) =
-                LoadingViewHolder<T>(parent.inflater().inflate(com.futureworkshops.core.R.layout.viewholder_loading, parent, false))
+                LoadingViewHolder<T>(parent.inflater().inflate(R.layout.viewholder_loading, parent, false))
 
 
         const val TYPE_LOADING = -1

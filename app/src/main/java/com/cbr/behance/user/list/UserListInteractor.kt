@@ -1,10 +1,10 @@
 package com.cbr.behance.user.list
 
 
+import com.cbr.base.data.network.query.UsersQuery
+import com.cbr.base.data.repository.UserRepository
+import com.cbr.base.data.scheduler.SchedulersProvider
 import com.cbr.behance.user.list.recycler.UserGridItem
-import com.futureworkshops.core.data.network.query.UsersQuery
-import com.futureworkshops.core.data.repository.UserRepository
-import com.futureworkshops.core.data.scheduler.SchedulersProvider
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject

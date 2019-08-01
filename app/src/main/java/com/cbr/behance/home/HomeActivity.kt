@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.cbr.base.ui.BaseActivity
 import com.cbr.behance.R
-import com.futureworkshops.core.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
 

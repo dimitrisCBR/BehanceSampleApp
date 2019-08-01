@@ -15,7 +15,7 @@ android {
 dependencies {
 
     implementation deps.kotlin.stdlib
-    implementation project(':core')
+    implementation project(':base')
 
     //UI
     implementation deps.support.app_compat
