@@ -1,4 +1,4 @@
-package com.futureworkshops.core.ui.recycler.decorator
+package com.cbr.behance.commons.recycler.decorator
 
 import android.content.Context
 import android.graphics.Rect

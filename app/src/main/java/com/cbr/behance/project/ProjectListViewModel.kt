@@ -4,9 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.futureworkshops.core.ui.Outcome
-
-import com.futureworkshops.core.model.domain.Project
+import com.cbr.behance.commons.recycler.LoadingViewHolder
+import com.cbr.behance.project.recycler.ProjectGridItem
 import com.futureworkshops.core.ui.BaseViewModel
 import javax.inject.Inject
 
@@ -15,21 +14,38 @@ class ProjectListViewModel(
         private val projectsInteractor: ProjectListInteractor
 ) : BaseViewModel() {
 
-    private val projectsLiveData = MutableLiveData<Outcome<List<Project>>>()
+    private val projectsLiveData = MutableLiveData<List<ProjectGridItem>>()
+    private val projectStateLiveData = MutableLiveData<ProjectsUI>()
 
     init {
         loadProjects()
     }
 
     fun loadProjects() {
+        if (projectStateLiveData.value == Loading) {
+            return
+        }
+        projectStateLiveData.postValue(Loading)
         compositeDisposable.add(
                 projectsInteractor.loadProjects()
                         .subscribe({
-                            projectsLiveData.postValue(it)
+                            handleNewProjects(it)
+                            projectStateLiveData.postValue(Success)
                         }, { t ->
-                            projectsLiveData.postValue(Outcome.error(t.message ?: ""))
+                            projectStateLiveData.postValue(Error(t.message ?: ""))
                         })
         )
+    }
+
+    private fun handleNewProjects(projectItems: List<ProjectGridItem>) {
+        val items = mutableListOf<ProjectGridItem>()
+        val oldItems = projectsLiveData.value.orEmpty()
+
+        items.addAll(oldItems.filter { item -> item.itemType != LoadingViewHolder.TYPE_LOADING })
+        items.addAll(projectItems)
+        items.add(ProjectGridItem(LoadingViewHolder.TYPE_LOADING, Unit))
+
+        projectsLiveData.postValue(items)
     }
 
     fun refresh() {
@@ -37,9 +53,16 @@ class ProjectListViewModel(
         loadProjects()
     }
 
-    fun projects(): LiveData<Outcome<List<Project>>> = projectsLiveData
+    fun projects(): LiveData<List<ProjectGridItem>> = projectsLiveData
+
+    fun uiState(): LiveData<ProjectsUI> = projectStateLiveData
 
 }
+
+sealed class ProjectsUI
+object Loading : ProjectsUI()
+data class Error(val message: String) : ProjectsUI()
+object Success : ProjectsUI()
 
 class ProjectListVMFactory @Inject constructor(
         private val interactor: ProjectListInteractor

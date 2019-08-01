@@ -12,20 +12,16 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cbr.behance.BehanceSampleApplication
 import com.cbr.behance.R
-import com.futureworkshops.core.ui.Outcome
-
-import com.futureworkshops.core.ui.recycler.decorator.GridDecorator
-import com.futureworkshops.core.ui.recycler.PagingAdapter
+import com.cbr.behance.commons.recycler.PagingAdapter
+import com.cbr.behance.commons.recycler.decorator.GridDecorator
 import com.cbr.behance.user.di.DaggerUserComponent
 import com.cbr.behance.user.list.recycler.UserGridAdapter
-import com.futureworkshops.core.model.domain.User
 import com.futureworkshops.core.extension.gone
 import com.futureworkshops.core.extension.screenWidth
 import com.futureworkshops.core.extension.visible
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.include_error_layout.*
 import kotlinx.android.synthetic.main.include_loading.*
-
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -39,7 +35,7 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
         ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel::class.java)
     }
 
-    val gridAdapter = UserGridAdapter(this@UserListFragment)
+    lateinit var gridAdapter: UserGridAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -65,6 +61,7 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
             }
             layoutManager = gridLayoutManager
             addItemDecoration(GridDecorator(context, columnCount))
+            gridAdapter = UserGridAdapter(columnCount, this@UserListFragment)
             adapter = gridAdapter
         }
         swipeRefresh.setOnRefreshListener {
@@ -74,12 +71,15 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        usersViewModel.userListLiveData().observe(this, Observer { outcome ->
-            when (outcome) {
-                is Outcome.Progress -> showLoading()
-                is Outcome.Error -> showError(outcome.errorMsg)
-                is Outcome.Success -> showUsers(outcome.data)
+        usersViewModel.usersUI().observe(this, Observer { userListUI ->
+            when (userListUI) {
+                is Loading -> showLoading()
+                is Error -> showError(userListUI.message)
+                is Success -> showUsers()
             }
+        })
+        usersViewModel.userListItems().observe(this, Observer { userListItems ->
+            gridAdapter.setUsers(userListItems)
         })
     }
 
@@ -87,16 +87,11 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
         usersViewModel.loadUsers()
     }
 
-    private fun showUsers(data: List<User>?) {
+    private fun showUsers() {
         swipeRefresh.isRefreshing = false
-        if (data?.isNotEmpty() == true) {
-            loading.gone()
-            recyclerview.visible()
-            errorLayout.gone()
-            gridAdapter.setUsers(data)
-        } else {
-            showError(getString(R.string.err_empty_data))
-        }
+        loading.gone()
+        recyclerview.visible()
+        errorLayout.gone()
     }
 
     private fun showError(message: String?) {
@@ -110,7 +105,9 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
     }
 
     private fun showLoading() {
-        loading.visible()
-        errorLayout.gone()
+        if (gridAdapter.isEmpty()) {
+            loading.visible()
+            errorLayout.gone()
+        }
     }
 }

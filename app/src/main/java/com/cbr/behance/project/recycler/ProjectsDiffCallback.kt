@@ -1,13 +1,13 @@
 package com.cbr.behance.project.recycler
 
 import androidx.recyclerview.widget.DiffUtil
-import com.futureworkshops.core.model.domain.Project
 
 class ProjectsDiffCallback(
-        private val oldProjects: List<Project>,
-        private val newProjects: List<Project>) : DiffUtil.Callback() {
+        private val oldProjects: List<ProjectGridItem>,
+        private val newProjects: List<ProjectGridItem>) : DiffUtil.Callback() {
 
-    override fun areItemsTheSame(p0: Int, p1: Int): Boolean = oldProjects[p0].id == newProjects[p1].id
+    override fun areItemsTheSame(p0: Int, p1: Int): Boolean = (oldProjects[p0].isLoading() && newProjects[p1].isLoading())
+            || (!oldProjects[p0].isLoading() && !newProjects[p1].isLoading() && oldProjects[p0].project().id == newProjects[p1].project().id)
 
     override fun getOldListSize(): Int = oldProjects.size
 

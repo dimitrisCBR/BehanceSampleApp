@@ -4,48 +4,53 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.RecyclerView
 import com.cbr.behance.R
-import com.futureworkshops.core.ui.recycler.BaseVH
-import com.futureworkshops.core.ui.recycler.PagingAdapter
-import com.futureworkshops.core.model.domain.Project
+import com.cbr.behance.commons.recycler.BaseVH
+import com.cbr.behance.commons.recycler.ListItem
+import com.cbr.behance.commons.recycler.LoadingViewHolder
+import com.cbr.behance.commons.recycler.LoadingViewHolder.Companion.TYPE_LOADING
+import com.cbr.behance.commons.recycler.PagingAdapter
 import com.futureworkshops.core.extension.loadImage
+import com.futureworkshops.core.model.domain.Project
 import kotlinx.android.synthetic.main.viewholder_grid.*
 
-class ProjectsGridAdapter(
-        callback: PagingAdapter.Callback
-) : PagingAdapter<ProjectGridViewHolder>(callback) {
+class ProjectsGridAdapter(val columnCount: Int, callback: Callback) : PagingAdapter<ProjectGridItem>(callback) {
 
-    var items: ArrayList<Project> = arrayListOf()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH<ProjectGridItem> {
+        return when (viewType) {
+            LoadingViewHolder.TYPE_LOADING -> LoadingViewHolder.newInstance(parent)
+            else -> ProjectGridViewHolder.newInstance(parent)
+        }
+    }
 
-    override fun onBindViewHolder(holder: ProjectGridViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
-        holder.onBind(items[position], position)
+        if (holder is ProjectGridViewHolder) {
+            holder.bind(position, items[position])
+        }
     }
 
-    override fun getItemCount(): Int = items.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProjectGridViewHolder {
-        return ProjectGridViewHolder.newInstance(parent)
-    }
-
-    fun setProjects(newProjects: List<Project>) {
+    fun setProjects(newProjects: List<ProjectGridItem>) {
         val diffResult = DiffUtil.calculateDiff(ProjectsDiffCallback(items, newProjects))
         diffResult.dispatchUpdatesTo(this)
         items.clear()
         items.addAll(newProjects)
-        onLoadingFinished()
     }
 
-    fun getSpanForPosition(position: Int): Int = 1
+    fun getSpanForPosition(position: Int): Int = if (getItemViewType(position) == TYPE_LOADING) columnCount else 1
+
+    fun isEmpty(): Boolean = items.size <= 1
 
 }
 
-class ProjectGridViewHolder(view: View) : BaseVH(view) {
+class ProjectGridViewHolder(view: View) : BaseVH<ProjectGridItem>(view) {
 
-    fun onBind(project: Project, position: Int) {
-        project.covers.takeIf { it.isNotEmpty() }.let {
-            val key = it?.keys?.first()
-            imageView.loadImage(it?.get(key))
+    override fun bind(position: Int, data: ProjectGridItem) {
+        val project = data.project()
+        project.covers.takeIf { it.isNotEmpty() }?.let {
+            val key = it.keys.first()
+            imageView.loadImage(it.get(key))
         }
 
         titleTextView.text = project.name
@@ -63,5 +68,14 @@ class ProjectGridViewHolder(view: View) : BaseVH(view) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.viewholder_grid, parent, false)
             return ProjectGridViewHolder(view)
         }
+    }
+}
+
+class ProjectGridItem(type: Int, data: Any) : ListItem(type, data) {
+
+    fun project() = data as Project
+
+    companion object {
+        const val TYPE_PROJECT = 0
     }
 }

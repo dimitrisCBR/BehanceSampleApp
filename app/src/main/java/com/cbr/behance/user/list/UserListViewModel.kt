@@ -4,47 +4,62 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cbr.behance.commons.recycler.LoadingViewHolder
+import com.cbr.behance.user.list.recycler.UserGridItem
 import com.futureworkshops.core.ui.BaseViewModel
-import com.futureworkshops.core.ui.Outcome
-
-import com.futureworkshops.core.model.domain.User
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 class UserListViewModel @Inject constructor(
         private val userListInteractor: UserListInteractor
 ) : BaseViewModel() {
 
-    private val usersLiveData = MutableLiveData<Outcome<List<User>>>()
+    private val userListStateLiveData = MutableLiveData<UsersUI>()
+    private val userItemsLiveData = MutableLiveData<List<UserGridItem>>()
 
     init {
         loadUsers()
-        benchmark()
-    }
-
-    private fun benchmark() {
-        Observable.range(0, 1000)
-                .flatMap {
-                    Single.just(it)
-                            .subscribeOn(Schedulers.newThread())
-                            .map { value -> value % 5 }
-                            .toObservable()
-                }
-                .subscribe()
     }
 
     fun loadUsers() {
+        if (userListStateLiveData.value == Loading) {
+            return
+        }
+        userListStateLiveData.postValue(Loading)
         compositeDisposable.add(
                 userListInteractor.loadUsers()
-                        .subscribe { outcome ->
-                            usersLiveData.postValue(outcome)
-                        }
+                        .subscribe(
+                                { userGridItems ->
+                                    handleNewGridItems(userGridItems)
+                                    userListStateLiveData.postValue(Success)
+                                },
+                                { t ->
+                                    handleError(t)
+                                    userListStateLiveData.postValue(Error(t.message ?: ""))
+                                }
+                        )
         )
     }
 
-    fun userListLiveData(): LiveData<Outcome<List<User>>> = usersLiveData
+    private fun handleError(t: Throwable) {
+        Timber.e(t)
+    }
+
+
+    private fun handleNewGridItems(userGridItems: List<UserGridItem>) {
+        val items = mutableListOf<UserGridItem>()
+        val oldItems = userItemsLiveData.value.orEmpty()
+
+        items.addAll(oldItems.filter { item -> item.itemType != LoadingViewHolder.TYPE_LOADING })
+        items.addAll(userGridItems)
+        items.add(UserGridItem(LoadingViewHolder.TYPE_LOADING, Unit))
+
+        userItemsLiveData.postValue(items)
+    }
+
+    fun userListItems(): LiveData<List<UserGridItem>> = userItemsLiveData
+
+    fun usersUI(): LiveData<UsersUI> = userListStateLiveData
 
     fun refreshUsers() {
         userListInteractor.refresh()
@@ -56,6 +71,12 @@ class UserListViewModel @Inject constructor(
         compositeDisposable.clear()
     }
 }
+
+sealed class UsersUI
+object Loading : UsersUI()
+data class Error(val message: String) : UsersUI()
+object Success : UsersUI()
+
 
 @Suppress("Unchecked_cast")
 class UserListViewModelFactory @Inject constructor(
