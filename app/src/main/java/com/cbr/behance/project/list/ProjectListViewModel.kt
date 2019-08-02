@@ -1,4 +1,4 @@
-package com.cbr.behance.project
+package com.cbr.behance.project.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.cbr.base.ui.BaseViewModel
 import com.cbr.behance.commons.recycler.LoadingViewHolder
-import com.cbr.behance.project.recycler.ProjectGridItem
+import com.cbr.behance.project.list.recycler.ProjectGridItem
 import javax.inject.Inject
 
 
@@ -32,7 +32,8 @@ class ProjectListViewModel(
                             handleNewProjects(it)
                             projectStateLiveData.postValue(Success)
                         }, { t ->
-                            projectStateLiveData.postValue(Error(t.message ?: ""))
+                            projectStateLiveData.postValue(Error(t.message
+                                    ?: ""))
                         })
         )
     }

@@ -16,16 +16,19 @@ data class BehanceProject(
         @SerializedName("fields") val fields: List<String>,
         @SerializedName("covers") val covers: HashMap<String, String>,
         @SerializedName("mature_content") val nsfw: Int,
+        @SerializedName("mature_access") val nsfwAccess: String,
         @SerializedName("owners") val owners: List<BehanceUser>,
         @SerializedName("stats") val stats: Stats,
         @SerializedName("description") val description: String?,
         @SerializedName("copyright") val copyright: String?,
-        @SerializedName("features") val features: List<ProjectFeature>
+        @SerializedName("features") val features: List<ProjectFeature>,
+        @SerializedName("tags") val tags: List<String>,
+        @SerializedName("modules") val modules: List<BehanceModule>?
 ) {
 
     fun toModel() = Project(
             id, name, publishDate, creationDate, lastModifiedDate,
             url, fields, covers, nsfw, owners.map { it.toModel() },
             stats, description ?: "", copyright ?: "",
-            features)
+            features, modules ?: listOf())
 }

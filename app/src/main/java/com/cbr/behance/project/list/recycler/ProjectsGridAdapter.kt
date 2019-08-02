@@ -1,4 +1,4 @@
-package com.cbr.behance.project.recycler
+package com.cbr.behance.project.list.recycler
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ import com.cbr.behance.commons.recycler.LoadingViewHolder.Companion.TYPE_LOADING
 import com.cbr.behance.commons.recycler.PagingAdapter
 import kotlinx.android.synthetic.main.viewholder_grid.*
 
-class ProjectsGridAdapter(val columnCount: Int, callback: Callback) : PagingAdapter<ProjectGridItem>(callback) {
+class ProjectsGridAdapter(val columnCount: Int, callback: Callback, val projectCB: ProjectCallback) : PagingAdapter<ProjectGridItem>(callback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH<ProjectGridItem> {
         return when (viewType) {
@@ -28,6 +28,9 @@ class ProjectsGridAdapter(val columnCount: Int, callback: Callback) : PagingAdap
         super.onBindViewHolder(holder, position)
         if (holder is ProjectGridViewHolder) {
             holder.bind(position, items[position])
+            holder.itemView.setOnClickListener {
+                projectCB.onProjectTapped(items[position].project())
+            }
         }
     }
 
@@ -78,4 +81,9 @@ class ProjectGridItem(type: Int, data: Any) : ListItem(type, data) {
     companion object {
         const val TYPE_PROJECT = 0
     }
+}
+
+interface ProjectCallback {
+
+    fun onProjectTapped(project: Project)
 }

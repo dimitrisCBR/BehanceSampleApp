@@ -1,4 +1,4 @@
-package com.cbr.behance.project.recycler
+package com.cbr.behance.project.list.recycler
 
 import androidx.recyclerview.widget.DiffUtil
 

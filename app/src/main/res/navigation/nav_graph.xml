@@ -18,8 +18,12 @@
 
     <fragment
         android:id="@+id/projectsFragment"
-        android:name="com.cbr.behance.project.ProjectListFragment"
-        android:label="@string/label_projects" />
+        android:name="com.cbr.behance.project.list.ProjectListFragment"
+        android:label="@string/label_projects" >
+        <action
+            android:id="@+id/go_to_project_details"
+            app:destination="@id/projectDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/userDetailsFragment"
@@ -30,6 +34,17 @@
             android:name="user_id"
             android:defaultValue="0L"
             app:argType="long" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/projectDetailsFragment"
+        android:name="com.cbr.behance.project.detail.ProjectDetailsFragment"
+        android:label="ProjectDetailsFragment" >
+
+        <argument
+            android:name="project_id"
+            app:argType="long" />
+
 
     </fragment>
 

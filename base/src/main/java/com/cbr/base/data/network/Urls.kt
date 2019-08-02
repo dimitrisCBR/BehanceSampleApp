@@ -10,6 +10,8 @@ object Urls {
 
     const val GET_USER_BY_ID = API_VERSION + "users/{id}"
 
+    const val GET_PROJECT_BY_ID = API_VERSION + "projects/{id}"
+
     const val GET_USER_PROJECTS = API_VERSION + "users/{id}/projects/"
 
     const val GET_USER_WIPS = API_VERSION + "users/{id}/wips/"

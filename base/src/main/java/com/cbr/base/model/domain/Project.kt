@@ -1,5 +1,6 @@
 package com.cbr.base.model.domain
 
+import com.cbr.base.model.api.BehanceModule
 import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 
@@ -17,5 +18,6 @@ data class Project(
         val stats: Stats,
         val description: String,
         val copyright: String,
-        val projectFeature: List<ProjectFeature>
+        val projectFeatures: List<ProjectFeature>,
+        val projectModules: List<BehanceModule>
 )

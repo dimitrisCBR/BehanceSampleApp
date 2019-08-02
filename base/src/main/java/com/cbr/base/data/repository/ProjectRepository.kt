@@ -1,9 +1,9 @@
 package com.cbr.base.data.repository
 
-import com.cbr.base.model.domain.Project
 import com.cbr.base.data.database.dao.ProjectDAO
 import com.cbr.base.data.database.entity.ProjectEntity
 import com.cbr.base.data.network.BehanceApiService
+import com.cbr.base.model.domain.Project
 import io.reactivex.Single
 import java.net.UnknownHostException
 import javax.inject.Inject
@@ -33,4 +33,7 @@ class ProjectRepository @Inject constructor(
                     }
                 }
     }
+
+    fun loadProjectById(id: String, map: Map<String, Any>) = behanceApiService.getProjectById(id, map)
+
 }

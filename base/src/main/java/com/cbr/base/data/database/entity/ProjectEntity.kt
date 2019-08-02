@@ -3,6 +3,7 @@ package com.cbr.base.data.database.entity
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.cbr.base.model.api.BehanceModule
 import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 import com.cbr.base.model.domain.Project
@@ -24,16 +25,18 @@ constructor(
         @Ignore
         var owners: List<User> = listOf(),
         @Ignore
-        var stats: Stats = Stats(0,0,0),
+        var stats: Stats = Stats(0, 0, 0),
         var description: String = "",
         var copyright: String = "",
         @Ignore
-        var projectFeature: List<ProjectFeature> = mutableListOf()
+        var projectFeatures: List<ProjectFeature> = mutableListOf(),
+        @Ignore
+        var projectModules: List<BehanceModule> = mutableListOf()
 ) {
 
     fun toModel(): Project = Project(
             id, name, publish_date, creation_date, last_modified_date, url, field, covers,
-            nsfw, owners, stats, description, copyright, projectFeature)
+            nsfw, owners, stats, description, copyright, projectFeatures, projectModules)
 
     companion object {
 
@@ -51,6 +54,7 @@ constructor(
                 project.stats,
                 project.description,
                 project.copyright,
-                project.projectFeature)
+                project.projectFeatures,
+                project.projectModules)
     }
 }
