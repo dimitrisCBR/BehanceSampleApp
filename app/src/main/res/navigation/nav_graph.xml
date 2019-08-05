@@ -1,51 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph"
-    app:startDestination="@+id/usersFragment">
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/nav_graph"
+	app:startDestination="@+id/usersFragment">
 
-    <fragment
-        android:id="@+id/usersFragment"
-        android:name="com.cbr.behance.user.list.UserListFragment"
-        android:label="@string/label_users">
+	<fragment
+		android:id="@+id/usersFragment"
+		android:name="com.cbr.behance.user.list.UserListFragment"
+		android:label="@string/label_users">
 
-        <action
-            android:id="@+id/action_fragment_users_to_userDetailsFragment"
-            app:destination="@id/userDetailsFragment" />
+		<action
+			android:id="@+id/action_fragment_users_to_userDetailsFragment"
+			app:destination="@id/userDetailsFragment" />
 
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/projectsFragment"
-        android:name="com.cbr.behance.project.list.ProjectListFragment"
-        android:label="@string/label_projects" >
-        <action
-            android:id="@+id/go_to_project_details"
-            app:destination="@id/projectDetailsFragment" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/userDetailsFragment"
-        android:name="com.cbr.behance.user.details.UserDetailsFragment"
-        android:label="UserDetailsFragment">
-
-        <argument
-            android:name="user_id"
-            android:defaultValue="0L"
-            app:argType="long" />
-
-    </fragment>
-    <fragment
-        android:id="@+id/projectDetailsFragment"
-        android:name="com.cbr.behance.project.detail.ProjectDetailsFragment"
-        android:label="ProjectDetailsFragment" >
-
-        <argument
-            android:name="project_id"
-            app:argType="long" />
+	</fragment>
 
 
-    </fragment>
+	<fragment
+		android:id="@+id/projectsFragment"
+		android:name="com.cbr.behance.project.list.ProjectListFragment"
+		android:label="@string/label_projects">
+
+	</fragment>
+
+	<fragment
+		android:id="@+id/userDetailsFragment"
+		android:name="com.cbr.behance.user.details.UserDetailsFragment"
+		android:label="UserDetailsFragment">
+
+		<argument
+			android:name="user_id"
+			android:defaultValue="0L"
+			app:argType="long" />
+
+	</fragment>
 
 </navigation>

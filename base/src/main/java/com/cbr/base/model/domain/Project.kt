@@ -1,6 +1,7 @@
 package com.cbr.base.model.domain
 
 import com.cbr.base.model.api.BehanceModule
+import com.cbr.base.model.commons.ProjectCopyright
 import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 
@@ -17,7 +18,10 @@ data class Project(
         val owners: List<User>,
         val stats: Stats,
         val description: String,
-        val copyright: String,
+        val copyright: ProjectCopyright?,
         val projectFeatures: List<ProjectFeature>,
         val projectModules: List<BehanceModule>
-)
+) {
+
+    fun getCoverImage() = covers.takeIf { it.isNotEmpty() }?.values?.first() ?: ""
+}

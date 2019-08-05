@@ -1,8 +1,10 @@
 package com.cbr.behance.project.detail
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.cbr.base.model.domain.Project
 import com.cbr.base.ui.BaseViewModel
 import timber.log.Timber
 import javax.inject.Inject
@@ -23,19 +25,24 @@ class ProjectDetailsViewModel(
                 projectDetailsInteractor.getProjectDetails(projectId)
                         .subscribe(
                                 { project ->
-                                    Timber.e("Success")
+                                    projectDetailsState.postValue(Success(project))
                                 },
-                                { t -> Timber.e(t) }
+                                { t ->
+                                    projectDetailsState.postValue(Error(t.message ?: ""))
+                                    Timber.e(t)
+                                }
                         )
         )
     }
+
+    fun projectUI(): LiveData<ProjectDetailsUI> = projectDetailsState
 
 }
 
 sealed class ProjectDetailsUI
 object Loading : ProjectDetailsUI()
 data class Error(val message: String) : ProjectDetailsUI()
-object Success : ProjectDetailsUI()
+data class Success(val project: Project) : ProjectDetailsUI()
 
 class ProjectDetailsVMFactory @Inject constructor(
         private val interactor: ProjectDetailsInteractor,

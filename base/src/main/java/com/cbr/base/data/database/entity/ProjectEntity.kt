@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.cbr.base.model.api.BehanceModule
+import com.cbr.base.model.commons.ProjectCopyright
 import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 import com.cbr.base.model.domain.Project
@@ -27,7 +28,8 @@ constructor(
         @Ignore
         var stats: Stats = Stats(0, 0, 0),
         var description: String = "",
-        var copyright: String = "",
+        @Ignore
+        var copyright: ProjectCopyright? = null,
         @Ignore
         var projectFeatures: List<ProjectFeature> = mutableListOf(),
         @Ignore

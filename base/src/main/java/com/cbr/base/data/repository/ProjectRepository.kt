@@ -34,6 +34,8 @@ class ProjectRepository @Inject constructor(
                 }
     }
 
-    fun loadProjectById(id: String, map: Map<String, Any>) = behanceApiService.getProjectById(id, map)
+    fun loadProjectById(id: String, map: Map<String, Any>) =
+            behanceApiService.getProjectById(id, map)
+                    .map { it.item.toModel() }
 
 }

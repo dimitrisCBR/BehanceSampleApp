@@ -1,5 +1,6 @@
 package com.cbr.behance.project.list
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,19 +10,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import com.cbr.base.extension.gone
 import com.cbr.base.extension.screenWidth
 import com.cbr.base.extension.visible
-import com.cbr.base.model.domain.Project
 import com.cbr.behance.BehanceSampleApplication
 import com.cbr.behance.R
+import com.cbr.behance.commons.recycler.LoadingViewHolder
 import com.cbr.behance.commons.recycler.PagingAdapter
 import com.cbr.behance.commons.recycler.decorator.GridDecorator
 import com.cbr.behance.project.di.DaggerProjectComponent
-import com.cbr.behance.project.list.recycler.ProjectCallback
 import com.cbr.behance.project.list.recycler.ProjectsGridAdapter
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.include_error_layout.*
@@ -30,7 +28,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class ProjectListFragment : Fragment(), PagingAdapter.Callback, ProjectCallback {
+class ProjectListFragment : Fragment(), PagingAdapter.Callback {
 
     @Inject
     lateinit var viewModelFactory: ProjectListVMFactory
@@ -48,6 +46,11 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback, ProjectCallback 
                 .inject(this)
     }
 
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        gridAdapter = ProjectsGridAdapter(this, activity)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_list, container, false)
     }
@@ -59,11 +62,15 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback, ProjectCallback 
             val columnCount = context.screenWidth() / itemWidth
             val gridLayoutManager = GridLayoutManager(context, columnCount)
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-                override fun getSpanSize(position: Int): Int = gridAdapter.getSpanForPosition(position)
+                override fun getSpanSize(position: Int): Int {
+                    return when (gridAdapter.getItemViewType(position)) {
+                        LoadingViewHolder.TYPE_LOADING -> columnCount
+                        else -> 1
+                    }
+                }
             }
             layoutManager = gridLayoutManager
             addItemDecoration(GridDecorator(context, columnCount))
-            gridAdapter = ProjectsGridAdapter(columnCount, this@ProjectListFragment, this@ProjectListFragment)
             adapter = gridAdapter
         }
         swipeRefresh.setOnRefreshListener {
@@ -87,14 +94,6 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback, ProjectCallback 
                 is Success -> showProjects()
             }
         })
-    }
-
-    override fun onProjectTapped(project: Project) {
-        activity?.let {
-            val action = ProjectListFragmentDirections.goToProjectDetails(project.id)
-            Navigation.findNavController(it, R.id.navigationHost)
-                    .navigate(action, NavOptions.Builder().build())
-        }
     }
 
     override fun needMoreData() {

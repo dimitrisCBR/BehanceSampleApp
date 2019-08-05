@@ -6,4 +6,8 @@
     <string name="label_users">Users</string>
     <string name="label_projects">Projects</string>
     <string name="label_stub">Stub</string>
+	<string name="transition_project_title">transition_project_title</string>
+    <string name="transition_project_background">transition_project_background</string>
+    <string name="transition_project_image">transition_project_image</string>
+    <string name="error_loading">We couldn\'t load this page.</string>
 </resources>

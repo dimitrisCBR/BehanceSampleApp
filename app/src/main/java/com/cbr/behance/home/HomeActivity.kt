@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.cbr.base.ui.BaseActivity
+import com.cbr.base.ui.NavActivity
 import com.cbr.behance.R
 import kotlinx.android.synthetic.main.activity_home.*
 
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : NavActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
