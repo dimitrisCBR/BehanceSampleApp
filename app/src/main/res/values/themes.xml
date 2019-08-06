@@ -13,6 +13,12 @@
     <style name="AppTheme.Transparent">
     </style>
 
+    <style name="AppTheme.Transparent.ProjectDetails">
+        <item name="android:windowAllowReturnTransitionOverlap">false</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/project_details_shared_enter</item>
+        <item name="android:windowSharedElementReturnTransition">@transition/project_details_shared_return</item>
+    </style>
+
     <style name="AppTheme.Transparent.Light">
     </style>
 

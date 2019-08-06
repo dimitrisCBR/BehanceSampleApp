@@ -10,7 +10,7 @@
 	app:cardElevation="@dimen/xsmall">
 
 	<View
-		android:id="@+id/gridBackground"
+		android:id="@+id/background"
 		android:background="@android:color/white"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"/>

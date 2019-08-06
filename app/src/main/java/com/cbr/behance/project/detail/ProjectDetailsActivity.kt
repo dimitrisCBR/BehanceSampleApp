@@ -1,6 +1,9 @@
 package com.cbr.behance.project.detail
 
+import android.animation.AnimatorInflater
 import android.os.Bundle
+import android.transition.Transition
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -57,14 +60,44 @@ class ProjectDetailsActivity : BaseActivity() {
 
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        contentLayout.alpha = 0f
+    }
+
     private fun handleError(message: String) {
         Toast.makeText(this, R.string.error_loading, Toast.LENGTH_SHORT).show()
         finish()
     }
 
     private fun bindProject(project: Project) {
+
+        window.sharedElementEnterTransition?.addListener(object : Transition.TransitionListener {
+            override fun onTransitionEnd(transition: Transition?) {
+                AnimatorInflater.loadAnimator(this@ProjectDetailsActivity, R.animator.animator_fade_in_up).apply {
+                    duration = 200
+                    interpolator = AccelerateDecelerateInterpolator()
+                    setTarget(contentLayout)
+                    start()
+                }
+            }
+
+            override fun onTransitionResume(transition: Transition?) {
+            }
+
+            override fun onTransitionPause(transition: Transition?) {
+            }
+
+            override fun onTransitionCancel(transition: Transition?) {
+            }
+
+            override fun onTransitionStart(transition: Transition?) {
+            }
+
+        })
+        startPostponedEnterTransition()
         projectTitleTextView.text = project.name
-        projectImageView.loadImage(project.getCoverImage(), { supportStartPostponedEnterTransition() })
+        imageView.loadImage(project.getCoverImage(), { supportStartPostponedEnterTransition() })
         project.field.takeIf { it.isNotEmpty() }?.let {
             it.forEach { field ->
                 val chip = Chip(this)

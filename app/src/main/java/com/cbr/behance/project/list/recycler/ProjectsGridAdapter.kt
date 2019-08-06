@@ -3,13 +3,13 @@ package com.cbr.behance.project.list.recycler
 import android.app.Activity
 import android.app.ActivityOptions
 import android.app.SharedElementCallback
+import android.content.Context
 import android.content.Intent
 import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.cbr.base.extension.loadImage
@@ -21,7 +21,6 @@ import com.cbr.behance.commons.recycler.LoadingViewHolder
 import com.cbr.behance.commons.recycler.PagingAdapter
 import com.cbr.behance.project.detail.ProjectDetailsActivity
 import com.cbr.behance.project.list.recycler.ProjectGridItem.Companion.TYPE_PROJECT
-import kotlinx.android.synthetic.main.viewholder_grid.*
 
 class ProjectsGridAdapter(callback: Callback, val hostActivity: Activity) : PagingAdapter<ProjectGridItem>(callback) {
 
@@ -68,7 +67,6 @@ class ProjectsGridAdapter(callback: Callback, val hostActivity: Activity) : Pagi
 class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTransition) -> Unit) : BaseVH<ProjectGridItem>(view) {
 
     private val imageView: ImageView = itemView.findViewById(R.id.imageView)
-    private val gridBackground: View = itemView.findViewById(R.id.gridBackground)
 
     var project: Project? = null
 
@@ -77,7 +75,7 @@ class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTra
             project?.let {
                 val ctx = itemView.context
                 imageView.transitionName = ctx.getString(R.string.transition_project_image)
-                gridBackground.transitionName = ctx.getString(R.string.transition_project_background)
+                imageView.transitionName = ctx.getString(R.string.transition_project_background)
                 val data = ProjectItemTransition(
                         it.name,
                         it.id,

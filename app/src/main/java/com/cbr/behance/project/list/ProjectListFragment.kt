@@ -58,7 +58,7 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerview.apply {
-            val itemWidth = (resources.getDimension(R.dimen.card_behace_user_item) + resources.getDimension(R.dimen.card_standard_padding)).toInt()
+            val itemWidth = (resources.getDimension(R.dimen.card_behace_user_item)).toInt()
             val columnCount = context.screenWidth() / itemWidth
             val gridLayoutManager = GridLayoutManager(context, columnCount)
             gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {

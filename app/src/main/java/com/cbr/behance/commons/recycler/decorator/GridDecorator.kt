@@ -10,7 +10,8 @@ import com.cbr.behance.R
 class GridDecorator(
         context: Context,
         private val columnCount: Int) : RecyclerView.ItemDecoration() {
-    private val padding: Int = context.resources.getDimension(R.dimen.card_standard_padding).toInt()
+    private val padding: Int = 0
+//            context.resources.getDimension(R.dimen.card_standard_padding).toInt()
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
         super.getItemOffsets(outRect, view, parent, state)

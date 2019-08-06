@@ -25,7 +25,8 @@
 			</intent-filter>
 		</activity>
 
-		<activity android:name=".project.detail.ProjectDetailsActivity" />
+		<activity android:name=".project.detail.ProjectDetailsActivity"
+			android:theme="@style/AppTheme.Transparent.ProjectDetails"/>
 
 	</application>
 </manifest>
