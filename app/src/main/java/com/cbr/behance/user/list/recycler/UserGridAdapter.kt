@@ -1,6 +1,5 @@
 package com.cbr.behance.user.list.recycler
 
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,11 +55,11 @@ class UserGridViewHolder(view: View) : BaseVH<UserGridItem>(view) {
             imageView.loadImage(it[key])
         }
 
-        titleTextView.text = user.displayName
-        subtitleTextView.text = user.country
-        infoDivider.visibility = if (TextUtils.isEmpty(user.occupation)) View.GONE else View.VISIBLE
-        extraTextView.visibility = if (TextUtils.isEmpty(user.occupation)) View.GONE else View.VISIBLE
-        extraTextView.text = user.occupation
+//        titleTextView.text = user.displayName
+//        subtitleTextView.text = user.country
+//        infoDivider.visibility = if (TextUtils.isEmpty(user.occupation)) View.GONE else View.VISIBLE
+//        extraTextView.visibility = if (TextUtils.isEmpty(user.occupation)) View.GONE else View.VISIBLE
+//        extraTextView.text = user.occupation
     }
 
     companion object {

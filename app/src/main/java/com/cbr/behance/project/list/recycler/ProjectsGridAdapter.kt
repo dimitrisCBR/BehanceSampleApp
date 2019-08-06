@@ -67,8 +67,8 @@ class ProjectsGridAdapter(callback: Callback, val hostActivity: Activity) : Pagi
 
 class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTransition) -> Unit) : BaseVH<ProjectGridItem>(view) {
 
-    private val title: TextView = itemView.findViewById(R.id.titleTextView)
     private val imageView: ImageView = itemView.findViewById(R.id.imageView)
+    private val gridBackground: View = itemView.findViewById(R.id.gridBackground)
 
     var project: Project? = null
 
@@ -76,8 +76,8 @@ class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTra
         itemView.setOnClickListener {
             project?.let {
                 val ctx = itemView.context
-                title.transitionName = ctx.getString(R.string.transition_project_title)
                 imageView.transitionName = ctx.getString(R.string.transition_project_image)
+                gridBackground.transitionName = ctx.getString(R.string.transition_project_background)
                 val data = ProjectItemTransition(
                         it.name,
                         it.id,
@@ -93,7 +93,6 @@ class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTra
     private fun getSharedElementsForTransition(): Array<Pair<View, String>> {
         val resources = itemView.context.resources
         return arrayOf(
-                Pair(title as View, resources.getString(R.string.transition_project_title)),
                 Pair(imageView as View, resources.getString(R.string.transition_project_image)),
                 Pair(itemView, resources.getString(R.string.transition_project_background))
         )
@@ -101,16 +100,16 @@ class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTra
 
     override fun bind(position: Int, data: ProjectGridItem) {
         project = data.project()
-        project?.let {project ->
+        project?.let { project ->
             imageView.loadImage(project.getCoverImage())
 
-            titleTextView.text = project.name
-            subtitleTextView.text = project.description
-            val hasExtraInfo = project.field.isNotEmpty()
-            infoDivider.visibility = if (hasExtraInfo) View.GONE else View.VISIBLE
-            extraTextView.visibility = if (hasExtraInfo) View.GONE else View.VISIBLE
-            val extras = project.field.toString()
-            extraTextView.text = extras
+//            titleTextView.text = project.name
+//            subtitleTextView.text = project.owners.first().displayName
+//            val hasExtraInfo = project.field.isNotEmpty()
+//            infoDivider.visibility = if (hasExtraInfo) View.VISIBLE else View.GONE
+//            extraTextView.visibility = if (hasExtraInfo) View.VISIBLE else View.GONE
+//            val extras = project.field.first()
+//            extraTextView.text = extras
         }
     }
 

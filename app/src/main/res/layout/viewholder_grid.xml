@@ -9,66 +9,79 @@
 	android:foreground="?attr/selectableItemBackground"
 	app:cardElevation="@dimen/xsmall">
 
-	<LinearLayout
+	<View
+		android:id="@+id/gridBackground"
+		android:background="@android:color/white"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical">
+		android:layout_height="match_parent"/>
 
-		<ImageView
-			android:id="@+id/imageView"
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/card_behace_user_item"
-			android:scaleType="centerCrop" />
+	<ImageView
+		android:id="@+id/imageView"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/card_behace_user_item"
+		tools:src="@tools:sample/backgrounds/scenic"
+		android:scaleType="centerCrop" />
 
-		<View
-			android:layout_width="match_parent"
-			android:layout_height="@dimen/divider_height_thin"
-			android:background="@color/brown_light" />
+	<!--<LinearLayout-->
+		<!--android:layout_width="match_parent"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:orientation="vertical">-->
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center_vertical"
-			android:orientation="vertical"
-			android:padding="@dimen/xsmall">
+		<!--<ImageView-->
+			<!--android:id="@+id/imageView"-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="@dimen/card_behace_user_item"-->
+			<!--android:scaleType="centerCrop" />-->
 
-			<TextView
-				android:id="@+id/titleTextView"
-				style="@style/AppTheme.Text.Body_1"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:maxLines="1"
-				tools:text="Ryan Lau" />
+		<!--<View-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="@dimen/divider_height_thin"-->
+			<!--android:background="@color/brown_light" />-->
 
-			<TextView
-				android:id="@+id/subtitleTextView"
-				style="@style/AppTheme.Text.Subtitle_2"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="2dp"
-				android:maxLines="1"
-				android:textColor="@color/text_dark"
-				tools:text="Designer" />
+		<!--<LinearLayout-->
+			<!--android:layout_width="match_parent"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:gravity="center_vertical"-->
+			<!--android:orientation="vertical"-->
+			<!--android:padding="@dimen/xsmall">-->
 
-			<View
-				android:id="@+id/infoDivider"
-				android:layout_width="match_parent"
-				android:layout_height="@dimen/divider_height_thin"
-				android:layout_marginTop="@dimen/xsmall"
-				android:background="@color/text_grey_80" />
+			<!--<TextView-->
+				<!--android:id="@+id/titleTextView"-->
+				<!--style="@style/AppTheme.Text.Body_1"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content"-->
+				<!--android:maxLines="1"-->
+				<!--tools:text="Ryan Lau" />-->
 
-			<TextView
-				android:id="@+id/extraTextView"
-				style="@style/AppTheme.Text.Body_2"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/xsmall"
-				android:maxLines="1"
-				android:textColor="@color/text_dark"
-				tools:text="San Fransisco, California, USA" />
+			<!--<TextView-->
+				<!--android:id="@+id/subtitleTextView"-->
+				<!--style="@style/AppTheme.Text.Subtitle_2"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content"-->
+				<!--android:layout_marginTop="2dp"-->
+				<!--android:maxLines="1"-->
+				<!--android:textColor="@color/text_dark"-->
+				<!--tools:text="Designer" />-->
 
-		</LinearLayout>
+			<!--<View-->
+				<!--android:id="@+id/infoDivider"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="@dimen/divider_height_thin"-->
+				<!--android:layout_marginTop="@dimen/xsmall"-->
+				<!--android:background="@color/text_grey_80" />-->
 
-	</LinearLayout>
+			<!--<TextView-->
+				<!--android:id="@+id/extraTextView"-->
+				<!--style="@style/AppTheme.Text.Body_2"-->
+				<!--android:layout_width="match_parent"-->
+				<!--android:layout_height="wrap_content"-->
+				<!--android:layout_marginTop="@dimen/xsmall"-->
+				<!--android:maxLines="1"-->
+				<!--android:textColor="@color/text_dark"-->
+				<!--tools:text="San Fransisco, California, USA" />-->
+
+		<!--</LinearLayout>-->
+
+	<!--</LinearLayout>-->
 
 </androidx.cardview.widget.CardView>

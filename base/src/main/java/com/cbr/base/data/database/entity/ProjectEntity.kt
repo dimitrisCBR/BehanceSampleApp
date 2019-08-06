@@ -9,6 +9,8 @@ import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 import com.cbr.base.model.domain.Project
 import com.cbr.base.model.domain.User
+import java.util.*
+import kotlin.collections.HashMap
 
 @Entity
 data class ProjectEntity
@@ -16,9 +18,9 @@ constructor(
         @PrimaryKey
         var id: Long = 0,
         var name: String = "",
-        var publish_date: Long = 0,
-        var creation_date: Long = 0,
-        var last_modified_date: Long = 0,
+        var publish_date: Date = Date(),
+        var creation_date: Date = Date(),
+        var last_modified_date: Date = Date(),
         var url: String = "",
         var field: List<String> = listOf(),
         var covers: HashMap<String, String> = hashMapOf(),

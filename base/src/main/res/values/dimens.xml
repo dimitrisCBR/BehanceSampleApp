@@ -20,6 +20,8 @@
     <dimen name="card_behace_user_default_image_width">200dp</dimen>
 
     <!-- Text -->
+    <dimen name="caption_headline">35sp</dimen>
+    <dimen name="caption_title">20sp</dimen>
     <dimen name="caption_subtitle_1">16sp</dimen>
     <dimen name="caption_subtitle_2">12sp</dimen>
     <dimen name="caption_body_1">14sp</dimen>

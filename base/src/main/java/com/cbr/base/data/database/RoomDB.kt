@@ -7,6 +7,7 @@ import com.cbr.base.data.database.dao.ProjectDAO
 import com.cbr.base.data.database.dao.UserDAO
 import com.cbr.base.data.database.entity.ProjectEntity
 import com.cbr.base.data.database.entity.UserEntity
+import com.cbr.base.data.database.entity.converter.DateConverter
 import com.cbr.base.data.database.entity.converter.HashMapTypeDataConverter
 import com.cbr.base.data.database.entity.converter.ListTypeDataConverter
 import com.cbr.base.data.database.entity.converter.MapTypeDataConverter
@@ -23,6 +24,7 @@ import com.cbr.base.data.database.entity.converter.MapTypeDataConverter
 @TypeConverters(value = [
     (ListTypeDataConverter::class),
     (MapTypeDataConverter::class),
+    (DateConverter::class),
     (HashMapTypeDataConverter::class)
 ])
 abstract class RoomDB : RoomDatabase() {

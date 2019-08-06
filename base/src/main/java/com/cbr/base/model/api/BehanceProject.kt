@@ -5,14 +5,16 @@ import com.cbr.base.model.commons.ProjectFeature
 import com.cbr.base.model.commons.Stats
 import com.cbr.base.model.domain.Project
 import com.google.gson.annotations.SerializedName
+import java.util.*
+import kotlin.collections.HashMap
 
 
 data class BehanceProject(
         @SerializedName("id") val id: Long,
         @SerializedName("name") val name: String,
-        @SerializedName("published_on") val publishDate: Long,
-        @SerializedName("created_on") val creationDate: Long,
-        @SerializedName("modified_on") val lastModifiedDate: Long,
+        @SerializedName("published_on") val publishDate: Date,
+        @SerializedName("created_on") val creationDate: Date,
+        @SerializedName("modified_on") val lastModifiedDate: Date,
         @SerializedName("url") val url: String,
         @SerializedName("fields") val fields: List<String>,
         @SerializedName("covers") val covers: HashMap<String, String>,

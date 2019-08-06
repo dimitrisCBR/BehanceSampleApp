@@ -10,4 +10,7 @@
     <string name="transition_project_background">transition_project_background</string>
     <string name="transition_project_image">transition_project_image</string>
     <string name="error_loading">We couldn\'t load this page.</string>
+	<string name="formatter_views">%1$d views</string>
+    <string name="formatter_likes">%1$d likes</string>
+    <string name="formatter_comments">%1$d comments</string>
 </resources>

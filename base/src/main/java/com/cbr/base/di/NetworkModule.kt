@@ -2,8 +2,7 @@ package com.cbr.base.di
 
 import com.cbr.base.BuildConfig
 import com.cbr.base.data.network.BehanceApiService
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
+import com.google.gson.*
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -11,6 +10,8 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
+import java.util.*
 import javax.inject.Singleton
 
 
@@ -33,9 +34,13 @@ class NetworkModule {
     @Singleton
     @Provides
     fun gson(): Gson {
-        //TODO update date-format when finalized from API
         return GsonBuilder()
-                .setDateFormat("yyyy-MM-dd HH:mm:ss zzz")
+                .registerTypeAdapter(Date::class.java, object : JsonDeserializer<Date> {
+                    override fun deserialize(json: JsonElement, typeOfT: Type?, context: JsonDeserializationContext?): Date {
+                        return Date(json.asJsonPrimitive.asLong * 1000)
+                    }
+
+                })
                 .create()
     }
 

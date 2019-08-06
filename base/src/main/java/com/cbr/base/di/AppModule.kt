@@ -27,6 +27,7 @@ class AppModule(val application: Application) {
     @Singleton
     fun roomDB() = Room
             .databaseBuilder(application, RoomDB::class.java, "room")
+            .fallbackToDestructiveMigration()
             .build()
 
     @Singleton
