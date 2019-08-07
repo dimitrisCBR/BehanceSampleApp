@@ -2,7 +2,7 @@
 # Android Behance Sample Browser
 `Powered By Behance`
 
-![alt text](/files/capture2.gif "Gif")
+![alt text](/files/behance_sample.gif "Gif")
 
 Example Android project, using Behance's API. I try to maintain this repo as a project of best practices in app architectures and UI.
 
@@ -25,16 +25,19 @@ The code is WIP, so you might find unfinished stuff.
  
 ##### Architecture
 
-MVP clean, minimal architecture with:
+clean, minimal architecture with:
 - Kotlin
-- Dagger 2
+- Dagger2
 - Retrofit
 - Rx
+- ViewModel
+- AnroidX
+- Navigation Component
 
 ##### UI
 - Infinite Loading RecyclerView
 - Dynamic Grid RecyclerView
-- Collapsing Toolbar
 - Bottom Navigation
 - Image Blur
 - App Themes & Styles
+- Shared Element Transitions.

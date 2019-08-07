@@ -2,8 +2,6 @@ package com.cbr.behance.project.list.recycler
 
 import android.app.Activity
 import android.app.ActivityOptions
-import android.app.SharedElementCallback
-import android.content.Context
 import android.content.Intent
 import android.util.Pair
 import android.view.LayoutInflater
@@ -21,6 +19,7 @@ import com.cbr.behance.commons.recycler.LoadingViewHolder
 import com.cbr.behance.commons.recycler.PagingAdapter
 import com.cbr.behance.project.detail.ProjectDetailsActivity
 import com.cbr.behance.project.list.recycler.ProjectGridItem.Companion.TYPE_PROJECT
+import kotlinx.android.synthetic.main.activity_project_details.*
 
 class ProjectsGridAdapter(callback: Callback, val hostActivity: Activity) : PagingAdapter<ProjectGridItem>(callback) {
 
@@ -42,12 +41,12 @@ class ProjectsGridAdapter(callback: Callback, val hostActivity: Activity) : Pagi
         val intent = Intent(hostActivity, ProjectDetailsActivity::class.java)
         intent.putExtra(ProjectDetailsActivity.EXTRA_PROJECT_ID, data.projectId)
 
-        hostActivity.setExitSharedElementCallback(object : SharedElementCallback() {
-            override fun onSharedElementStart(sharedElementNames: MutableList<String>, sharedElements: MutableList<View>, sharedElementSnapshots: MutableList<View>) {
-                hostActivity.setExitSharedElementCallback(null)
-                notifyItemChanged(data.position)
-            }
-        })
+//        hostActivity.setExitSharedElementCallback(object : SharedElementCallback() {
+//            override fun onSharedElementStart(sharedElementNames: MutableList<String>, sharedElements: MutableList<View>, sharedElementSnapshots: MutableList<View>) {
+//                hostActivity.setExitSharedElementCallback(null)
+//                notifyItemChanged(data.position)
+//            }
+//        })
 
         val options = ActivityOptions.makeSceneTransitionAnimation(hostActivity, *data.sharedElements)
         hostActivity.startActivity(intent, options.toBundle())
@@ -98,8 +97,15 @@ class ProjectGridViewHolder(view: View, val clickCB: (transition: ProjectItemTra
 
     override fun bind(position: Int, data: ProjectGridItem) {
         project = data.project()
+
         project?.let { project ->
             imageView.loadImage(project.getCoverImage())
+            val colorBg = when (position % 3) {
+                0 -> itemView.context.getColor(R.color.grey_light)
+                1 -> itemView.context.getColor(R.color.grey_warm)
+                else -> itemView.context.getColor(R.color.grey_dark)
+            }
+            background.setBackgroundColor(colorBg)
 
 //            titleTextView.text = project.name
 //            subtitleTextView.text = project.owners.first().displayName
