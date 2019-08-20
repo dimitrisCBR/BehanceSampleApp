@@ -1,6 +1,5 @@
 package com.cbr.base.data.scheduler
 
-import com.cbr.base.data.scheduler.SchedulersProvider
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

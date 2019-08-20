@@ -15,7 +15,7 @@ class ProjectListInteractor @Inject constructor(
         private val schedulersProvider: SchedulersProvider
 ) {
 
-    private val query = ProjectsQuery()
+    val query = ProjectsQuery()
 
 
     fun loadProjects(): Single<MutableList<ProjectGridItem>> =

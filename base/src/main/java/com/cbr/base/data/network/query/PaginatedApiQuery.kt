@@ -1,7 +1,5 @@
 package com.cbr.base.data.network.query
 
-import com.cbr.base.data.network.query.ApiQuery
-
 
 open class PaginatedApiQuery : ApiQuery() {
 
@@ -15,6 +13,9 @@ open class PaginatedApiQuery : ApiQuery() {
         pageNumber++
         parameters[PARAM_PAGE] = pageNumber
     }
+
+    fun getPage() : Int = parameters[PARAM_PAGE] as Int
+
 
     override fun reset() {
         super.reset()

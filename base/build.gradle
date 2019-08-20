@@ -51,4 +51,10 @@ dependencies {
     kapt deps.dagger.compiler
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
+
+    //Test
+    testImplementation deps.test.junit
+    testImplementation deps.test.core
+    testImplementation deps.test.mockito
+    testImplementation deps.test.mockitoKotlin
 }

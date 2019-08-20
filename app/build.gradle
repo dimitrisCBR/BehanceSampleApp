@@ -10,6 +10,13 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    useLibrary 'android.test.runner'
+
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+
+
 }
 
 dependencies {
@@ -39,5 +46,15 @@ dependencies {
     kapt deps.dagger.compiler
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
+
+    testImplementation deps.test.junit
+    testImplementation deps.test.core
+    testImplementation deps.test.mockito
+    testImplementation deps.test.mockitoKotlin
+
+    testImplementation deps.test.wiremock
+    testImplementation deps.test.mockwebserver
+
+    androidTestImplementation deps.test.espresso
 
 }
