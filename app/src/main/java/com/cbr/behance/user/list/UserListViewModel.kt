@@ -17,10 +17,6 @@ class UserListViewModel @Inject constructor(
     private val userListStateLiveData = MutableLiveData<UsersUI>()
     private val userItemsLiveData = MutableLiveData<List<UserGridItem>>()
 
-    init {
-        loadUsers()
-    }
-
     fun loadUsers() {
         if (userListStateLiveData.value == Loading) {
             return

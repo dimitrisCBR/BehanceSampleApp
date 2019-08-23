@@ -7,11 +7,12 @@ import com.cbr.base.model.api.BehanceUser
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Matchers
+import org.mockito.ArgumentMatchers.anyMap
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import java.util.concurrent.TimeoutException
+
 
 class UserRepositoryTest {
 
@@ -39,7 +40,7 @@ class UserRepositoryTest {
         val expectedResponse = ListResponse(responseList)
 
         Mockito.`when`(
-                mockBehanceApi.getUsers(Matchers.anyMapOf(String::class.java, Any::class.java))
+                mockBehanceApi.getUsers(anyMap())
         ).thenReturn(
                 Single.just(expectedResponse))
 
@@ -52,7 +53,7 @@ class UserRepositoryTest {
     fun `load projects error`() {
         val error = TimeoutException()
         Mockito.`when`(
-                mockBehanceApi.getProjects(Matchers.anyMapOf(String::class.java, Any::class.java))
+                mockBehanceApi.getUsers(anyMap())
         ).thenReturn(
                 Single.error(error))
 

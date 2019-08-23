@@ -81,6 +81,10 @@ class UserListFragment : Fragment(), PagingAdapter.Callback {
         usersViewModel.userListItems().observe(this, Observer { userListItems ->
             gridAdapter.setUsers(userListItems)
         })
+
+        if (gridAdapter.isEmpty()) {
+            usersViewModel.loadUsers()
+        }
     }
 
     override fun needMoreData() {

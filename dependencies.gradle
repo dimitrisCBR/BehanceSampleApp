@@ -26,6 +26,7 @@ versions.circleImageView = "2.2.0"
 //Test
 versions.junit = "4.2"
 versions.androidTestCore = "1.0.0"
+versions.androidTestRunner = "1.1.0"
 versions.espresso = "3.1.0"
 versions.mockito = "1.10.19"
 versions.mockitoKotlin = "2.1.0"
@@ -62,9 +63,8 @@ deps.room = room
 def lifecycle = [:]
 lifecycle.runtime = "androidx.lifecycle:lifecycle-runtime:$versions.lifecycle"
 lifecycle.extensions = "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
-lifecycle.java8 = "androidx.lifecycle:lifecycle-common-java8:$versions.lifecycle"
 lifecycle.compiler = "androidx.lifecycle:lifecycle-compiler:$versions.lifecycle"
-lifecycle.paging = "androidx.paging:paging-runtime:$versions.lifecycle"
+lifecycle.testing = "android.arch.core:core-testing:$versions.lifecycle"
 deps.lifecycle = lifecycle
 
 def retrofit = [:]
@@ -120,6 +120,8 @@ deps.uiExtras = uiExtras
 def test = [:]
 test.junit = "junit:junit:$versions.junit"
 test.core = "androidx.test:core:$versions.androidTestCore"
+test.runner = "androidx.test:runner:$versions.androidTestRunner"
+test.rules = "androidx.test:rules:$versions.androidTestRunner"
 test.espresso = "androidx.test.espresso:espresso-core:$versions.espresso"
 test.mockito = "org.mockito:mockito-core:$versions.mockito"
 test.mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"

@@ -53,8 +53,10 @@ dependencies {
     kapt deps.lifecycle.compiler
 
     //Test
+    testImplementation deps.lifecycle.testing
     testImplementation deps.test.junit
     testImplementation deps.test.core
     testImplementation deps.test.mockito
     testImplementation deps.test.mockitoKotlin
+
 }

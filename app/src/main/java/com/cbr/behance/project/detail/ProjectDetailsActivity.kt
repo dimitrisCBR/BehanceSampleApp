@@ -58,6 +58,8 @@ class ProjectDetailsActivity : BaseActivity() {
             }
         })
 
+        projectDetailsViewModel.loadProject()
+
     }
 
     override fun onBackPressed() {

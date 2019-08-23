@@ -23,7 +23,7 @@ class ProjectDetailsInteractorTest {
     lateinit var projectRepository: ProjectRepository
 
     @Before
-    public fun setup() {
+    fun setup() {
         MockitoAnnotations.initMocks(this)
         projectDetailsInteractor = ProjectDetailsInteractor(projectRepository, TestSchedulerProvider())
     }

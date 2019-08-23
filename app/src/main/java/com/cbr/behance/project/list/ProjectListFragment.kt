@@ -94,6 +94,10 @@ class ProjectListFragment : Fragment(), PagingAdapter.Callback {
                 is Success -> showProjects()
             }
         })
+
+        if (gridAdapter.isEmpty()) {
+            projectListViewModel.loadProjects()
+        }
     }
 
     override fun needMoreData() {

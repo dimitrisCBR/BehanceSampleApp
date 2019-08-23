@@ -17,10 +17,6 @@ class ProjectListViewModel(
     private val projectsLiveData = MutableLiveData<List<ProjectGridItem>>()
     private val projectStateLiveData = MutableLiveData<ProjectsUI>()
 
-    init {
-        loadProjects()
-    }
-
     fun loadProjects() {
         if (projectStateLiveData.value == Loading) {
             return
@@ -38,7 +34,7 @@ class ProjectListViewModel(
         )
     }
 
-    private fun handleNewProjects(projectItems: List<ProjectGridItem>) {
+    fun handleNewProjects(projectItems: List<ProjectGridItem>) {
         val items = mutableListOf<ProjectGridItem>()
         val oldItems = projectsLiveData.value.orEmpty()
 

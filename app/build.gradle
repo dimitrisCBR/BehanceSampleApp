@@ -33,6 +33,7 @@ dependencies {
 
     implementation deps.lifecycle.runtime
     implementation deps.lifecycle.extensions
+    testImplementation deps.lifecycle.testing
 
     implementation deps.navigation.ui
     implementation deps.navigation.fragment_ktx
@@ -47,13 +48,13 @@ dependencies {
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
+    //Test
+    androidTestImplementation deps.test.core
+
     testImplementation deps.test.junit
     testImplementation deps.test.core
     testImplementation deps.test.mockito
     testImplementation deps.test.mockitoKotlin
-
-    testImplementation deps.test.wiremock
-    testImplementation deps.test.mockwebserver
 
     androidTestImplementation deps.test.espresso
 

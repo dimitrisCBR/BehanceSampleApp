@@ -16,11 +16,8 @@ class ProjectDetailsViewModel(
 
     val projectDetailsState = MutableLiveData<ProjectDetailsUI>()
 
-    init {
-        loadProject()
-    }
 
-    private fun loadProject() {
+    fun loadProject() {
         compositeDisposable.add(
                 projectDetailsInteractor.getProjectDetails(projectId)
                         .subscribe(
